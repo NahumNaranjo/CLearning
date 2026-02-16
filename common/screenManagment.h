@@ -4,4 +4,5 @@
     #include <stdlib.h>
     void clearConsole();
     void Stop();
+    void StopM(char* msg);
 #endif

@@ -51,7 +51,7 @@ void analysisMode(char* txt, size_t* size, AnalyzeTextData* dataOut){
     AnalyzeTextData* data;
     if(txt){
         printf("Analyzing file...\n");
-        data = AnalyzeText(&txt, size);
+        data = AnalyzeText(txt, size);
     } else{
         data = dataOut;
     }

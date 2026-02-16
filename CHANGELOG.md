@@ -142,8 +142,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [1.2.0 BETA] - 2026-02-13
 ### Changes
 - **CL overhaul**: Implemented half of it, it's not working yet and i don't know why but i gotta realease a weekly drop, for now, it's just a beta and i'll upload the full version tomorrow or so.
-- **CBA refactor**: Just as it is, i remade cba from scratch
-- **Documentation**: i updated everything but the new things from this version are still missing so i'lll add them as soon as i can.
+- **CBA refactor**: Just as it is, i remade cba from scratch due to logic issues.
+- **Documentation**: i updated everything but the new things from this version are still missing so i'll work on them as soon as i can.
+
+## [1.2.0] - 2026-02-16
+### Changes
+- **CL overhaul**: We're officially out of beta, ALL changes to cl has been added to the main version. Everything's working as supposed to and i'm pretty happy rn
+- **CBA Refactorization**: I'm gonna work on this during the week as I make the next tool.
+- **Documentation**: All docs have been updated.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project

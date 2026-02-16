@@ -20,7 +20,7 @@ cl [options] [command]
 
 - `-v, --version`: Shows version information.
 - `-h, --help`: Shows the help menu.
-- `exec, -e [tool]`: Executes a specific tool.
+- `exec, -e [tool]`: Executes a specific tool or command.
 
 ### Usage Examples
 
@@ -57,7 +57,10 @@ CL is built automatically as part of the main CLEARNING project. See the [main R
 
 - `main.c`: Main program entry point.
 - `cl.c`: Command interpreter logic.
+- `packageManager.c`: Not in use for now.
 - `cl.h`: Function declarations and constants.
+- `cba.h`, `cxt.h`: Centralized header controllers.
+- All remaining `.h` files.
 
 ## Notes
 
@@ -67,5 +70,5 @@ CL is built automatically as part of the main CLEARNING project. See the [main R
 
 ## Version
 
-CL v1.0.0 - Author: Nahum Naranjo</content>
+CL v2.0.0 - Author: Nahum Naranjo</content>
 <parameter name="filePath">d:\Programacion\CLearning\projects\cl\README.md

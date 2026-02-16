@@ -40,9 +40,9 @@ bool ExistKey(char* key, Map* map, size_t n) {
     return FindKey(key, map, n) != -1;
 }
 
-AnalyzeTextData* AnalyzeText(char **txt, size_t *size){
+AnalyzeTextData* AnalyzeText(char *txt, size_t *size){
     // Allocate the returning structure
-    AnalyzeTextData* returning = malloc(sizeof(AnalyzeTextData));
+    AnalyzeTextData* returning = malloc(sizeof(AnalyzeTextData) + 1);
     if (!returning) return NULL;
     
     // Allocate for words and newLines
@@ -68,8 +68,8 @@ AnalyzeTextData* AnalyzeText(char **txt, size_t *size){
     return returning;
 };
 
-size_t countWords(char **txt){
-    char *copy = strdup(*txt); // Copy to avoid modifying original
+size_t countWords(char *txt){
+    char *copy = strdup(txt); // Copy to avoid modifying original
     if (!copy) return 0;
     size_t count = 0;
     char* token = strtok(copy, delim);
@@ -82,8 +82,8 @@ size_t countWords(char **txt){
     return count;
 }
 
-size_t countNewLines(char **txt){
-    char *copy = strdup(*txt); // Copy to avoid modifying original
+size_t countNewLines(char *txt){
+    char *copy = strdup(txt); // Copy to avoid modifying original
     if (!copy) return 0;
     size_t count = 0;
     char* token = strtok(copy, "\n");
@@ -97,8 +97,8 @@ size_t countNewLines(char **txt){
 }
 
 
-commonWordsData mostCommonWord(char **txt){
-    char *copy = strdup(*txt); // Copy to avoid modifying original
+commonWordsData mostCommonWord(char *txt){
+    char *copy = strdup(txt); // Copy to avoid modifying original
     if (!copy) {
         commonWordsData res = {NULL, NULL, 0};
         return res;

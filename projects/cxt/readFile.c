@@ -1,4 +1,5 @@
 #include "readFile.h"
+#include <readFile2.h>
 
 
 void* separateFiles(const char *file, size_t *size_out){
@@ -24,10 +25,12 @@ char* readFile(const char *file, size_t *size_out){
     }
 
     long size_long = ftell(f);
+
     if (size_long < 0) {
         fclose(f);
         return NULL;
     }
+
     size_t size = (size_t)size_long;
 
     if (size > SIZE_MAX - 1) {  // avoid overflow

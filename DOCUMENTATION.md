@@ -141,6 +141,17 @@ If an invalid option is entered, HUB displays an error message and returns to th
 ```
 Invalid option, please try again.
 ```
+### Direct command execution
+CL has a native all in command interpreter, you can write:
+```bash
+  cl exec [tool] [instruction]
+```
+
+For example, to read a file, analyze it and return the info summary with cxt:
+```bash
+  cl exec cxt path info -a ## will return the same as executing it with cxt
+  cl exec cxt path write   ## Will return the report's path
+```
 
 ## CXT - Text Analysis Tool
 

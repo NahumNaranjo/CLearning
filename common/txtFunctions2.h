@@ -9,16 +9,16 @@
     #include "generalData.h"
 
     //counts all words in the txt file
-    size_t countWords(char **txt);
+    size_t countWords(char *txt);
     //counts new lines
-    size_t countNewLines(char **txt);
+    size_t countNewLines(char *txt);
     //finds most common words in the file
-    commonWordsData mostCommonWord(char **txt);
+    commonWordsData mostCommonWord(char *txt);
     //! UNUSED FUNCTION
     /*
     //checks if the word 
     bool compareWords(char **token, Map *wordMap, size_t **size);
     */
     //analyzes the text and returns both data
-    AnalyzeTextData* AnalyzeText(char **txt, size_t *size);
+    AnalyzeTextData* AnalyzeText(char *txt, size_t *size);
 #endif

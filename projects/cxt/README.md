@@ -72,4 +72,4 @@ Analysis results can be saved as report files with timestamps. These files can b
 
 ## Version
 
-CXT - Text Analyzer v1.0.0
+CXT - Text Analyzer v1.0.3

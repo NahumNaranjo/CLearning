@@ -11,7 +11,7 @@ The project is organized into the following components:
 - **[CL](projects/cl/README.md)**: A command-line tool launcher that allows executing different utilities.
 - **[HUB](projects/hub/README.md)**: A simple menu interface to access available tools.
 - **[CXT](projects/cxt/README.md)**: A text analysis tool that counts words, frequencies, and generates reports.
-- **[CBA](projects/cba/README.md)**: A build helper
+- **[CBA](projects/cba/README.md)**: A build helper.
 
 ### Common Library
 
@@ -26,7 +26,7 @@ The project is organized into the following components:
 
 ## Building and Installation
 ### Easy way
-Download the installer and run it, it'll install the program to path. You may have problems with windows defender due to me not wanting to give my soul to microsoft in exchange of .exe's recognition. Sorry D:
+Download the installer and run it, it'll install the program to path. You may have problems with windows defender or smart smart app control due to me not wanting to give my soul to microsoft in exchange of .exe's recognition (pay to sign my .exe's). Sorry D:
 
 ### Hard way
 1. **Clone or download** the repository to your local machine.
@@ -102,7 +102,7 @@ Developed by Nahum Naranjo as part of a C learning project.
 
 ## Version
 
-CLEARNING v1.1.0
+CLEARNING v1.2.0
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and changes.</content>
 <parameter name="filePath">d:\Programacion\CLearning\README.md

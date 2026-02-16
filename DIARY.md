@@ -131,6 +131,16 @@ Also, i wanna work on the exec command so you can skip hub.c and do:
 
 this'll gonna be a bit harder but it's ok, i have plenty of time (i have about 2 hours before having to upload this week's drop)
 
+Im done, its so hardddddddd i've been testing and fixing for the whole night now, ill realease the version as it is just warning the users and adding an exclaimer as a BETA so people is aware it's not complete, ill work tomorrow all day to make it work. I hope i take it out of beta soon. CL is so hard, i didn't know i had such a problem here. My commands don't work even though they're LITERALLY coded and made to do so, i have no compiler issues and my installer is pretty happy too, it's just that cl.c doesn't wanna do what i tell it to do. im done for today.
+
+The problem was the stcmp, i've always hated that function. strcmp(var, "value") == 0???? c'mon, why don't it return a bool? it'd be much more intuitive and easier.
+
+Also, the file path was somehow causing problems when cl exec cxt path info -a and used \ instead of /... now that i think about it, it'll break if you have spaces in the path too, i'll work on that...
+
+forgetaboutit, the user can just enter "path" and it'll automatically return a single argument instead of different ones.
+
+Also, you should check the bottom of this file, there'll be the first official curious nerd thing of the day 
+
 ### Doc works //Done as of 09-02-26
 For today (09/02/26), I'll be working on this, changelog, roadmap and all project md's must be outdated and kinda weird because i wrote them in a rush. Also, curious thing of the day, linux had over 10 thousand lines of code, 5.9k of ANSI C, 2.5k of C headers and 1.4k lines of i386 assembler (goated cpu btw).
 
@@ -147,4 +157,22 @@ I just updated and improved all documentation and fixed some logic problems i no
 ### 1.1.2
 Didn't do much tbh
 
-### 1.1.3
+### 1.2.0 BETA
+i should stop with this changelogs but it helps to keep track of my thoughts outside all that "formal" language i gotta use in the normal one
+- **Started refactorizing cba**  
+- **CL Overhaul**  
+- **Doc updated to the beta**
+
+## 1.3.0
+Hi, it's me again, for this release I'll try to:
+### Refacorize CBA (i postponed it to this release)
+
+### Add the C File Manager (CFM) cause i need it more than i thought
+
+# Nerd things to read :D
+
+## Nerd thing 1 
+### (2026-02-16, Monday)
+
+The first computer bug was literally a moth found trapped inside a Harvard Mark II computer in 1947. Grace Hopper and her team taped it into the logbook with the note "First actual case of bug being found." That's why we call them bugs today!
+(i should make something to link these .md's to my web site so i don't do the same thing twice)

@@ -6,7 +6,8 @@ char* BuildUI(){
     printf("Welcome to the Hub!\n");
     printf("Please, select an option (In progress):\n");
     printf("1. CXT\n");
-    printf("2. Exit\n");
+    printf("2. CBA");
+    printf("3. Exit\n");
     printf("Enter your choice: ");
     if (!fgets(option, sizeof(option), stdin)) {
         printf("Error reading input\n");

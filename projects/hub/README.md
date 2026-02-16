@@ -45,5 +45,5 @@ HUB is built automatically as part of the main CLEARNING project. See the [main 
 
 ## Version
 
-HUB v1.0.0 - Author: Nahum Naranjo</content>
+HUB v1.0.1 - Author: Nahum Naranjo</content>
 <parameter name="filePath">d:\Programacion\CLearning\projects\hub\README.md
