@@ -168,6 +168,41 @@ Hi, it's me again, for this release I'll try to:
 ### Refacorize CBA (i postponed it to this release)
 
 ### Add the C File Manager (CFM) cause i need it more than i thought
+Hi! it's me again, today i'll try to set the base for CFM and might even postpone CBA refactorization again, i wanna make a lot of things in cl, im inspired.
+
+First of all, let's start with definitions to save us some problems in the future (i learnt from my mistakes):
+
+**What is a file manager?**  
+For me (a.k.a, for what i need), it's a bunch of tools designed to make the coder's life easier when it comes to manage files in c, why? it's basically a lot of templates so you can just adapt them for what you need. Also, i'll add all it's headers to `/common` so i can use it as i library by just adding all .c's i need in the `CMakeLists.txt`.
+
+**What will CFM have?**  
+- **A file parser**, to return a string with the line by line of a .txt, .config, etc...
+- **A file pointer**, so i can just access specific root folders whenever i want without having to write the whole path (more or less like lookForRootFiles.c).
+- **A file finder/lister**, i can just put a file name into it and it'll look for it in all the folders it has access to (obviusly limited to the folder it is being executed on).
+
+that's pretty much it, i'll get to work.
+
+I've been thinking about hub.c, my poor guy is almost abandoned, even though it's only a launcher i feel kinda bad for him. For now, i'll leave it that way while i think of some games i could add to it :D
+
+Damn, i locked in for about 2 hours. Anyways, look at what i did.  
+```c
+    void* findFile(char* name, char* root, char* type){
+    if(!type) return NULL;
+    // ...
+    }
+
+    void cleanBackSlash(char* source){
+        // ...
+    }
+```
+At the begining i had problems with 
+
+## 1.2 minor updates
+### 1.2.1
+it's getting late for bed so ill rush to explain what i did for this update:
+- added cfm.c and cfm.h with same functions as lookForRootFile.c (depracted now)
+- made a findFile() function in cfm.c
+- made a cleanBackSlash() function in cfm.c
 
 # Nerd things to read :D
 
@@ -176,3 +211,7 @@ Hi, it's me again, for this release I'll try to:
 
 The first computer bug was literally a moth found trapped inside a Harvard Mark II computer in 1947. Grace Hopper and her team taped it into the logbook with the note "First actual case of bug being found." That's why we call them bugs today!
 (i should make something to link these .md's to my web site so i don't do the same thing twice)
+
+## Nerd thing 2
+### (2026-02-17, Tuesday)
+The entire Apollo 11 guidance computer had less processing power than a modern calculator. It ran at 1.024 MHz and had 72 KB of memory, yet it landed humans on the Moon. Meanwhile, my C code struggles to parse a few strings properly. Priorities, I guess.

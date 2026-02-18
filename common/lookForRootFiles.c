@@ -1,3 +1,8 @@
+//! DEPRACTED
+//!  USE CFM.C INSTEAD
+//!  KEPT ONLY FOR OLDER TOOLS' COMPATIBILITY
+//! TO BE REMOVED
+
 #include "lookForRootFiles.h"
 #include <string.h>
 
