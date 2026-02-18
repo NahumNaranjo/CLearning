@@ -195,7 +195,9 @@ Damn, i locked in for about 2 hours. Anyways, look at what i did.
         // ...
     }
 ```
-At the begining i had problems with 
+At the begining i had problems with fopen modes but found out the function didn't need that much of a detail so i removed EVERY append and write mode, if it can't read it, it'll simply return null...
+
+im literally falling asleep rn, see ya later (didn't even test btw)!
 
 ## 1.2 minor updates
 ### 1.2.1
