@@ -151,5 +151,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **CBA Refactorization**: I'm gonna work on this during the week as I make the next tool.
 - **Documentation**: All docs have been updated.
 
+## [1.2.1] - 2026-02-17
+### Additions
+- **CFM**: Has been added to the ecosystem but is not accesible for the moment, please be patient.
+
+### Libraries
+- **lookForRootFile**: it is now DEPRACTED, please avoid it's usage in new tools until CFM is ready.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project
