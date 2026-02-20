@@ -201,7 +201,14 @@ im literally falling asleep rn, see ya later (didn't even test btw)!
 
 Tuesday was pretty productive but thursday cant be any less. CAN'T FOCUS AT ALL, i guess i burnt out even though i had one day to rest. anyways, this stuff happens sometimes. I made some simple parsing and calc funcions in calc.c to continue with the cl overhaul and i think i might be done with cfm, i'll just test and pray for it to be fine.
 
+The calculator didn't work so i had to rewrite it a bit (literally from scratch). Lightwork tbh, see ya tomorrow?
+
 ## 1.2 minor updates
+### 1.2.3
+- calc.c entered beta
+### 1.2.2
+- calc.c added
+- cfm worked and almost ready
 ### 1.2.1
 it's getting late for bed so ill rush to explain what i did for this update:
 - added cfm.c and cfm.h with same functions as lookForRootFile.c (depracted now)
@@ -223,3 +230,7 @@ The entire Apollo 11 guidance computer had less processing power than a modern c
 ## Nerd thing 3
 ### (2026-02-19, Thursday)
 The first 1GB hard drive (1980) weighed over 500 pounds and cost $40,000. Today, you can get a 1TB microSD card smaller than a fingernail for like $20. We're basically living in the future, and I'm using it to complain about string functions in C or make useless tools no one will ever use :D.
+
+## Nerd thing 4
+### (2026-02-20, Friday)
+The `strcmp` function in C returns `0` when strings match because it was designed to return the difference between the first mismatching characters. So if they're equal, the difference is... zero. Makes sense historically, but yeah, still annoying when you just want a boolean (i really hate `strcmp`).

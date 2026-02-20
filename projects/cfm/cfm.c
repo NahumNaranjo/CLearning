@@ -115,7 +115,7 @@ char* ParseFile(FILE* fp, size_t line){
 
     char* text;
     size_t size;
-    if(line == 0 ||NULL){
+    if(line == 0 || line == NULL){
         while(fgets(text, size, fp) != NULL) continue;
     }
     for (int i = 0; line > i; i++){
@@ -125,3 +125,4 @@ char* ParseFile(FILE* fp, size_t line){
         break;
     }
 }
+

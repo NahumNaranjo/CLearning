@@ -163,5 +163,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **calc.c**: Another cl overhaul thing. It's just a calculator so enjoy it when it's ready.
 - **CFM**: this one might be ready
 
+## [1.2.3] - 2026-02-20
+### Fixes
+- **calc.c**: Rewritten from scratch to really work this time. Next update the lucky one will be cfm.c
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

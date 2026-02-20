@@ -155,6 +155,7 @@ void interpreter(int argc, char** argv){
     }
     if(strcmp(argv[1], "calc") == 0 || strcmp(argv[1], "-c") == 0){
         calc(argv[2]);
+        return;
     }
 
     // Unknown option
