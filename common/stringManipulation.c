@@ -1,5 +1,6 @@
 #include "stringManipulation.h"
 
+// chops the whitespaces
 char* trimWhitespace(char* str) {
     char* end;
 
@@ -19,9 +20,13 @@ char* trimWhitespace(char* str) {
     return str;
 }
 
-char* LineGetter(char* line, size_t size, FILE* file) {
-    if (fgets(line, size, file) != NULL) {
-        line[strcspn(line, "\n")] = 0;
+// Cleans "\" off in a file path
+void cleanBackSlash(char* source) {
+    if (source == NULL) return NULL;
+    
+    for (size_t i = 0; source[i] != '\0'; i++) {
+        if (source[i] == '\\') {
+            source[i] = '/';
+        }
     }
-    return NULL; // EOF or error
 }

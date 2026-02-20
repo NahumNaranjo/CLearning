@@ -56,7 +56,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ## Development Timeline
 
-### Short-term (Next 2-3 Months)
+### Febraury
 1. **CBA Improvements & Bug Fixes**
    - Refactor folder checking and CMake generation
    - Add .config file support
@@ -67,29 +67,31 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
    - Add more built-in commands
    - Improve help system and documentation
 
-### Medium-term (3-6 Months)
-1. **CBA Out of Beta**
-   - Full integration with HUB
-   - Enhanced configuration options
-   - Cross-platform compatibility improvements
-
+### March
+1. **HUB Overhaul**
+   - Added games to the launcher
+   - Made a whole new engine for text based games for bored coders
 2. **CL Package Manager Foundation**
    - Basic package installation system
    - Local package management
    - Integration with existing tools
 
-### Long-term (6+ Months)
+### April
 1. **CUTEST Development**
    - Test framework implementation
    - Integration with CBA
    - Documentation and examples
 
-2. **Configuration Manager**
+### May
+
+1. **Configuration Manager**
    - Unified configuration system
    - Tool integration
    - Migration utilities
 
-3. **File Manager & Document Generator**
+### June
+
+1. **File Manager & Document Generator**
    - Advanced file operations
    - Project analysis tools
    - Various document generation capabilities

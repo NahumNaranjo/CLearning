@@ -6,4 +6,5 @@
 
     char* trimWhitespace(char* str);
     char* LineGetter(char* line, size_t size, FILE* file);
+    void cleanBackSlash(char* source);
 #endif

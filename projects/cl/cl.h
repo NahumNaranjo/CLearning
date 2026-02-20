@@ -5,5 +5,6 @@
     #include <stdlib.h>
     #include "cxt.h"
     #include "cba.h"
+    #include "calc.h"
     void interpreter(int argc, char** argv);
 #endif // CL_H

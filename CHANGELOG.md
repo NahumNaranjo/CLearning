@@ -158,5 +158,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Libraries
 - **lookForRootFile**: it is now DEPRACTED, please avoid it's usage in new tools until CFM is ready.
 
+## [1.2.2] - 2026-02-19
+### Additions
+- **calc.c**: Another cl overhaul thing. It's just a calculator so enjoy it when it's ready.
+- **CFM**: this one might be ready
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

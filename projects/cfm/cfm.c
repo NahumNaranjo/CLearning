@@ -1,5 +1,6 @@
 #include "cfm.h"
 
+// Looks for files inside the CL folder path in InCGames parent folder
 FILE* lookInRoot(char* filename, char* type){
     char path[1024];
     snprintf(path, sizeof(path), "C:\\InCGames\\CL\\%s", filename);
@@ -10,10 +11,12 @@ FILE* lookInRoot(char* filename, char* type){
     return fp; // caller must close
 }
 
+// returns the CL folder path in InCGames parent folder
 char* rootFilePath(){
     return "C:\\InCGames\\CL\\";
 }
 
+// lists all child dirs of a root one
 char* ListDirectories(char* directory){
     char path[1024];
     strncpy(path, directory, sizeof(path)-4);
@@ -49,13 +52,15 @@ char* ListDirectories(char* directory){
     return directories;
 }
 
+// Looks for a file in a root dir and all its child dirs
 void* findFile(char* name, char* root, char* type){
     if(!type) return NULL;
     if(
-        strcmp(type, "fr") != 0 && 
-        strcmp(type, "frb") != 0 &&
-        strcmp(type, "p") != 0
-    ) return NULL;
+        strcmp(type, "fr") == 0 && 
+        strcmp(type, "frb") == 0 &&
+        strcmp(type, "p") == 0
+    ) {}
+    else return NULL;
 
     if(strcmp(root, "r") == 0){
         root = rootFilePath();
@@ -89,24 +94,34 @@ void* findFile(char* name, char* root, char* type){
         if(strcmp(type, "p") == 0){
             return token;
         }
-        if(strcmp(type, "r") == 0){
+        if(strcmp(type, "fr") == 0){
             return fp;
         }
         fclose(fp);
         fp = NULL;
-        if(strstr(type, "fr")){
-            fp = fopen(root, type);
+        if(strstr(type, "frb")){
+            fp = fopen(root, "rb");
+            return fp;
         }
     }
     return NULL;
 }
 
-void cleanBackSlash(char* source) {
-    if (source == NULL) return NULL;
-    
-    for (size_t i = 0; source[i] != '\0'; i++) {
-        if (source[i] == '\\') {
-            source[i] = '/';
+// returns a line by line string of the file
+char* ParseFile(FILE* fp, size_t line){
+    if(fp == NULL) return NULL;
+
+    //TODO it really shouldnt go here but CSON is a great idea
+
+    char* text;
+    size_t size;
+    if(line == 0 ||NULL){
+        while(fgets(text, size, fp) != NULL) continue;
+    }
+    for (int i = 0; line > i; i++){
+        if(fgets(text, size, fp) != NULL){
+            continue;
         }
+        break;
     }
 }

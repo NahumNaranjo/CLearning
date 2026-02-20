@@ -199,6 +199,8 @@ At the begining i had problems with fopen modes but found out the function didn'
 
 im literally falling asleep rn, see ya later (didn't even test btw)!
 
+Tuesday was pretty productive but thursday cant be any less. CAN'T FOCUS AT ALL, i guess i burnt out even though i had one day to rest. anyways, this stuff happens sometimes. I made some simple parsing and calc funcions in calc.c to continue with the cl overhaul and i think i might be done with cfm, i'll just test and pray for it to be fine.
+
 ## 1.2 minor updates
 ### 1.2.1
 it's getting late for bed so ill rush to explain what i did for this update:
@@ -217,3 +219,7 @@ The first computer bug was literally a moth found trapped inside a Harvard Mark 
 ## Nerd thing 2
 ### (2026-02-17, Tuesday)
 The entire Apollo 11 guidance computer had less processing power than a modern calculator. It ran at 1.024 MHz and had 72 KB of memory, yet it landed humans on the Moon. Meanwhile, my C code struggles to parse a few strings properly. Priorities, I guess.
+
+## Nerd thing 3
+### (2026-02-19, Thursday)
+The first 1GB hard drive (1980) weighed over 500 pounds and cost $40,000. Today, you can get a 1TB microSD card smaller than a fingernail for like $20. We're basically living in the future, and I'm using it to complain about string functions in C or make useless tools no one will ever use :D.
