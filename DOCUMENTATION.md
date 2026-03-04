@@ -83,6 +83,37 @@ Unknown option: --unknown
 Use -h or --help for usage information.
 ```
 
+### `-c, calc [expression]`
+A built-in calculator 
+
+**Supported Syntax (Valid expressions)**
+- "1 + 1 * 2 / 3.4"
+- 1+2*3-4/5
+
+**Examples**
+```bash
+  cl -c "1+1+1"
+  cl calc "12+12+12.5"
+```
+
+**Output for cl -c**
+```bash
+  Result: 3
+```
+
+**Output for cl calc**
+```bash
+  Result: 36.500000
+```
+### Error Handling
+If an invalid expression is used, it will throw different types of alerts, such as:
+`Error: Invalid operator, this could be by an invalid expression format, or by an invalid operator. Use: number operator number (e.g., "3 + 4" or 3+4)`
+`Error: Invalid number, this could be by an invalid expression format, or by an invalid number. Use: number operator number (e.g., "3 + 4" or 3+4)`
+
+### Limitations
+- It only uses linear calculations, that is to say, it does NOT support operation order or "(), {}, []"
+- You can only make 50 calculations per command.
+
 ## HUB - Menu Interface
 
 HUB provides a graphical menu interface in the console for accessing CLEARNING tools.
@@ -478,4 +509,3 @@ exit
 - Reports can be reloaded for viewing without re-analysis
 - Configs are not modfiable for the moment
 - CBA is in still in early development, please be patient
-- this one is just to make the file 470 lines long :D

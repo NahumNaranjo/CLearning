@@ -102,9 +102,8 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ### Immediate Tasks (v1.2.x)
 - **CBA Refactoring:** Fix folder checking issues and improve CMake generation
-- **Documentation:** Update all README files and changelogs
 - **Installer Updates:** Ensure installer includes all necessary files
-- **Bug Fixes:** Address issues in lookForRootFiles.c and cba.c
+- **New tools:** Add new tools as quick as possible until at least 2.0.0
 
 ### Next Release (v1.3.0)
 - Enhanced CBA functionality with .config file support

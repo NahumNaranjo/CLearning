@@ -2,6 +2,21 @@
 ## Introduction
 Here, I'll narrate every single problem/curious thing that happened during the development of this project, just so I can read it and laugh at myself in the future (I hope near future D:).  
 
+## Release numbering first amendment
+Hi, this week of vacation (forced) was pretty mind clearing and i found something out, a tool a week isn't that cool (nor sustainable) so im moving the versioning system a bit.  
+No more weekly drops but instead meaningfull minor updates, What do I mean by meaningful?
+- a new tool  
+- a big change (tool refactor, deletion, etc...)  
+- a new feature for the ecosystem
+
+Those would be the x.X.x versions  
+For the x.x.X versions will be patches and hotfixes and for x.x.xA will just be a little amendment  
+
+Now, for X.x.x versions, i think they deserve something special, like, maybe a new era? for when i finally add InCEngine and start making some games for bored devs or something
+
+Also, for x.x.xPX versions, it's just a part of a small update (new daily drops)
+
+That's all for now, see ya later!
 ## 1.0.0 realease  
 I actually never really worked with all these new tools before (Inno setup, C itself, cmake, etc...) but i really enjoyed the experience, it was very challenging to learn a new coding language (And specially if it is C) with a project instead of a class but it was rewarding. One of the biggest challenges I had during the development of this project (specially cxt) was learning about pointers and strings with c, it might be one of the hardest things to dominate out there, if it wasn't because of google this project might be dead, I can't imagine how people used to code without the beauty of learning through a search engine.  
 
@@ -203,7 +218,25 @@ Tuesday was pretty productive but thursday cant be any less. CAN'T FOCUS AT ALL,
 
 The calculator didn't work so i had to rewrite it a bit (literally from scratch). Lightwork tbh, see ya tomorrow?
 
+Hi! today's been a very productive day, did loads of things, first of all, i rewrote (again) the calculator, now, it firstly identifies any whitespace to use two different parsers, once its parsed it goes through a for loop (which was a hell to make) to calculate all tokens. For now it's just linear calculation, not operation order implemented just yet, maybe it'll come next update or so.
+
+Anyways, calc.c was such a pain today because of the parsers and everything. I learned that For loops ain't as good as i thought for such complex calculations but it's too late to change it to a while. Also, i didn't know that if you had an if statment without braces it only read the first line immediately after it and will always execute everything under them, I hadn't needed more than two lines but in the end-of-loop if i had 
+```c
+    if(condition == true) result = result; break;
+```
+And it always broke everything, had to change it to
+```c
+    if(condition == true){
+        result = result;
+        break;
+    }
+```
+
+it was beneficial after all because it didn't calculate for multiplications, substractions or divisions, just added ;D, once i fixed the one line if problem, i found out and fixed the last one.
+
 ## 1.2 minor updates
+### 1.2.4
+- calc.c beta 2.0 is out
 ### 1.2.3
 - calc.c entered beta
 ### 1.2.2
@@ -234,3 +267,11 @@ The first 1GB hard drive (1980) weighed over 500 pounds and cost $40,000. Today,
 ## Nerd thing 4
 ### (2026-02-20, Friday)
 The `strcmp` function in C returns `0` when strings match because it was designed to return the difference between the first mismatching characters. So if they're equal, the difference is... zero. Makes sense historically, but yeah, still annoying when you just want a boolean (i really hate `strcmp`).
+
+## Nerd thing 4
+### (2026-03-02, Monday)
+You won't believe it, they killed a mexican cartel capo and everything exploded so and my brother's boss let him to do home office all week so i wasn't able to use my studio (I could've coded in my laptop but 1, im too lazy and 2, i can't focus if isn't in my studio so meh). I also made a good beat this week, check my spotify ;D.
+
+## Nerd thing 5
+### (2026-03-03, Tuesday)
+The name "C" exists because it's the successor to a language called "B" (which was itself a simplified version of BCPL). So technically, if they ever make a language after C, it should be called "D" — and they did, but it never really took off. C++ was originally called "C with Classes." Imagine explaining that to recruiters today.
