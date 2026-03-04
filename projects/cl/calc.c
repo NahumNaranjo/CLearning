@@ -101,8 +101,8 @@ void calc(char* exp) {
                 if(*ope == '-') {
                     if(tokens[i-1][0] == '-') num1 = -num1;
                 }
-                if(*ope == "*")result = result * num1;
-                if(*ope == "/") {
+                if(*ope == '*')result = result * num1;
+                if(*ope == '/') {
                     if(num1 != 0) result = result / num1;
                     else {
                         printf("Error: Division by zero\n");
@@ -131,7 +131,7 @@ void calc(char* exp) {
             }
             if(isNumber(tokens[i+2][0]) == 1) num2 = atof(tokens[i+2]);
             else {
-                printf ("Error: Invalid number, this could be by an invalid expression format, or by an invalid number. Use: number operator number (e.g., \"3 + 4\" or 3+4)\n");
+                printf ("Error: Invalid number, this could be by an invalid expression format, or by an invalid number. Use: number operator number (e.g., \"3 + 4\" or 3+4) \n");
                 goto cleanup;
             }
             i += 2;

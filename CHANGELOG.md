@@ -169,7 +169,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [1.2.4] - 2026-03-03
 ### Fixes
-- **calc.c**: Rewrote the parser and for loop, it now supports up to a 100 tokens (numbers and operands)
+- **calc.c**: Rewrote the parser and for loop, it now supports up to a 100 tokens (numbers and operands) instead of 3 calculations as before.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
