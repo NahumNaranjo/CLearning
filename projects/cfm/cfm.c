@@ -1,4 +1,5 @@
 #include "cfm.h"
+#include <cfm2.h>
 
 // Looks for files inside the CL folder path in InCGames parent folder
 FILE* lookInRoot(char* filename, char* type){
@@ -12,12 +13,12 @@ FILE* lookInRoot(char* filename, char* type){
 }
 
 // returns the CL folder path in InCGames parent folder
-char* rootFilePath(){
-    return "C:\\InCGames\\CL\\";
+char* getRootFilePath(){
+    return "C:\\InCGames\\cl\\";
 }
 
 // lists all child dirs of a root one
-char* ListDirectories(char* directory){
+char* getListedDirectories(char* directory){
     char path[1024];
     strncpy(path, directory, sizeof(path)-4);
     path[sizeof(path)-1] = '\0';
@@ -108,7 +109,7 @@ void* findFile(char* name, char* root, char* type){
 }
 
 // returns a line by line string of the file
-char* ParseFile(FILE* fp, size_t line){
+char* ParseFile(FILE* fp, size_t* line){
     if(fp == NULL) return NULL;
 
     //TODO it really shouldnt go here but CSON is a great idea
@@ -118,7 +119,7 @@ char* ParseFile(FILE* fp, size_t line){
     if(line == 0 || line == NULL){
         while(fgets(text, size, fp) != NULL) continue;
     }
-    for (int i = 0; line > i; i++){
+    for (int i = 0; *line > i; i++){
         if(fgets(text, size, fp) != NULL){
             continue;
         }

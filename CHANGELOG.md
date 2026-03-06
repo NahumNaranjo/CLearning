@@ -161,15 +161,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [1.2.2] - 2026-02-19
 ### Additions
 - **calc.c**: Another cl overhaul thing. It's just a calculator so enjoy it when it's ready.
-- **CFM**: this one might be ready
+- **CFM**: lookInRoot(), getListedDirectories(), getRootFilePath(), findFile(), ParseFile() already under testing
 
 ## [1.2.3] - 2026-02-20
 ### Fixes
-- **calc.c**: Rewritten from scratch to really work this time. Next update the lucky one will be cfm.c
+- **calc.c**: Rewritten from scratch to really work this time.
 
 ## [1.2.4] - 2026-03-03
 ### Fixes
 - **calc.c**: Rewrote the parser and for loop, it now supports up to a 100 tokens (numbers and operands) instead of 3 calculations as before.
+### Documentation
+- **calc.c**: Added corresponding instrucionts to DOCUMENTATION.md
+
+## [1.2.5p1] - 2025-03-05
+### Fixes
+- **calc.c**: Rewrote the for loop and divided into three different loops, one for parenthesis, one for trigonometry and another one for the rest of calculations, also, separed the computing from the calc() function, it now is it's own (compute()) and calc() is only used for parsing.  
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project

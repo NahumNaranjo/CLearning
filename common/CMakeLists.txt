@@ -12,5 +12,14 @@ add_library(common STATIC ${COMMON_SOURCES} ${COMMON_HEADERS})
 # so they can #include "map.h" etc. from the common folder.
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+target_sources(common PRIVATE 
+    ${CMAKE_SOURCE_DIR}/projects/cba/cba.c
+    ${CMAKE_SOURCE_DIR}/projects/cxt/writeFile.c
+    ${CMAKE_SOURCE_DIR}/projects/cxt/txtFunctions.c
+    ${CMAKE_SOURCE_DIR}/projects/cxt/readFile.c
+    ${CMAKE_SOURCE_DIR}/projects/cxt/ui.c
+    ${CMAKE_SOURCE_DIR}/projects/cfm/cfm.c
+)
+
 # Use same C standard as the rest of the project
 set_target_properties(common PROPERTIES C_STANDARD 11)

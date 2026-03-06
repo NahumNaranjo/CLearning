@@ -22,5 +22,9 @@
         char ninjaMinVersion[20];
         char output[100];
     } BuildInfo;
+    typedef struct  {
+        char mode;
+    } calcData;
+
 
 #endif

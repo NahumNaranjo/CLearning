@@ -10,5 +10,6 @@ target_sources(cl PRIVATE
     ${CMAKE_SOURCE_DIR}/projects/cxt/txtFunctions.c
     ${CMAKE_SOURCE_DIR}/projects/cxt/readFile.c
     ${CMAKE_SOURCE_DIR}/projects/cxt/ui.c
+    ${CMAKE_SOURCE_DIR}/projects/cfm/cfm.c
 )
 target_link_libraries(cl PRIVATE common)

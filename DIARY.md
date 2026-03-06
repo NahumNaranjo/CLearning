@@ -216,6 +216,8 @@ im literally falling asleep rn, see ya later (didn't even test btw)!
 
 Tuesday was pretty productive but thursday cant be any less. CAN'T FOCUS AT ALL, i guess i burnt out even though i had one day to rest. anyways, this stuff happens sometimes. I made some simple parsing and calc funcions in calc.c to continue with the cl overhaul and i think i might be done with cfm, i'll just test and pray for it to be fine.
 
+#### Calculator shenanigans (CL overhaul sequel, CFM crossover)
+
 The calculator didn't work so i had to rewrite it a bit (literally from scratch). Lightwork tbh, see ya tomorrow?
 
 Hi! today's been a very productive day, did loads of things, first of all, i rewrote (again) the calculator, now, it firstly identifies any whitespace to use two different parsers, once its parsed it goes through a for loop (which was a hell to make) to calculate all tokens. For now it's just linear calculation, not operation order implemented just yet, maybe it'll come next update or so.
@@ -234,7 +236,13 @@ And it always broke everything, had to change it to
 
 it was beneficial after all because it didn't calculate for multiplications, substractions or divisions, just added ;D, once i fixed the one line if problem, i found out and fixed the last one.
 
+today, i used CFM for the first time to parse some config files for calc.c, was pretty impressive to not have any problems after not testing it at all, im a god coder or something i guess
+
+also, i broke calc, messed up the computing and it doesn't work at all, that's why today's update is "1.2.5p1" cause is a pre-pre-release ;D
+
 ## 1.2 minor updates
+### 1.2.5p1
+- calc.c's computing is being remade
 ### 1.2.4
 - calc.c beta 2.0 is out
 ### 1.2.3
@@ -268,10 +276,14 @@ The first 1GB hard drive (1980) weighed over 500 pounds and cost $40,000. Today,
 ### (2026-02-20, Friday)
 The `strcmp` function in C returns `0` when strings match because it was designed to return the difference between the first mismatching characters. So if they're equal, the difference is... zero. Makes sense historically, but yeah, still annoying when you just want a boolean (i really hate `strcmp`).
 
-## Nerd thing 4
+## Nerd thing 5
 ### (2026-03-02, Monday)
 You won't believe it, they killed a mexican cartel capo and everything exploded so and my brother's boss let him to do home office all week so i wasn't able to use my studio (I could've coded in my laptop but 1, im too lazy and 2, i can't focus if isn't in my studio so meh). I also made a good beat this week, check my spotify ;D.
 
-## Nerd thing 5
+## Nerd thing 6
 ### (2026-03-03, Tuesday)
 The name "C" exists because it's the successor to a language called "B" (which was itself a simplified version of BCPL). So technically, if they ever make a language after C, it should be called "D" — and they did, but it never really took off. C++ was originally called "C with Classes." Imagine explaining that to recruiters today.
+
+## Nerd thing 7
+### (2026-03-05, Thursday)
+Ninja is named like that because it's supposed to be fast and stealthy — it only rebuilds what's necessary and gets out of the way. It was created by Evan Martin at Google to replace Make for Chromium builds. True story: Chromium's build was so slow that switching to Ninja literally saved hours of developer time per week.
