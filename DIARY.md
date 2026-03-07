@@ -180,9 +180,8 @@ i should stop with this changelogs but it helps to keep track of my thoughts out
 
 ## 1.3.0
 Hi, it's me again, for this release I'll try to:
-### Refacorize CBA (i postponed it to this release)
 
-### Add the C File Manager (CFM) cause i need it more than i thought
+### Add the C File Manager (CFM) cause i need it more than i thought (Forgot to record when i finished, didn't notice at the moment)
 Hi! it's me again, today i'll try to set the base for CFM and might even postpone CBA refactorization again, i wanna make a lot of things in cl, im inspired.
 
 First of all, let's start with definitions to save us some problems in the future (i learnt from my mistakes):
@@ -216,7 +215,7 @@ im literally falling asleep rn, see ya later (didn't even test btw)!
 
 Tuesday was pretty productive but thursday cant be any less. CAN'T FOCUS AT ALL, i guess i burnt out even though i had one day to rest. anyways, this stuff happens sometimes. I made some simple parsing and calc funcions in calc.c to continue with the cl overhaul and i think i might be done with cfm, i'll just test and pray for it to be fine.
 
-#### Calculator shenanigans (CL overhaul sequel, CFM crossover)
+#### Calculator shenanigans (CL overhaul sequel, CFM crossover) (Done as of 2026-03-06)
 
 The calculator didn't work so i had to rewrite it a bit (literally from scratch). Lightwork tbh, see ya tomorrow?
 
@@ -240,7 +239,13 @@ today, i used CFM for the first time to parse some config files for calc.c, was 
 
 also, i broke calc, messed up the computing and it doesn't work at all, that's why today's update is "1.2.5p1" cause is a pre-pre-release ;D
 
+DIDN'T KNOW THERE WERE PREMADE ALGORITHMS FOR READING MATHEMATICAL EXPRESSIONS THIS WHOLE TIMEEEEEEE, im usin shunting-yard now, i have an hour to learn it, make it and test it, wish me luck. also learnt postnix notation btw, great one.
+
+It was a pain but it's done, i ended up stealing a lot of code from the web but i swear i tried and didn't go as good as i wanted so i refactored almost every single line of  calc.c
+
 ## 1.2 minor updates
+### 1.3
+- calc.c and cfm.c are pretty much complete now
 ### 1.2.5p1
 - calc.c's computing is being remade
 ### 1.2.4
@@ -287,3 +292,7 @@ The name "C" exists because it's the successor to a language called "B" (which w
 ## Nerd thing 7
 ### (2026-03-05, Thursday)
 Ninja is named like that because it's supposed to be fast and stealthy — it only rebuilds what's necessary and gets out of the way. It was created by Evan Martin at Google to replace Make for Chromium builds. True story: Chromium's build was so slow that switching to Ninja literally saved hours of developer time per week.
+
+## Nerd thing 8
+### (2026-03-08, Friday)
+The first-ever computer programmer was Ada Lovelace, way back in the 1840s. She wrote algorithms for Charles Babbage's Analytical Engine (a mechanical computer that was never built). She also predicted computers could do more than just math — like composing music. So basically, she was doing high-level thinking before C was even a twinkle in Dennis Ritchie's eye. Happy women's day btw, y'all are beautiful tbh.

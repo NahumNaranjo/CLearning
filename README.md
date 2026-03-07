@@ -8,10 +8,11 @@ The project is organized into the following components:
 
 ### Main Projects
 
-- **[CL](projects/cl/README.md)**: A command-line tool launcher that allows executing different utilities.
+- **[CL](projects/cl/README.md)**: A command-line tool launcher that allows executing different utilities. Includes a built-in calculator with proper operator precedence.
 - **[HUB](projects/hub/README.md)**: A simple menu interface to access available tools.
 - **[CXT](projects/cxt/README.md)**: A text analysis tool that counts words, frequencies, and generates reports.
 - **[CBA](projects/cba/README.md)**: A build helper.
+- **[CFM](projects/cfm/README.md)**: C File Manager for project analysis and file operations.
 
 ### Common Library
 
@@ -102,7 +103,7 @@ Developed by Nahum Naranjo as part of a C learning project.
 
 ## Version
 
-CLEARNING v1.2.0
+CLEARNING v1.3.0
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and changes.</content>
 <parameter name="filePath">d:\Programacion\CLearning\README.md

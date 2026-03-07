@@ -79,3 +79,7 @@ lib/
 *.log
 *.exe
 *.i
+
+# Backup directories
+/backup/
+backup/

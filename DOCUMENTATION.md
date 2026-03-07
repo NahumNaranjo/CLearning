@@ -84,35 +84,82 @@ Use -h or --help for usage information.
 ```
 
 ### `-c, calc [expression]`
-A built-in calculator 
+A built-in calculator with operator precedence and trigonometric functions
+
+**Supported Operations**
+- Addition: `+`
+- Subtraction: `-`
+- Multiplication: `*`
+- Division: `/`
+- Modulo: `%`
+- Sine: `s` (respects degree/radian mode)
+- Cosine: `c` (respects degree/radian mode)
+- Tangent: `t` (respects degree/radian mode)
+
+**Operator Precedence** (highest to lowest)
+1. Trigonometric functions (`s`, `c`, `t`)
+2. Multiplication, Division, Modulo (`*`, `/`, `%`)
+3. Addition, Subtraction (`+`, `-`)
 
 **Supported Syntax (Valid expressions)**
 - "1 + 1 * 2 / 3.4"
-- 1+2*3-4/5
+- "1+2*3-4/5"
+- "100 % 3 + 2"
+- "s(30)" (sine of 30 degrees)
+- "c(45) + s(60)" (cosine of 45 plus sine of 60)
 
 **Examples**
 ```bash
-  cl -c "1+1+1"
-  cl calc "12+12+12.5"
+cl -c "1+1+1"
+cl calc "12+12+12.5"
+cl calc "10 * 5 - 3"
+cl calc "100 / 2 + 5 * 3"
+cl calc "s(30) + c(45)"
 ```
 
-**Output for cl -c**
+**Output Examples**
 ```bash
-  Result: 3
+# cl -c "1+1+1"
+Result: 3
+
+# cl calc "12+12+12.5"
+Result: 36.500000
+
+# cl calc "10 * 5 - 3"
+Result: 47
+
+# cl calc "s(30) + c(45)"
+Result: 1.207107
 ```
 
-**Output for cl calc**
-```bash
-  Result: 36.500000
-```
+**Configuration**
+The calculator respects the angle mode set in `\configs\calc.config`:
+- `MODE = d` - Degrees (default)
+- `MODE = r` - Radians
+
+**Features**
+- Proper operator precedence evaluation
+- Up to 100 tokens (numbers and operators) per expression
+- Automatic floating-point and integer result formatting
+- Support for decimal numbers
+
 ### Error Handling
-If an invalid expression is used, it will throw different types of alerts, such as:
-`Error: Invalid operator, this could be by an invalid expression format, or by an invalid operator. Use: number operator number (e.g., "3 + 4" or 3+4)`
-`Error: Invalid number, this could be by an invalid expression format, or by an invalid number. Use: number operator number (e.g., "3 + 4" or 3+4)`
+If an invalid expression is used, it will display error messages such as:
+```
+Error: No expression provided
+Usage: calc "3 + 4" or calc 3+4
+```
+```
+Error: Invalid expression
+```
+```
+Error: Invalid operation
+```
 
 ### Limitations
-- It only uses linear calculations, that is to say, it does NOT support operation order or "(), {}, []"
-- You can only make 50 calculations per command.
+- Does NOT support parentheses `()`, brackets `[]`, or braces `{}`
+- Trigonometric functions are unary operators (work with single numbers)
+- Maximum 100 tokens per expression
 
 ## HUB - Menu Interface
 

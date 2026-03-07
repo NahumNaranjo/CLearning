@@ -75,7 +75,7 @@ void* findFile(char* name, char* root, char* type){
         cleanBackSlash(name);
     }
 
-    char* directories = ListDirectories(root);
+    char* directories = getListedDirectories(root);
 
     char* token = strtok(directories, "\n");
     FILE* fp;

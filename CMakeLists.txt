@@ -6,7 +6,7 @@ set(CMAKE_C_COMPILER "C:/MinGW/bin/gcc.exe" CACHE FILEPATH "C compiler")
 # If you need SDCC specifically, install it and use:
 # set(CMAKE_C_COMPILER "c:/Program Files/SDCC/bin/sdcc.exe" CACHE FILEPATH "C compiler")
 
-project(CLEARNING VERSION 1.2.0)
+project(CLEARNING VERSION 1.3.0)
 
 # Set C standard
 set(CMAKE_C_STANDARD 11)
@@ -21,3 +21,4 @@ add_subdirectory(projects/cxt)
 add_subdirectory(projects/hub)
 add_subdirectory(projects/cl)
 add_subdirectory(projects/cba)
+add_subdirectory(projects/cfm)

@@ -177,5 +177,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixes
 - **calc.c**: Rewrote the for loop and divided into three different loops, one for parenthesis, one for trigonometry and another one for the rest of calculations, also, separed the computing from the calc() function, it now is it's own (compute()) and calc() is only used for parsing.  
 
+## [1.3.0] - 2026-03-06
+### Additions
+- **calc.c**: Complete rewrite with fundamental improvements:
+  - Implemented proper operator precedence evaluation using two-stack algorithm
+  - Fixed trigonometric functions (especially tangent which was broken)
+  - Added CharStack structure for proper char type handling in operator stack
+  - Improved memory management - no memory leaks
+  - Enhanced tokenization for better expression parsing
+  - Support for up to 100 tokens per expression
+  
+- **CFM**: Is now out and ready to use coming with the following functions:
+  - lookInRoot: Looks for files inside the CL folder path in InCGames parent folder
+  - getRootFilePath: Returns the CL folder path in InCGames parent folder
+  - getListedDirectories: Lists all child directories of a root one
+  - findFile: Looks for a file in a root dir and all its child directories using only its name
+  - ParseFile: Returns a line by line of given file.
+
+### Technical Details
+- Separated CharStack from Stack for type safety
+- Implemented evaluateTokens() with proper precedence handling
+- Used shunting-yard-inspired algorithm for expression evaluation
+- Eliminated unused helper functions (moveArray, create_subarray_copy, etc.)
+
+### Documentation
+- DOCUMENTATION.md updated with complete calc command reference
+- Added examples for all supported operations
+- Added operator precedence table
+- Added configuration mode information
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

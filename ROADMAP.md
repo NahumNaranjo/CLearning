@@ -71,10 +71,14 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 1. **HUB Overhaul**
    - Added games to the launcher
    - Made a whole new engine for text based games for bored coders
-2. **CL Package Manager Foundation**
-   - Basic package installation system
-   - Local package management
-   - Integration with existing tools
+2. **CL Calculator Improvement**
+   - Implemented proper operator precedence
+   - Added trigonometric functions (sin, cos, tan)
+   - Fixed tokenization and expression evaluation
+   - Support for up to 100 tokens per expression
+3. **CFM Released**
+   - File finder utilities fully implemented
+   - Integration with CL for better file management
 
 ### April
 1. **CUTEST Development**
@@ -129,6 +133,6 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ---
 
-*Last updated: 2026-02-09*  
+*Last updated: 2026-03-06*  
 *Author: Nahum Naranjo*  
 *Project Status: Active Development*
