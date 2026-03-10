@@ -6,8 +6,9 @@
     #include <stringManipulation.h>
 
     FILE* lookInRoot(char* filename, char* type);
-    char* ListDirectories(char* directory);
-    char* rootFilePath();
+    char* getListedDirectories(char* directory);
+    char* getRootFilePath();
     void* findFile(char* name, char* root, char* type);
     char* ParseFile(FILE* fp, size_t* line);
+    WIN32_FIND_DATA* listFiles(char* key, char* path);
 #endif

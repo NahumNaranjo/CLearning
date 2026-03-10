@@ -56,7 +56,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ## Development Timeline
 
-### Febraury
+### Febraury (Acconplished!!!)
 1. **CBA Improvements & Bug Fixes**
    - Refactor folder checking and CMake generation
    - Add .config file support
@@ -68,15 +68,15 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
    - Improve help system and documentation
 
 ### March
-1. **HUB Overhaul**
+1. **HUB Overhaul (To be done from 1.4.0 to 1.5.0)**
    - Added games to the launcher
    - Made a whole new engine for text based games for bored coders
-2. **CL Calculator Improvement**
+2. **CL Calculator Improvement (Done in 1.3.0)**
    - Implemented proper operator precedence
    - Added trigonometric functions (sin, cos, tan)
    - Fixed tokenization and expression evaluation
    - Support for up to 100 tokens per expression
-3. **CFM Released**
+3. **CFM Released (Done in 1.3.0)** 
    - File finder utilities fully implemented
    - Integration with CL for better file management
 

@@ -4,7 +4,7 @@
 void interpreter(int argc, char** argv){
     // Version info
     if(argc == 1){
-        printf("CL (Ecosystem) version 1.2.4. Author: Nahum Naranjo \n");
+        printf("CL (Ecosystem) version 1.3.1. Author: Nahum Naranjo \n");
         return;
     }
     if(argv[1] == NULL){
@@ -12,11 +12,11 @@ void interpreter(int argc, char** argv){
     }
     if (argv[1] != NULL && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
         if(argv[2] == NULL) {
-            printf("CL (Ecosystem) version 1.3.0. Author: Nahum Naranjo \n"); 
+            printf("CL (Ecosystem) version 1.3.1. Author: Nahum Naranjo \n"); 
             return;
         }
         if(strcmp(argv[2], "cxt") == 0){
-            printf("CXT version 1.0.3. Author: Nahum Naranjo \n");
+            printf("CXT version 1.1.0. Author: Nahum Naranjo \n");
         }
         if(strcmp(argv[2], "cba") == 0){
             printf("CBA version 1.0.0 BETA. Author: Nahum Naranjo \n");
@@ -28,7 +28,10 @@ void interpreter(int argc, char** argv){
             printf("CLHub version 1.0.2. Author: Nahum Naranjo");
         }
         if(strcmp(argv[2], "cfm") == 0){
-            printf("CFM version 1.0.0. Author: Nahum Naranjo");
+            printf("CFM version 1.1.0. Author: Nahum Naranjo");
+        }
+        if(strcmp(argv[2], "cui") == 0){
+            printf("CUI version 1.0.0. Author: Nahum Naranjo");
         }
         return;
     }

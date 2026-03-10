@@ -13,6 +13,7 @@ The project is organized into the following components:
 - **[CXT](projects/cxt/README.md)**: A text analysis tool that counts words, frequencies, and generates reports.
 - **[CBA](projects/cba/README.md)**: A build helper.
 - **[CFM](projects/cfm/README.md)**: C File Manager for project analysis and file operations.
+- **[CUI](projects/cui/README.md)**: Command line UI engine.
 
 ### Common Library
 
@@ -103,7 +104,7 @@ Developed by Nahum Naranjo as part of a C learning project.
 
 ## Version
 
-CLEARNING v1.3.0
+CLEARNING v1.3.1
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and changes.</content>
 <parameter name="filePath">d:\Programacion\CLearning\README.md

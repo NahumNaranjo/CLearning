@@ -19,6 +19,7 @@ target_sources(common PRIVATE
     ${CMAKE_SOURCE_DIR}/projects/cxt/readFile.c
     ${CMAKE_SOURCE_DIR}/projects/cxt/ui.c
     ${CMAKE_SOURCE_DIR}/projects/cfm/cfm.c
+    ${CMAKE_SOURCE_DIR}/projects/cui/cui.c
 )
 
 # Use same C standard as the rest of the project

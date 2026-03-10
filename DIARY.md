@@ -261,6 +261,46 @@ it's getting late for bed so ill rush to explain what i did for this update:
 - made a findFile() function in cfm.c
 - made a cleanBackSlash() function in cfm.c
 
+## 1.4.0  
+i must admit that 1.3 development was kinda chaotic i'll try to be more organized for this one   
+### HUB Overhaul
+First of all, i wanna settle this one soon so i'll try to be quick, concise and effective:
+**What's wrong with it?**
+it's useless, tbh, wasn't thinking that cl exec would completely destroy cl hub so now it HAS to have something else cl command line doesn't, what is it? one word, VIDEOGAMES, so, what will cl hub actually do now?
+- No more tools as the main exe's, it will now be purely videogames in different sections, one for each genre
+- Tools will have its own section to explore
+- hub will be the only way to access these games
+- CBA and InCEngine (First thing InCGames developed and im stealing it (from myself)) will interfere and help devs build quick and funny games to add to their library if they're bored
+
+To start, why don't i remake the UI? actually, let's do another section for that
+
+### CUI (Like how peruvians call guinea pigs)
+First of all, im gonna make a centralized buildUI() and, long story short, centralize all ui.c's in one library i can even add to this release.
+
+Again, i entered flow state, i made an engine to manage ui's from scratch in like four hours, incluiding refactorizing cxt and most of the time, testing and hating on microsoft and their weird ass functions for c. Anyways, it was fantastic and i barely remember it but i just coded like a machine. updated all readmes and even made a new function for cfm and thought about adding a cl install because all the tools are actually useless. ill try to investigate about this. Also, i entered a dilema, should i name this version 1.4.0 or 1.3.1? i mean, it's a new tool but 1.3.0 is just out.
+
+To finish, ill try to summarize what i remember:
+- Firstly i started planning the tool, what i needed to centralize and what would be imposible to do, so, i just thought about a bunch of new datatypes to store every option and return a parsed result, like, make a list or something ant cui should ask the user and get everything the programmer needs.
+- secondly, i started coding, obviusly, i made the datatypes first and then made a simple title and menuDisplay, then, again, i tried to centralize data collection so i made readinput which i think it's the most useful function here.
+- thirdly, i made practically everything else, it's just boring checks and parsings
+
+there you are, i think you have enough of today (long story short, i dont wanna embarass myself with the stupid errors i found while refactorizing cxt, i literally looked at my code and thought someone really really stupid made it (It was me but a month before and the closest thing i had touched was cpp)).
+
+After making cui from scratch and refactorizing cxt (in fact, it's in between), i needed a function to list files and couldn't belive i didnt make one for cfm so i started investigating, confirmed microsoft isn't really the company of the smart people and then made the function with what microsoft had to offer (just confusing datatypes and functions).
+
+### CBA Refactor (Now it's fr, i need this)
+
+## 1.3 minor updates
+### 1.3.1
+Im too lazy to list so many two times so, check [changelog.md](/CHANGELOG.md) please
+## 1.5.0  
+### InCEngine port
+
+### Adding games to CL ;D
+
+## 1.4 minor updates
+
+
 # Nerd things to read :D
 
 ## Nerd thing 1 
@@ -294,5 +334,9 @@ The name "C" exists because it's the successor to a language called "B" (which w
 Ninja is named like that because it's supposed to be fast and stealthy — it only rebuilds what's necessary and gets out of the way. It was created by Evan Martin at Google to replace Make for Chromium builds. True story: Chromium's build was so slow that switching to Ninja literally saved hours of developer time per week.
 
 ## Nerd thing 8
-### (2026-03-08, Friday)
+### (2026-03-06, Friday)
 The first-ever computer programmer was Ada Lovelace, way back in the 1840s. She wrote algorithms for Charles Babbage's Analytical Engine (a mechanical computer that was never built). She also predicted computers could do more than just math — like composing music. So basically, she was doing high-level thinking before C was even a twinkle in Dennis Ritchie's eye. Happy women's day btw, y'all are beautiful tbh.
+
+## Nerd thing 9
+### (2026-03-09, Monday)
+The `gets()` function in C was so dangerous (no bounds checking = buffer overflow heaven) that it was literally removed from the C11 standard. It had one job: get a string. And it failed so hard they just... deleted it. RIP gets(), you won't be missed. Use fgets() like a responsible adult like me.

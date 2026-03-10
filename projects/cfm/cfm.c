@@ -17,6 +17,43 @@ char* getRootFilePath(){
     return "C:\\InCGames\\cl\\";
 }
 
+WIN32_FIND_DATA* listFiles(char* key, char* path){
+    static WIN32_FIND_DATA buffer[512];
+    size_t count = 0;
+    WIN32_FIND_DATA wfd;
+    HANDLE hfind = INVALID_HANDLE_VALUE;
+    char fullPath[2048];
+
+    if(!path){
+        snprintf(fullPath, sizeof(fullPath), "%s*.*", getRootFilePath());
+    }else if(strstr(path, "C:\\") == NULL){
+        snprintf(fullPath, sizeof(fullPath), "%s%s\\*.*", getRootFilePath(), path);
+    }else if(strstr(path, "\\*.*") == NULL){
+        snprintf(fullPath, sizeof(fullPath), "%s\\*.*", path);
+    }
+    printf("[DEBUG] filepath: %s\n", fullPath);
+    hfind = FindFirstFileA(fullPath, &wfd);
+    if(hfind != INVALID_HANDLE_VALUE){
+        do{
+            if(!key && count < 511){
+                buffer[count] = wfd;
+                count++;
+                continue;
+            }
+            if(strstr(wfd.cFileName, key) != NULL && count < 511){
+                buffer[count] = wfd;
+                count++;
+                continue;
+            }
+        } while (FindNextFileA(hfind, &wfd) != 0);
+        FindClose(hfind);
+    }
+    memset(&buffer[count], 0, sizeof(WIN32_FIND_DATA));
+
+    return buffer;
+
+}
+
 // lists all child dirs of a root one
 char* getListedDirectories(char* directory){
     char path[1024];
@@ -64,7 +101,7 @@ void* findFile(char* name, char* root, char* type){
     else return NULL;
 
     if(strcmp(root, "r") == 0){
-        root = rootFilePath();
+        root = getRootFilePath();
     }
     if(strcmp(root, "p") == 0){
         root = NULL;

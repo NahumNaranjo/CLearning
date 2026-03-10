@@ -10,4 +10,5 @@
     char* getRootFilePath();
     void* findFile(char* name, char* root, char* type);
     char* ParseFile(FILE* fp, size_t* line);
+    WIN32_FIND_DATA* listFiles(char* key, char* path);
 #endif

@@ -1,0 +1,6 @@
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "*.c")
+file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "*.h")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+
+add_executable(cui ${SOURCES} ${HEADERS})
+target_link_libraries(cui PRIVATE common)

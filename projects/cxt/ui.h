@@ -7,8 +7,9 @@
     #include <stdio.h>
     #include "txtFunctions.h"
     #include <screenManagment.h>
+    #include <cui2.h>
 
-    char *BuildUI();
+    char BuildUI();
     void Help();
     char* HelpUI();
     void analysisMode(char* txt, size_t* size, AnalyzeTextData* dataOut);

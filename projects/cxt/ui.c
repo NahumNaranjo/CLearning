@@ -1,20 +1,16 @@
 #include "ui.h"
 
 
-char *BuildUI(){
-    static char option[256]; // Buffer for input
-    printf("Welcome to CXT!\n");
-    printf("Please, write your file's address (absolute): \n");
-    if (!fgets(option, sizeof(option), stdin)) {
-        printf("Error reading input\n");
-        return NULL;
-    }
-    // Remove newline
-    size_t len = strlen(option);
-    if (len > 0 && option[len-1] == '\n') {
-        option[len-1] = '\0';
-    }
-    return option; // Return pointer to the buffer
+char BuildUI(){
+    MenuOption options[] = {
+        {"Analyze File", "a"},
+        {"Load Report", "l"},
+        {"Exit", "e"}
+    };
+    Menu* menu = createMenu("CXT - Text Analyzer", options, 3);
+    char result = *displayMenu(menu);
+    freeMenu(menu);
+    return result;
 }
 
 char* HelpUI(){

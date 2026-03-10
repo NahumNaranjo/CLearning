@@ -206,5 +206,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added operator precedence table
 - Added configuration mode information
 
+## [1.3.1] - 2026-03-06
+### Additions
+- **CUI**: An engine to make command line based UI's.
+  - createMenu & displayMenu: Create & display a Menu variable to use in your ui.
+  - readInput: Best way to ask the user for info, could be a standalone tool.
+  - displayTitle: Customize your projects' titles
+- **CFM**: A simple file lister in a predetermined or customized filepath.
+
+### Fixes
+- **CXT**: Remade the ui with the new engine, more remakes to come in next updates.
+
+### Technical Details
+- **CFM**: fileList() is only aviable for windows
+
+### Documentation
+- Updated all README's
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

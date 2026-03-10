@@ -6,39 +6,72 @@
 #include <windows.h>
 #include <string.h>
 #include <screenManagment.h>
+#include <cfm2.h>
+#include <windows.h>
+#include <cui2.h>
 
 int main(){
     int c;
     clearConsole();
     while(1){
-        char *ptrToOption = BuildUI();
+        displayTitle("CXT - C Text Analyzer");
+        char ptrToOption = BuildUI();
         size_t size;
+        AnalyzeTextData* data;
         if (!ptrToOption) continue;
-        if(strcmp(ptrToOption, "exit") == 0 || strcmp(ptrToOption, "Exit") == 0) { clearConsole(); printf("Bye\n"); return 0;}
-        if(strcmp(ptrToOption, "h") == 0 || strcmp(ptrToOption, "H") == 0 || strcmp(ptrToOption, "help") == 0 || strcmp(ptrToOption, "Help") == 0) {Help(); continue;}
-        if(strcmp(ptrToOption, "version") == 0 || strcmp(ptrToOption, "Version") == 0 || strcmp(ptrToOption, "v") == 0 || strcmp(ptrToOption, "V") == 0 || strcmp(ptrToOption, "cl cxt -v") == 0) {printf("CXT - Text Analyzer v1.0.0\n"); Stop(); system("cls"); continue;}
-        void* fileOut = separateFiles(ptrToOption, &size);
-        if(fileOut == NULL){
-            printf("Error reading file. Please, check the path and try again.\n");
-            Stop();
-            clearConsole();
-            continue;
+        switch(ptrToOption){
+            case 'e':
+                clearConsole(); 
+                return 0;
+                break;
+            case 'l':
+                WIN32_FIND_DATA* files = listFiles("analysis_report_", "cxt\\reports");
+                if(files == NULL || files[0].cFileName[0] == '\0'){ 
+                    printf("No report files found.\n");
+                    Stop();
+                    clearConsole();
+                    continue;
+                }
+                
+                for(int i = 0; files[i].cFileName[0] != '\0'; i++){ 
+                    printf("    %d- %s\n", i, files[i].cFileName);
+                }
+                
+                char* input = readInput("Please, select your desired file:\n", 128);
+                if(input == NULL || input[0] == '\0'){  
+                    printf("Invalid number... Try again\n");
+                    continue;
+                }
+                
+                int idx = atoi(input);
+                if(idx < 0 || files[idx].cFileName[0] == '\0'){ 
+                    printf("Invalid selection... Try again\n");
+                    continue;
+                }
+                
+                char fp[2048];
+                snprintf(fp, sizeof(fp), "%scxt\\reports\\%s", getRootFilePath(), files[idx].cFileName);
+                data = parseReportFiles(readFile(fp, 0));
+                if(data == NULL){  
+                    printf("Error reading report file.\n");
+                    continue;
+                }
+                analysisMode(NULL, 0, data);
+                continue;
+                break;
+            case 'a':
+                char* address = readInput("Please, write your address here:\n", 512);
+                if(address == NULL){
+                    printf("Not valid address found.\n");
+                    continue;
+                }
+                analysisMode(readFile(address, 0), 0, NULL);
+                continue;
+                break;
+            case 'h':
+                Help(); 
+                continue;
+                break;
         }
-        if(strstr(ptrToOption, "analysis_report_") != NULL){
-            analysisMode(NULL, &size, (AnalyzeTextData*)fileOut);
-            // Free AnalyzeTextData
-            AnalyzeTextData* d = (AnalyzeTextData*)fileOut;
-            for(size_t i = 0; i < d->uniqueWords; i++) free(d->tracker[i].key);
-            free(d->tracker);
-            free(d->mostUsed);
-            free(d->words);
-            free(d->newLines);
-            free(d);
-        } else{
-            analysisMode((char*)fileOut, &size, NULL);
-            free(fileOut);
-        }
-        Stop();
-        clearConsole();
     }   
 }
