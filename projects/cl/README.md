@@ -200,5 +200,5 @@ CL is built automatically as part of the main CLEARNING project. See the [main R
 
 ## Version
 
-CL v2.0.0 - Author: Nahum Naranjo</content>
+CL v3.1.0 - Author: Nahum Naranjo</content>
 <parameter name="filePath">d:\Programacion\CLearning\projects\cl\README.md

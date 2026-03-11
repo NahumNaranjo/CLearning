@@ -21,4 +21,4 @@ CXT is a simple file manager for coders, it has functions designed to make YOUR 
 
 ## Version
 
-CFM - Automatic File Manager v1.1.0
+CFM - Automatic File Manager v1.1.1
