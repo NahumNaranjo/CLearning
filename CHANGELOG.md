@@ -223,5 +223,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Documentation
 - Updated all README's
 
+## [1.3.2p1] - 2026-03-10
+### Updates
+- **CL**: Added cl install [tool] command
+- **CFM**: Added dirExists() and getCurrentDirectory() functions
+
+### Technical Details
+- Installer should be significantly heavier now.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

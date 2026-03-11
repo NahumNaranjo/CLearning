@@ -83,3 +83,6 @@ lib/
 # Backup directories
 /backup/
 backup/
+
+# Packages
+/common/packages

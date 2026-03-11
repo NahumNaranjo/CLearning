@@ -1,5 +1,4 @@
 #include "cfm.h"
-#include <cfm2.h>
 
 // Looks for files inside the CL folder path in InCGames parent folder
 FILE* lookInRoot(char* filename, char* type){
@@ -151,16 +150,54 @@ char* ParseFile(FILE* fp, size_t* line){
 
     //TODO it really shouldnt go here but CSON is a great idea
 
-    char* text;
+    char* text[2048];
     size_t size;
     if(line == 0 || line == NULL){
-        while(fgets(text, size, fp) != NULL) continue;
+        fgets(text[0], 0, fp);
+        for(int i = 1; text[i]; i++){
+            fgets(text[i], sizeof(text), fp);
+        }
     }
+
     for (int i = 0; *line > i; i++){
-        if(fgets(text, size, fp) != NULL){
+        if(fgets(text[i], size, fp) != NULL){
             continue;
         }
         break;
     }
+}
+
+int dirExists(const char* path) {
+    struct stat sb;
+
+    // Call stat() to get file information. Returns 0 on success, -1 on failure.
+    if (stat(path, &sb) == 0 && S_ISDIR(sb.st_mode)) {
+        return 1; // It is a directory
+    } else {
+        return 0; // It does not exist or is not a directory
+    }
+}
+
+TCHAR* getCurrentDirectory(){
+    TCHAR* tszBuffer = malloc(MAX_PATH * sizeof(TCHAR));
+    if (!tszBuffer) {
+        printf("Error: Memory allocation failed\n");
+        return NULL;
+    }
+    DWORD dwRet;
+
+    // Get the current directory path
+    dwRet = GetCurrentDirectory(MAX_PATH, tszBuffer);
+
+    if (dwRet == 0) {
+        printf("Error: Failed to get current directory (Error Code: %lu)\n", GetLastError());
+        free(tszBuffer);
+        return NULL;
+    } else if (dwRet > MAX_PATH) {
+        printf("Error: Buffer too small, required size is %lu\n", dwRet);
+        free(tszBuffer);
+        return NULL;
+    }
+    return tszBuffer;
 }
 

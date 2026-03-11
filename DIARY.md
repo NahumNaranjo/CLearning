@@ -287,10 +287,16 @@ To finish, ill try to summarize what i remember:
 there you are, i think you have enough of today (long story short, i dont wanna embarass myself with the stupid errors i found while refactorizing cxt, i literally looked at my code and thought someone really really stupid made it (It was me but a month before and the closest thing i had touched was cpp)).
 
 After making cui from scratch and refactorizing cxt (in fact, it's in between), i needed a function to list files and couldn't belive i didnt make one for cfm so i started investigating, confirmed microsoft isn't really the company of the smart people and then made the function with what microsoft had to offer (just confusing datatypes and functions).
+### CL update
+Made cl install!! why? why not? i had very little time today so i decided to do something small, it's simple, it just installs the packages to a root folder and copies and paste them in /common/packages, that's it, run cl install [tool] and it'll look for the current working dir's common folder and make its magic there.
+
+Also, had to update CFM so it now handles getCurrentDir and dirExists. pretty simple, stolen code from the internet, ngl, i just adjusted a bit
 
 ### CBA Refactor (Now it's fr, i need this)
 
 ## 1.3 minor updates
+### 1.3.2p1
+it was pretty small and i didn't even test, thats why it's p1 instead of full pre-release. check [changelog.md](/CHANGELOG.md) for more
 ### 1.3.1
 Im too lazy to list so many two times so, check [changelog.md](/CHANGELOG.md) please
 ## 1.5.0  
@@ -340,3 +346,7 @@ The first-ever computer programmer was Ada Lovelace, way back in the 1840s. She 
 ## Nerd thing 9
 ### (2026-03-09, Monday)
 The `gets()` function in C was so dangerous (no bounds checking = buffer overflow heaven) that it was literally removed from the C11 standard. It had one job: get a string. And it failed so hard they just... deleted it. RIP gets(), you won't be missed. Use fgets() like a responsible adult like me.
+
+## Nerd thing 10
+### (2026-03-10, Tuesday)
+CMake isn't a build system — it's a build system generator. It creates files for other build systems (like Ninja or Make) so you don't have to write them yourself. Meta enough for you? It's like writing a program that writes programs that build programs. CBA is better btw, it generates the CMake files so the build file generator can generate the files for the builders, confusing, isn't it?

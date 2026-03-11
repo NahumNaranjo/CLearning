@@ -6,5 +6,7 @@
     #include "cxt.h"
     #include "cba.h"
     #include "calc.h"
+    #include "install.h"
+
     void interpreter(int argc, char** argv);
 #endif // CL_H
