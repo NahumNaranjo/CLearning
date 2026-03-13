@@ -1,10 +1,10 @@
-#include "readFile.h"
+#include "readFile2.h"
 
 
 void* separateFiles(const char *file, size_t *size_out){
     if(!file) return NULL;
     if(strstr(file, "analysis_report_") != NULL){
-        return parseReportFiles(readFile(file, size_out));
+        return commonParseReportFiles(readFile(file, size_out));
     } else{
         return readFile(file, size_out);
     }
@@ -62,8 +62,8 @@ char* readFile(const char *file, size_t *size_out){
     return buffer;
 }
 
-AnalyzeTextData* parseReportFiles(char *content){
-    AnalyzeTextData* data = malloc(sizeof(AnalyzeTextData));
+CommonAnalyzeTextData* commonParseReportFiles(char *content){
+    CommonAnalyzeTextData* data = malloc(sizeof(CommonAnalyzeTextData));
     if(!data) return NULL;
     data->tracker = NULL;
     data->mostUsed = NULL;
@@ -87,7 +87,7 @@ AnalyzeTextData* parseReportFiles(char *content){
             data->mostUsed = strdup(line + strlen("Most Common Word: "));
         } else if(strstr(line, "Total Unique Words: ") != NULL){
             sscanf(line, "Total Unique Words: %zu", &data->uniqueWords);
-            data->tracker = malloc(data->uniqueWords * sizeof(Map));
+            data->tracker = malloc(data->uniqueWords * sizeof(CxtMap));
             if(!data->tracker){
                 free(data->words);
                 free(data->newLines);

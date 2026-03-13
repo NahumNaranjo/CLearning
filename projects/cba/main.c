@@ -2,20 +2,24 @@
 #include "ui.h"
 #include <screenManagment.h>
 
-
-int main(int argc, char** argv){
-    clearConsole();
-    printf("Welcome to CBA!\n");
-    char* ptrToOption = NULL;
-    while(ptrToOption != 0){
-        // Main loop
-        ptrToOption = BuildUI();
-        clearConsole();
-        if(strstr(ptrToOption, "build") != NULL){
-            printf("Building CBA...\n");
-            Build();
-            Stop();
-        }
+int main(int argc, char* argv[]) {
+    if(argc < 2) {
+        printf("Usage: cba [build|clean|init]\n");
+        return 1;
     }
+    
+    if(strcmp(argv[1], "build") == 0) {
+        build();
+    }
+    else if(strcmp(argv[1], "clean") == 0) {
+        clean();
+    }
+    else if(strcmp(argv[1], "init") == 0) {
+        init();
+    }
+    else {
+        printf("Unknown command: %s\n", argv[1]);
+    }
+    
     return 0;
 }

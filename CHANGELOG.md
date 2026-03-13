@@ -231,5 +231,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Technical Details
 - Installer should be significantly heavier now.
 
+## [1.3.2] -2026-03-12
+- It's just a formality, this version never really existed, it just has to be here for the file to have sense
+
+## [1.3.3] - 2026-03-12
+- 
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

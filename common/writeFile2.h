@@ -12,7 +12,7 @@
     #include <direct.h>
 
     //writes analysis data to a file
-    bool writeFile(const char* path, AnalyzeTextData* data);
+    bool commonWriteFile(const char* path, CommonAnalyzeTextData* data);
     //generates file path based on current time
     char* getFilePath();
     //checks if directory exists

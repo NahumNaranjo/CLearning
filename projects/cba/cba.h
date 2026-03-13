@@ -8,12 +8,17 @@
     #include <lookForRootFiles.h>
     #include <stringManipulation.h>
     #include <generalData.h>
+    #include <cfm2.h>
 
-    void* Build();
+    void build();
     void prepare(BuildInfo* buildInfo);
-    void BuildParser(FILE* file, BuildInfo* buildInfo);
-    char* trimWhitespace(char* str);
+    void detectProject(BuildInfo* buildInfo);
+    void generateBuildFile(BuildInfo* buildInfo);
     void clean();
     void generateFiles();
-    
+    void generateCMake(BuildInfo* buildInfo);
+    int shouldIncludeDirectory(const char* dir);
+    void runCMake();
+    void init();
+    void BuildParser(FILE* file, BuildInfo* buildInfo);
 #endif

@@ -6,7 +6,7 @@
     #include <stddef.h>
     #include <string.h>
     #include <stdlib.h>
-    #include "generalData.h"
+    #include <cxtGeneralData.h>
 
     //counts all words in the txt file
     size_t countWords(char *txt);

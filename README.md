@@ -104,7 +104,7 @@ Developed by Nahum Naranjo as part of a C learning project.
 
 ## Version
 
-CLEARNING v1.3.2p1a
+CLEARNING v1.3.3
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and changes.</content>
 <parameter name="filePath">d:\Programacion\CLearning\README.md

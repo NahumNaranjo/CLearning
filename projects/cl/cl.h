@@ -4,7 +4,7 @@
     #include <string.h>
     #include <stdlib.h>
     #include "cxt.h"
-    #include "cba.h"
+    #include <cba2.h>
     #include "calc.h"
     #include "install.h"
 

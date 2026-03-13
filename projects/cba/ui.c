@@ -1,5 +1,7 @@
 #include "ui.h"
 
+//TODO: To be fixed and remade
+/*
 char* BuildUI(){
     static char input[256];
     printf("CBA Main menu:\n");
@@ -14,7 +16,7 @@ char* BuildUI(){
     // build
     if(strcmp(input, "build") == 0 || strcmp(input, "Build") == 0){
         printf("Building project...\n");
-        Build();
+        build();
         return "0";
     }
     // prepare
@@ -63,17 +65,18 @@ void config(char* type){
     FILE* fp;
     if(strcmp(type, "c") == 0){
         BuildInfo buildInfo;
-        fp = lookForRootFiles("configs\\cba.config", "r");
+        fp = lookInRoot("configs\\cba.config", "r");
         if(fp == NULL) {
             printf("Error: Could not open cba.config file.\n"); 
             return;
         }
         // Rest of your config code...
     } else {
-        fp = lookForRootFiles("cba.build", "r");
+        fp = lookInRoot("cba.build", "r");
         if(fp == NULL){
             printf("Error: Could not open cba.build file.\n");
             return;
         }
     }
 }
+    */

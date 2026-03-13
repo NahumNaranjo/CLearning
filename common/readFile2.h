@@ -4,6 +4,6 @@
     #include <stdlib.h>
     #include "txtFunctions2.h"
     char* readFile(const char *file, size_t *size_out);
-    AnalyzeTextData* parseReportFiles(char *content);
+    CommonAnalyzeTextData* commonParseReportFiles(char *content);
     void* separateFiles(const char *file, size_t *size_out);
 #endif

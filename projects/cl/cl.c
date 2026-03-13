@@ -1,10 +1,9 @@
 #include "cl.h"
-#include "map.h"
 
 void interpreter(int argc, char** argv){
     // Version info
     if(argc == 1){
-        printf("CL (Ecosystem) version 1.3.2p1. Author: Nahum Naranjo \n");
+        printf("CL (Ecosystem) version 1.3.3. Author: Nahum Naranjo \n");
         return;
     }
     if(argv[1] == NULL){
@@ -12,14 +11,14 @@ void interpreter(int argc, char** argv){
     }
     if (argv[1] != NULL && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
         if(argv[2] == NULL) {
-            printf("CL (Ecosystem) version 1.3.2p1. Author: Nahum Naranjo \n"); 
+            printf("CL (Ecosystem) version 1.3.3. Author: Nahum Naranjo \n"); 
             return;
         }
         if(strcmp(argv[2], "cxt") == 0){
             printf("CXT version 1.1.0. Author: Nahum Naranjo \n");
         }
         if(strcmp(argv[2], "cba") == 0){
-            printf("CBA version 1.0.0 BETA. Author: Nahum Naranjo \n");
+            printf("CBA version 1.0.0. Author: Nahum Naranjo \n");
         }
         if(strcmp(argv[2], "cl") == 0){
             printf("CL (Command line) version 3.1.0. Author: Nahum Naranjo");
@@ -58,13 +57,13 @@ void interpreter(int argc, char** argv){
             char* inst = argv[4];
             size_t size;
             char* fileData = readFile(path, &size);
-            AnalyzeTextData* data = AnalyzeText(fileData, &size);
+            CommonAnalyzeTextData* data = commonAnalyzeText(fileData, &size);
             if(data == NULL) printf("Something went wrong while readint the file");
             if(path != NULL){
                 // Write
                 if(strcmp(inst, "write") == 0){
                     path = getFilePath();
-                    writeFile(path, data);
+                    commonWriteFile(path, data);
                     printf("Your analysis has been written to %s\n", path);
                     return;
                 }
@@ -110,22 +109,20 @@ void interpreter(int argc, char** argv){
         if(strcmp(argv[2], "cba") == 0){
             char* inst = argv[3];
             if(strcmp(inst, "build") == 0){
-                Build();
+                build();
                 return;
             }
-            if(strcmp(inst, "prepare") == 0){
+            if(strcmp(inst, "init") == 0){
                 printf("Preparing...\n");
-                BuildInfo* build;
-                FILE* fp = lookForRootFiles("\\configs\\cba.config", "r");
-                BuildParser(fp, build);
-                prepare(build);
-                printf("Your files are ready to use\n");
+                /*BuildInfo* build;
+                FILE* fp = lookInRoot("\\configs\\cba.config", "r");
+                BuildParser(fp, build);*/
+                init();
+                // printf("Your files are ready to use\n");
                 return;
             }
-            if(strcmp(inst, "generate") == 0 ||strcmp(inst, "-g") == 0){
-                printf("Generating...\n");
-                generateFiles();
-                printf("Done!");
+            if(strcmp(inst, "clean") == 0){
+                clean();
                 return;
             }
         }

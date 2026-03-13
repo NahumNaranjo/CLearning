@@ -1,7 +1,6 @@
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "*.c")
-file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "*.h")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+file(GLOB SOURCES "*.c") 
+file(GLOB HEADERS "*.h")
 
-add_executable(cfm ${SOURCES} ${HEADERS})
-
-target_link_libraries(cfm PRIVATE common)
+add_library(cfm_lib STATIC ${SOURCES} ${HEADERS})
+target_include_directories(cfm_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cfm_lib PRIVATE common)

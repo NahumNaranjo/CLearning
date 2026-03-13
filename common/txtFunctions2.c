@@ -1,4 +1,4 @@
-#include "txtFunctions.h"
+#include "txtFunctions2.h"
 
 
 const char delim[] = " ";
@@ -26,7 +26,7 @@ const char *stop_words[] = {
     "yourself", "yourselves"
 };
 
-int FindKey(char* key, Map* map, size_t n) {
+int CxtFindKey(char* key, CxtMap* map, size_t n) {
     for (size_t i = 0; i < n; i++) {
         if (strcmp(map[i].key, key) == 0) {
             return (int)i;
@@ -35,13 +35,13 @@ int FindKey(char* key, Map* map, size_t n) {
     return -1;
 }
 
-bool ExistKey(char* key, Map* map, size_t n) {
-    return FindKey(key, map, n) != -1;
+bool CxtExistKey(char* key, CxtMap* map, size_t n) {
+    return CxtFindKey(key, map, n) != -1;
 }
 
-AnalyzeTextData* AnalyzeText(char *txt, size_t *size){
+CommonAnalyzeTextData* commonAnalyzeText(char *txt, size_t *size){
     // Allocate the returning structure
-    AnalyzeTextData* returning = malloc(sizeof(AnalyzeTextData) + 1);
+    CommonAnalyzeTextData* returning = malloc(sizeof(CommonAnalyzeTextData) + 1);
     if (!returning) return NULL;
     
     // Allocate for words and newLines
@@ -55,7 +55,7 @@ AnalyzeTextData* AnalyzeText(char *txt, size_t *size){
     }
     
     //gets wordFrequencyData first (modifies txt, so do it first)
-    commonWordsData data = mostCommonWord(txt);
+    CommonCommonWordsData data = commonMostCommonWord(txt);
     returning->mostUsed = data.mostUsed;
     returning->tracker = data.tracker;
     returning->uniqueWords = data.count;
@@ -96,19 +96,19 @@ size_t countNewLines(char *txt){
 }
 
 
-commonWordsData mostCommonWord(char *txt){
+CommonCommonWordsData commonMostCommonWord(char *txt){
     char *copy = strdup(txt); // Copy to avoid modifying original
     if (!copy) {
-        commonWordsData res = {NULL, NULL, 0};
+        CommonCommonWordsData res = {NULL, NULL, 0};
         return res;
     }
     // Initialize count and capacity
     size_t count = 0;
     size_t capacity = 10; // Initial capacity
-    Map* tracker = malloc(capacity * sizeof(Map));
+    CxtMap* tracker = malloc(capacity * sizeof(CxtMap));
     if (!tracker) {
         free(copy);
-        commonWordsData res = {NULL, NULL, 0};
+        CommonCommonWordsData res = {NULL, NULL, 0};
         return res;
     }
     // Pointer to the most used word
@@ -158,20 +158,20 @@ commonWordsData mostCommonWord(char *txt){
         // Resize if needed
         if (count >= capacity) {
             capacity *= 2;
-            Map* new_tracker = realloc(tracker, capacity * sizeof(Map));
+            CxtMap* new_tracker = realloc(tracker, capacity * sizeof(CxtMap));
             if (!new_tracker) {
                 // Free and return error
                 for (size_t i = 0; i < count; i++) free(tracker[i].key);
                 free(tracker);
                 free(copy);
-                commonWordsData res = {NULL, NULL, 0};
+                CommonCommonWordsData res = {NULL, NULL, 0};
                 return res;
             }
             tracker = new_tracker;
         }
 
         // Check if key exists
-        int idx = FindKey(token, tracker, count);
+        int idx = CxtFindKey(token, tracker, count);
         if (idx != -1) {
             tracker[idx].timesAppeared++;
         } else {
@@ -190,21 +190,6 @@ commonWordsData mostCommonWord(char *txt){
         }
     }
     free(copy);
-    commonWordsData data = {tracker, mostUsed, count};
+    CommonCommonWordsData data = {tracker, mostUsed, count};
     return data;
 }
-
-// TODO: Add more functions
-// TODO: Optimize existing functions
-// TODO: Add more compatibility
-
-//! UNUSED FUNCTION, KEPT FOR FUTURE REFERENCE
-/*
-bool FreeTracker(Map *tracker, size_t count) {
-    for (size_t i = 0; i < count; i++) {
-        free(tracker[i].key);
-    }
-    free(tracker);
-    return true;
-}
-*/

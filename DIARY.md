@@ -272,7 +272,7 @@ it's useless, tbh, wasn't thinking that cl exec would completely destroy cl hub 
 - hub will be the only way to access these games
 - CBA and InCEngine (First thing InCGames developed and im stealing it (from myself)) will interfere and help devs build quick and funny games to add to their library if they're bored
 
-To start, why don't i remake the UI? actually, let's do another section for that
+To start, why don't i remake the UI? actually, let's do another section for that.
 
 ### CUI (Like how peruvians call guinea pigs)
 First of all, im gonna make a centralized buildUI() and, long story short, centralize all ui.c's in one library i can even add to this release.
@@ -290,9 +290,16 @@ After making cui from scratch and refactorizing cxt (in fact, it's in between), 
 ### CL update
 Made cl install!! why? why not? i had very little time today so i decided to do something small, it's simple, it just installs the packages to a root folder and copies and paste them in /common/packages, that's it, run cl install [tool] and it'll look for the current working dir's common folder and make its magic there.
 
-Also, had to update CFM so it now handles getCurrentDir and dirExists. pretty simple, stolen code from the internet, ngl, i just adjusted a bit
+Also, had to update CFM so it now handles getCurrentDir and dirExists. pretty simple, stolen code from the internet, ngl, i just adjusted a bit.
+
+Today (thursday), i wanted to test and fix the bugs i find but didn't really show any, i haven't made a new project to test it for real but it's working without many problems for the moment, just some design issues i solved instantly with one more system call mkdir'ing a new folder for the tools installed, i should make a `cba copy common` so it copies a new CMakeLists.txt for the common dir and have no problem, anyways, that's for cba refactor.
 
 ### CBA Refactor (Now it's fr, i need this)
+I started working on it, it's not that bad, i guess, i'll just try to.
+
+God, i dont know what i did but it had like thousands of errors once i built, i didnt understand anything and had to duplicate lots of files, very bad of me but it works now, i guess....
+
+Also, this refactorizing was pretty easy, just literally restructured and changed some stuff, not so much to tell. Thought it would be harder tbh
 
 ## 1.3 minor updates
 ### 1.3.2p1

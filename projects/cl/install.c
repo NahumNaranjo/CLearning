@@ -52,6 +52,9 @@ void* clInstall(char* name){
     }
     strcat(root, name);
     char command[2048];
-    snprintf(command, sizeof(command), "robocopy \"%s\" \"%s\" /e", root, current);
+    char createDir[2048];
+    snprintf(createDir, sizeof(createDir), "mkdir %s", name);
+    snprintf(command, sizeof(command), "robocopy \"%s\" \"%s\\%s\" /e", root, current, name);
+    system(createDir);
     system(command);
 }
