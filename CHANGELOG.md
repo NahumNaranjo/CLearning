@@ -232,10 +232,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Installer should be significantly heavier now.
 
 ## [1.3.2] -2026-03-12
-- It's just a formality, this version never really existed, it just has to be here for the file to have sense
+- It's just a formality, this version never really existed, it just has to be here for the file to have sense.
 
-## [1.3.3] - 2026-03-12
-- 
+## [1.3.3p1] - 2026-03-12
+### Additions & changes
+- Added lots of new files to common so i dont have to link all projects.
+- cba has been refactorized.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
