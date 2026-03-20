@@ -1,22 +1,39 @@
 #include "ui.h"
 #include <string.h>
 
-char* BuildUI(){
-    static char option[256]; // Buffer for input
-    printf("Welcome to the Hub!\n");
-    printf("Please, select an option (In progress):\n");
-    printf("1. CXT\n");
-    printf("2. CBA");
-    printf("3. Exit\n");
-    printf("Enter your choice: ");
-    if (!fgets(option, sizeof(option), stdin)) {
-        printf("Error reading input\n");
-        return NULL;
-    }
-    // Remove newline
-    size_t len = strlen(option);
-    if (len > 0 && option[len-1] == '\n') {
-        option[len-1] = '\0';
-    }
-    return option; // Return pointer to the buffer
+char gamesUI(){
+    MenuOption options[] = {
+        {"No games yet", "1"},
+        {"Main menu", "e"}
+    };
+    size_t count;
+    Menu* menu = createMenu("Built-in Games", options, count);
+    displayTitle(menu->title);
+    char result = *displayMenu(menu);
+    return result;
+}
+
+char toolsUI(){
+    MenuOption options[] = {
+        {"CXT", "x"},
+        {"Main menu", "e"}
+    };
+    size_t count;
+    Menu* menu = createMenu("Clearning Executable Tools", options, count);
+    displayTitle(menu->title);
+    char result = *displayMenu(menu);
+    return result;
+}
+
+char mainMenu(){
+    MenuOption options[] = {
+        {"Games", "g"},
+        {"Tools", "t"},
+        {"Exit", "e"}
+    };
+    size_t count;
+    Menu* menu = createMenu("CLearning HUB", options, count);
+    displayTitle(menu->title);
+    char result = *displayMenu(menu);
+    return result;
 }

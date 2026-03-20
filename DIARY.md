@@ -274,7 +274,13 @@ it's useless, tbh, wasn't thinking that cl exec would completely destroy cl hub 
 
 To start, why don't i remake the UI? actually, let's do another section for that.
 
-### CUI (Like how peruvians call guinea pigs)
+I'm finally ready to work with this, also, i took some days off because of my birthday, forgive me ;D.
+
+I guess today's the day i launch 1.4.0 so i better get to work, firstly, i'll start with the most obvious thing, the UI remake using the newly developed CUI ;D
+
+it's pretty much done tbh, i thought it'd be harder but nah, cui made it too easy.
+
+### CUI (Like how peruvians call guinea pigs) (Done) <- - - This one is a Hub overhaul extension
 First of all, im gonna make a centralized buildUI() and, long story short, centralize all ui.c's in one library i can even add to this release.
 
 Again, i entered flow state, i made an engine to manage ui's from scratch in like four hours, incluiding refactorizing cxt and most of the time, testing and hating on microsoft and their weird ass functions for c. Anyways, it was fantastic and i barely remember it but i just coded like a machine. updated all readmes and even made a new function for cfm and thought about adding a cl install because all the tools are actually useless. ill try to investigate about this. Also, i entered a dilema, should i name this version 1.4.0 or 1.3.1? i mean, it's a new tool but 1.3.0 is just out.
@@ -287,14 +293,15 @@ To finish, ill try to summarize what i remember:
 there you are, i think you have enough of today (long story short, i dont wanna embarass myself with the stupid errors i found while refactorizing cxt, i literally looked at my code and thought someone really really stupid made it (It was me but a month before and the closest thing i had touched was cpp)).
 
 After making cui from scratch and refactorizing cxt (in fact, it's in between), i needed a function to list files and couldn't belive i didnt make one for cfm so i started investigating, confirmed microsoft isn't really the company of the smart people and then made the function with what microsoft had to offer (just confusing datatypes and functions).
-### CL update
+
+### CL update (done)
 Made cl install!! why? why not? i had very little time today so i decided to do something small, it's simple, it just installs the packages to a root folder and copies and paste them in /common/packages, that's it, run cl install [tool] and it'll look for the current working dir's common folder and make its magic there.
 
 Also, had to update CFM so it now handles getCurrentDir and dirExists. pretty simple, stolen code from the internet, ngl, i just adjusted a bit.
 
 Today (thursday), i wanted to test and fix the bugs i find but didn't really show any, i haven't made a new project to test it for real but it's working without many problems for the moment, just some design issues i solved instantly with one more system call mkdir'ing a new folder for the tools installed, i should make a `cba copy common` so it copies a new CMakeLists.txt for the common dir and have no problem, anyways, that's for cba refactor.
 
-### CBA Refactor (Now it's fr, i need this)
+### CBA Refactor (Now it's fr, i need this) (done)
 I started working on it, it's not that bad, i guess, i'll just try to.
 
 God, i dont know what i did but it had like thousands of errors once i built, i didnt understand anything and had to duplicate lots of files, very bad of me but it works now, i guess....
@@ -305,7 +312,8 @@ Also, this refactorizing was pretty easy, just literally restructured and change
 ### 1.3.2p1
 it was pretty small and i didn't even test, thats why it's p1 instead of full pre-release. check [changelog.md](/CHANGELOG.md) for more
 ### 1.3.1
-Im too lazy to list so many two times so, check [changelog.md](/CHANGELOG.md) please
+Im too lazy to list so many things two times so, check [changelog.md](/CHANGELOG.md) please (sarcasm)
+
 ## 1.5.0  
 ### InCEngine port
 
@@ -357,3 +365,11 @@ The `gets()` function in C was so dangerous (no bounds checking = buffer overflo
 ## Nerd thing 10
 ### (2026-03-10, Tuesday)
 CMake isn't a build system — it's a build system generator. It creates files for other build systems (like Ninja or Make) so you don't have to write them yourself. Meta enough for you? It's like writing a program that writes programs that build programs. CBA is better btw, it generates the CMake files so the build file generator can generate the files for the builders, confusing, isn't it?
+
+## Nerd thing 11
+### (2026-03-12, Thursday)
+The first "C" compiler was written by Dennis Ritchie at Bell Labs in the early 1970s. Fun fact: the entire first version of Unix was rewritten in C by Ken Thompson and Dennis Ritchie so they could move it to different machines more easily. Before that, Unix was written in assembly. Imagine rewriting your entire OS in C just for portability. Absolute madlads.
+
+## Nerd thing 12
+### (2026-03-19, Thursday (huge vacation here))
+The "segmentation fault" (segfault) you keep running into while coding in C? That error message was originally implemented in Unix to protect different programs from accidentally overwriting each other's memory. When you get one, you're literally experiencing a safety feature designed in the 1970s trying to save your computer from yourself. The OS is out here playing guardian angel while you forget to allocate memory properly.

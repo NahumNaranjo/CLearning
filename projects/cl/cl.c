@@ -11,7 +11,7 @@ void interpreter(int argc, char** argv){
     }
     if (argv[1] != NULL && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
         if(argv[2] == NULL) {
-            printf("CL (Ecosystem) version 1.3.3. Author: Nahum Naranjo \n"); 
+            printf("CL (Ecosystem) version 1.4.0. Author: Nahum Naranjo \n"); 
             return;
         }
         if(strcmp(argv[2], "cxt") == 0){
@@ -24,7 +24,7 @@ void interpreter(int argc, char** argv){
             printf("CL (Command line) version 3.1.0. Author: Nahum Naranjo");
         }
         if(strcmp(argv[2], "hub") == 0){
-            printf("CLHub version 1.0.2. Author: Nahum Naranjo");
+            printf("CLHub version 1.1.0. Author: Nahum Naranjo");
         }
         if(strcmp(argv[2], "cfm") == 0){
             printf("CFM version 1.1.1. Author: Nahum Naranjo");

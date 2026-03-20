@@ -1,110 +1,90 @@
 # CLEARNING - C Learning Projects Collection
 
-CLEARNING is a collection of learning projects developed in pure C language. This project demonstrates C programming concepts, including file handling, text analysis, console user interfaces, and basic data structures.
+CLEARNING is a set of learning projects written in pure C. It demonstrates a variety of programming concepts such as file handling, command-line interfaces, text analysis, build automation, and more.
 
-## Project Structure
+---
 
-The project is organized into the following components:
+## Project Components
 
-### Main Projects
+### Main Tools
 
-- **[CL](projects/cl/README.md)**: A command-line tool launcher that allows executing different utilities. Includes a built-in calculator with proper operator precedence.
-- **[HUB](projects/hub/README.md)**: A simple menu interface to access available tools.
-- **[CXT](projects/cxt/README.md)**: A text analysis tool that counts words, frequencies, and generates reports.
-- **[CBA](projects/cba/README.md)**: A build helper.
-- **[CFM](projects/cfm/README.md)**: C File Manager for project analysis and file operations.
-- **[CUI](projects/cui/README.md)**: Command line UI engine.
+- **[CL](projects/cl/README.md)** — Command-line launcher that runs tools, includes a built-in calculator, and can install helper packages.
+- **[HUB](projects/hub/README.md)** — Console menu interface for easy tool launching.
+- **[CXT](projects/cxt/README.md)** — Text analysis tool for word counts, frequency statistics, and report generation.
+- **[CBA](projects/cba/README.md)** — Build assistant that generates CMake files and runs CMake + Ninja.
+- **[CFM](projects/cfm/README.md)** — Helper library for file and directory utilities.
+- **[CUI](projects/cui/README.md)** — Console UI helper library.
 
-### Common Library
+### Shared Library
 
-- **[Common](common/)**: Static library providing shared utilities like map structures and console screen management.
+- **[Common](common/README.md)** — Shared utility library (map data structure, screen management, etc.).
 
-## System Requirements
+---
 
-- **C Compiler**: GCC (MinGW recommended on Windows) or C11 compatible.
-- **CMake**: Version 3.10 or higher for project building.
-- **Ninja**: Completely required due to being the only one CBA supports for the moment.
-- **Operating System**: Windows compatible (tested on Windows with MinGW).
+## Requirements
 
-## Building and Installation
-### Easy way
-Download the installer and run it, it'll install the program to path. You may have problems with windows defender or smart smart app control due to me not wanting to give my soul to microsoft in exchange of .exe's recognition (pay to sign my .exe's). Sorry D:
+- **C Compiler**: GCC (MinGW recommended) or any C11-compatible compiler.
+- **CMake**: 3.10 or newer.
+- **Ninja**: Used by CBA for builds.
+- **Platform**: Windows (project uses Windows console APIs).
 
-### Hard way
-1. **Clone or download** the repository to your local machine.
+---
 
-2. **Navigate to the project root directory**:
-   ```bash
-   cd d:\Programacion\CLearning
-   ```
+## Build Instructions
 
-3. **Configure with CMake**:
-   ```bash
-   cmake -G Ninja .
-   ```
-   Or if you prefer Makefiles:
-   ```bash
-   cmake .
-   ```
+From the repo root:
 
-4. **Build the project**:
-   ```bash
-   ninja
-   ```
-   Or with make:
-   ```bash
-   make
-   ```
+```bash
+cmake -G Ninja .
+ninja
+```
 
-This will generate the executables in the corresponding directories:
+This generates executables in the `build/` folder:
+
 - `build/cl.exe`
 - `build/hub.exe`
 - `build/cxt.exe`
 - `build/cba.exe`
 
-## Usage
+---
 
-### Run CL (Main Launcher)
+## Usage Examples
+
+### Run the main launcher (CL)
 ```bash
 ./build/cl.exe --help
 ```
 
-### Run HUB (Menu Interface)
+### Run HUB (menu interface)
 ```bash
 ./build/hub.exe
 ```
 
-### Run CXT directly
+### Run CXT (text analysis)
 ```bash
 ./build/cxt.exe
 ```
 
-For detailed command reference, see [DOCUMENTATION.md](DOCUMENTATION.md).
+For fuller command reference, see [DOCUMENTATION.md](DOCUMENTATION.md).
 
-## Dependencies
-
-- **Standard C Libraries**: All dependencies are part of the C standard library.
-- **Windows-specific Functions**: The project uses some Windows API functions for console operations (like `system("cls")`).
+---
 
 ## Contributing
 
-This project is educational and designed to learn C programming concepts. If you want to contribute:
+This project is intended as an educational codebase.
 
-1. Ensure code follows C11 standard.
-2. Maintain Windows compatibility.
-3. Update corresponding documentation.
+- Follow C11 standards.
+- Preserve Windows compatibility.
+- Keep documentation updated.
+
+---
 
 ## License
 
-This project is open source and distributed under the MIT License. See the LICENSE file for more details.
+MIT License — see [LICENSE](LICENSE) for details.
 
-## Author
+---
 
-Developed by Nahum Naranjo as part of a C learning project.
+CLEARNING v1.4.0 
 
-## Version
-
-CLEARNING v1.3.3p1b
-
-See [CHANGELOG.md](CHANGELOG.md) for detailed feature list and changes.</content>
-<parameter name="filePath">d:\Programacion\CLearning\README.md
+Author: Nahum Naranjo

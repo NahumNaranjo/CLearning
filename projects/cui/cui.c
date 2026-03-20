@@ -1,7 +1,7 @@
 #include "cui.h"
 
 
-Menu* createMenu(char* title, MenuOption* options, size_t count){
+Menu* createMenu(char* title, MenuOption* options, size_t count){ 
     Menu* menu = (Menu*)malloc(sizeof(Menu));
     if(menu == NULL) return NULL;
     menu->title, title;

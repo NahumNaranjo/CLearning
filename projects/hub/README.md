@@ -1,13 +1,12 @@
 # HUB - Menu Interface for CLEARNING
 
-HUB is a simple menu interface written in pure C that provides a graphical (console-based) way to access the different tools available in the CLEARNING ecosystem.
+HUB is a simple console menu interface written in pure C that lets you launch the available CLEARNING tools.
 
 ## Features
 
-- **Menu Interface**: Presents a menu of options in the console.
-- **Tool Launching**: Allows selecting and executing tools like CXT.
-- **Simple Navigation**: Intuitive interface with numbered options.
-- **Interactive Loop**: Allows multiple selections without exiting the program.
+- **Menu interface**: Presents a numbered menu in the console.
+- **Tool launching**: Starts tools like CXT and CBA.
+- **Interactive loop**: Keeps running until you choose to exit.
 
 ## Usage
 
@@ -18,8 +17,9 @@ HUB is a simple menu interface written in pure C that provides a graphical (cons
 
 ### Menu Options
 
-1. **Go to CXT**: Launches the CXT text analysis tool.
-2. **Exit**: Closes the HUB program.
+1. **Go to CXT** — Launches the CXT text analysis tool.
+2. **Go to CBA** — Launches the CBA build helper.
+3. **Exit** — Closes the HUB program.
 
 ## Building
 
@@ -39,11 +39,11 @@ HUB is built automatically as part of the main CLEARNING project. See the [main 
 
 ## Notes
 
-- Designed for Windows with console-specific functions.
+- Designed for Windows (console-based).
 - Uses the common library for screen operations.
-- Part of the CLEARNING ecosystem to facilitate tool access.
+- Part of the CLEARNING ecosystem.
 
 ## Version
 
-HUB v1.0.1 - Author: Nahum Naranjo</content>
+HUB v1.0.2 - Author: Nahum Naranjo</content>
 <parameter name="filePath">d:\Programacion\CLearning\projects\hub\README.md

@@ -1,204 +1,122 @@
 # CL - Command-Line Tool Launcher
 
-CL is a simple command-line tool written in pure C that acts as a launcher to execute different utilities and projects within the CLEARNING ecosystem.
+CL is the primary launcher for the CLEARNING ecosystem. It provides a unified interface to run other tools (HUB, CXT, CBA), includes a small calculator, and can install helper packages.
+
+---
 
 ## Features
 
-- **Tool Launching**: Allows executing tools like HUB and CXT from the command line.
-- **Built-in Calculator**: Mathematical expression evaluator with proper operator precedence and trigonometric functions.
-- **Version Information**: Displays program version information.
-- **Built-in Help**: Provides a help menu with available options.
-- **Simple Interface**: Minimalist design focused on functionality.
+- **Tool launcher**: Run tools like `hub`, `cxt`, and `cba` from a single entrypoint.
+- **Built-in calculator**: Evaluate expressions with operator precedence and trig functions.
+- **Version reporting**: Query versions of CL and supported tools.
+- **Package installer**: Install helper packages from `common/packages/`.
+
+---
 
 ## Usage
 
-### Basic Syntax
+### Syntax
 ```bash
-cl [options] [command]
+cl [options] [command] [args...]
 ```
 
-### Available Options
+### General Options
 
-- `-v, --version`: Shows version information.
-- `-h, --help`: Shows the help menu.
-- `-c, calc [expression]`: Executes the built-in calculator.
-- `exec, -e [tool]`: Executes a specific tool or command.
+- `-h`, `--help` — Show help information.
+- `-v`, `--version` — Show version info for CL or one of the supported tools.
 
-### Usage Examples
+### Tool execution
 
-1. **Show help**:
-   ```bash
-   cl --help
-   ```
+- `exec <tool>` or `-e <tool>` — Execute a supported tool.
+  - Supported: `hub`, `cxt`, `cba`
 
-2. **Show version**:
-   ```bash
-   cl --version
-   ```
+**Examples:**
+```bash
+cl exec hub
+cl exec cxt
+cl exec cba
+```
 
-3. **Execute HUB**:
-   ```bash
-   cl exec hub
-   ```
+### Calculator
 
-4. **Execute CXT**:
-   ```bash
-   cl -e cxt
-   ```
+- `calc <expression>` or `-c <expression>` — Evaluate a math expression.
 
-5. **Use calculator**:
-   ```bash
-   cl calc "10 * 5 + 3"
-   cl -c "s(30) + c(45)"
-   ```
+**Examples:**
+```bash
+cl calc "2 + 3 * 4"          # Result: 14
+cl -c "s(30) + c(45)"        # Result: 1.207107
+```
 
-## Calculator Feature
+### Install helper packages
 
-CL includes a built-in mathematical calculator with the following capabilities:
+- `install <package>` or `-i <package>`
 
-### Supported Operations
-- Basic arithmetic: `+`, `-`, `*`, `/`, `%`
+**Examples:**
+```bash
+cl install cxt
+cl install cui
+```
+
+### Running tools with arguments
+
+Some tools accept additional arguments when launched via `cl exec`.
+
+**CXT example (analyze file + show info):**
+```bash
+cl exec cxt "C:\path\to\file.txt" info -a
+```
+
+**CBA example:**
+```bash
+cl exec cba build
+```
+
+---
+
+## Built-in Calculator Details
+
+### Supported operations
+- Arithmetic: `+`, `-`, `*`, `/`, `%`
 - Trigonometric: `s()` (sine), `c()` (cosine), `t()` (tangent)
 
-### Operator Precedence
-1. Trigonometric functions (highest)
-2. Multiplication, Division, Modulo
-3. Addition, Subtraction (lowest)
+### Operator precedence
+1. Trigonometric functions
+2. Multiplication / Division / Modulo
+3. Addition / Subtraction
 
-### Examples
+---
+
+## Build
+
+CL is built as part of the main CLEARNING solution.
+
 ```bash
-cl calc "2 + 3 * 4"        # Result: 14 (respects precedence)
-cl calc "100 / 5 - 3"      # Result: 17
-cl calc "s(30) + c(45)"    # Result: 1.207107 (sin 30° + cos 45°)
+cmake -G Ninja .
+ninja
 ```
 
-For detailed calculator documentation, see [DOCUMENTATION.md](../../DOCUMENTATION.md).
+The executable is usually located at `build/cl.exe`.
 
-## Building
+---
 
-CL is built automatically as part of the main CLEARNING project. See the [main README](../../README.md) for build instructions.
+## Project Layout
 
-## Dependencies
+- `main.c`: Entry point.
+- `cl.c`: Command interpreter.
+- `calc.c`: Calculator implementation.
+- `install.c`: Package installer.
+- `cl.h`: Header declarations.
 
-- **Standard C Libraries**: Uses only standard library functions.
-- **System Functions**: Uses `system()` to execute other programs.
-
-## File Structure
-
-- `main.c`: Main program entry point.
-- `cl.c`: Command interpreter logic.
-- `calc.c`: Built-in calculator implementation with proper operator precedence.
-- `calc.h`: Calculator function declarations.
-- `cl.h`: Function declarations and constants.
-- `cba.h`, `cxt.h`: Centralized header controllers.
-- All remaining `.h` files.
+---
 
 ## Notes
 
-- Designed specifically for Windows.
-- Uses system calls to execute other executables.
-- Integral part of the CLEARNING ecosystem.
+- Designed for Windows (uses `system()` and Windows console helpers).
+
+---
 
 ## Version
 
-CL v3.0.0 - Author: Nahum Naranjo
-
-## Features
-
-- **Tool Launching**: Allows executing tools like HUB and CXT from the command line.
-- **Built-in Calculator**: Mathematical expression evaluator with proper operator precedence and trigonometric functions.
-- **Version Information**: Displays program version information.
-- **Built-in Help**: Provides a help menu with available options.
-- **Simple Interface**: Minimalist design focused on functionality.
-
-## Usage
-
-### Basic Syntax
-```bash
-cl [options] [command]
-```
-
-### Available Options
-
-- `-v, --version`: Shows version information.
-- `-c, calc [expression]`: Executes the built-in calculator.
-- `-h, --help`: Shows the help menu.
-- `exec, -e [tool]`: Executes a specific tool or command.
-
-### Usage Examples
-
-1. **Show help**:
-   ```bash
-   cl --help
-   ```
-
-2. **Show version**:
-   ```bash
-   cl --version
-   ```
-
-3. **Execute HUB**:
-   ```bash
-   cl exec hub
-   ```
-
-4. **Execute CXT**:
-   ```
-
-5. **Use calculator**:
-   Calculator Feature
-
-CL includes a built-in mathematical calculator with the following capabilities:
-
-### Supported Operations
-- Basic arithmetic: `+`, `-`, `*`, `/`, `%`
-- Trigonometric: `s()` (sine), `c()` (cosine), `t()` (tangent)
-
-### Operator Precedence
-1. Trigonometric functions (highest)
-2. Multiplication, Division, Modulo
-3. Addition, Subtraction (lowest)
-
-###calc.c`: Built-in calculator implementation with proper operator precedence.
-- `calc.h`: Calculator function declarations
-```bash
-cl calc "2 + 3 * 4"        # Result: 14 (respects precedence)
-cl calc "100 / 5 - 3"      # Result: 17
-cl calc "s(30) + c(45)"    # Result: 1.207107 (sin 30° + cos 45°)
-```
-
-For detailed calculator documentation, see [DOCUMENTATION.md](../../DOCUMENTATION.md).
-   cl calc "10 * 5 + 3"
-   cl -c "s(30) + c(45)"
-   ```bash
-   cl -e cxt
-   `3`
-
-## Building
-
-CL is built automatically as part of the main CLEARNING project. See the [main README](../../README.md) for build instructions.
-
-## Dependencies
-
-- **Standard C Libraries**: Uses only standard library functions.
-- **System Functions**: Uses `system()` to execute other programs.
-
-## File Structure
-
-- `main.c`: Main program entry point.
-- `cl.c`: Command interpreter logic.
-- `packageManager.c`: Not in use for now.
-- `cl.h`: Function declarations and constants.
-- `cba.h`, `cxt.h`: Centralized header controllers.
-- All remaining `.h` files.
-
-## Notes
-
-- Designed specifically for Windows.
-- Uses system calls to execute other executables.
-- Integral part of the CLEARNING ecosystem.
-
-## Version
-
-CL v3.1.0 - Author: Nahum Naranjo</content>
+CL v1.3.3
+</content>
 <parameter name="filePath">d:\Programacion\CLearning\projects\cl\README.md

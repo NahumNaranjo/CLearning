@@ -86,3 +86,4 @@ backup/
 
 # Packages
 /common/packages
+/*.txt

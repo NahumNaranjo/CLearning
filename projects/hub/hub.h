@@ -3,5 +3,6 @@
     #include <stdio.h>
     #include "ui.h"
     #include "screenManagment.h"
-    void interpreter(void);
+    void gamesInterpreter(char* choice);
+    void toolsInterpreter(char* choice);
 #endif // HUB_H

@@ -1,38 +1,59 @@
-# CBA - A build assistant for lost developers
+# CBA - Build Assistant for C Projects
 
-CBA is a simple command-line build assist tool written in C. It allows users to automatically write CMake files and build. It only supports C code built with CMake Ninja but more options will be added as the project continues its development.
+CBA is a lightweight build assistant written in C. It can auto-generate a `CMakeLists.txt` and run CMake+Ninja to build your project.
 
-**Part of the CLEARNING project** - A collection of C learning projects. See the [main README](../../README.md) for more information about the overall project.
+**Part of the CLEARNING project** — a collection of C learning projects. See the [main README](../../README.md) for more information.
 
-## Features (More coming soon)
+## Features
 
-- **Automatic CMake handler**: It automatically writes your cmakelists.txt and builds yout project :D
+- Auto-detects a C project and generates a `cba.build` file.
+- Generates `CMakeLists.txt` that includes all `.c` and `.h` sources.
+- Runs CMake + Ninja to configure the build.
+- Provides `build`, `init`, and `clean` commands.
 
 ## Usage
 
-1. Run the program: `./cba.exe`
-2. Run either `build` or `prepare`, depending if you already have a cba.build file.
-3. Enjoy
+Run the executable and supply one of the supported commands:
+
+```bash
+./cba.exe init   # Generate/refresh cba.build
+./cba.exe build  # Generate CMake files and configure build
+./cba.exe clean  # Remove the build/ directory
+```
+
+You can also run these via CL:
+
+```bash
+cl exec cba init
+cl exec cba build
+cl exec cba clean
+```
 
 ## Building
 
-Run the CL installer, this dependencie does not have a separate repository yet.
+CBA is built as part of the main CLEARNING project.
+
+```bash
+cmake -G Ninja .
+ninja
+```
 
 ## Dependencies
 
-- **CMake 3.10**: It's the standard build scripting tool.
-- **Ninja 1.10.0**: It's the default build system.
+- **CMake 3.10+**
+- **Ninja**
 
 ## File Structure
 
-- `main.c`: Main program loop.
-- `ui.c`: User interface functions (menus, input handling).
-- `cba.c`: contains the program itself, all the functions live here.
+- `main.c`: CLI argument parsing.
+- `cba.c`: Core build logic (auto-detection, file generation, CMake runner).
+- `ui.c`: User messaging and prompts.
 
 ## Notes
 
-- It is recommended to read the documentation, it has the supported project structures and all commands
+- If `cba.build` is missing, `cba build` will automatically generate it.
+- `cba init` regenerates `cba.build` based on the current directory.
 
 ## Version
 
-CBA - Build helper v1.0.0
+CBA v1.0.0

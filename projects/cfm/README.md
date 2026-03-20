@@ -1,24 +1,35 @@
 # CFM - Automatic File Manager
 
-CXT is a simple file manager for coders, it has functions designed to make YOUR life easier
+CFM is a small helper library that provides basic file- and directory-related utilities used by the CLEARNING ecosystem.
 
-**Part of the CLEARNING project** - A collection of C learning projects. See the [main README](../../README.md) for more information about the overall project.
+**Part of the CLEARNING project** — a collection of C learning projects. See the [main README](../../README.md) for more information.
 
 ## Features
 
-- **File & Directories listing**: Just give it a filepath or a key and it'll do the rest.
-- **Look in Root (work in progress)**: Do you have a root dir? change cfm.config to your own root and you can enjoy of getRootFilePath() and lookInRoot()!
-- **Look for a file**: Don't know or don't want to write the whole filepath? use findFile() and it'll return the full path!
+- **Path resolution**: Find files by name and build paths relative to a root folder.
+- **Directory listing**: List files or directories that match a pattern.
+- **Root helpers**: Utilities for working with a configured root directory.
 
-## Usage (Work in progress)
+## Usage
 
-1. Run `cl install cfm [directory]` and enjoy!!
+CFM is intended as a library dependency. It can be installed into a workspace using `cl install`.
+
+```bash
+cl install cfm
+```
+
+Then include the headers in your project:
+
+```c
+#include "cfm2.h"
+```
 
 ## File Structure
 
-- `cfm.c`: All functions live here.
-- `cfm.h`: All data structures and functions are declared here.
+- `cfm.c`: Core implementation.
+- `cfm.h`: Public API declarations.
+- `cfm2.c` / `cfm2.h`: Additional helper functions.
 
 ## Version
 
-CFM - Automatic File Manager v1.1.1
+CFM v1.1.1

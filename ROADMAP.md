@@ -2,7 +2,7 @@
 
 For future releases I'm planning to add:
 
-## 1. CL Package Manager
+## 1. CL Package Manager (Done in 1.3.2p1)
 It's kinda hard to do and I know it (have no idea) but I think I'll be alright. Basically, I want to add the typical "cl install [package]" so you can install CL and then just add a specific library to your project root instead of doing it by hand. For example, CMap would work really well with this, I had headaches trying to add it to chocolatey (gave up about five minutes later when I decided to do one on my own).
 
 **Goals:**

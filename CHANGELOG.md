@@ -239,5 +239,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added lots of new files to common so i dont have to link all projects.
 - cba has been refactorized.
 
+## [1.4.0] - 2026-03-19
+### Additions and changes
+- **CUI**: An engine to make command line based UI's.
+  - createMenu & displayMenu: Create & display a Menu variable to use in your ui.
+  - readInput: Best way to ask the user for info, could be a standalone tool.
+  - displayTitle: Customize your projects' titles
+- **CFM**: Working on it as usual  
+  - A simple file lister in a predetermined or customized filepath.
+  - Added dirExists() and getCurrentDirectory() functions.
+- **CL**: Added cl install [tool] command
+- Added lots of new files to common so i dont have to link all projects.
+- cba has been refactorized.
+- **HUB**:
+  - Remade the UI with new sections for tools and games
+
+### Fixes
+- **CXT**: Remade the ui with the new engine, more remakes to come in next updates.
+
+### Technical Details
+- **CFM**: fileList() is only aviable for windows
+
+### Documentation
+- Updated DOCUMENTATION.md.
+- Updated all README.md files.
+- Amended the versioning system again.
+- CHANGELOG.md's format changed a bit, full versions now contain every changed made during it's development instead of only that release's.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project
