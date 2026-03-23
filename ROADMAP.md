@@ -70,7 +70,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 ### March
 1. **HUB Overhaul (To be done from 1.4.0 to 1.5.0)**
    - Added games to the launcher
-   - Made a whole new engine for text based games for bored coders
+   - Made a whole new engine for (not so) text based games for bored coders
 2. **CL Calculator Improvement (Done in 1.3.0)**
    - Implemented proper operator precedence
    - Added trigonometric functions (sin, cos, tan)
@@ -81,17 +81,19 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
    - Integration with CL for better file management
 
 ### April
-1. **CUTEST Development**
-   - Test framework implementation
-   - Integration with CBA
-   - Documentation and examples
-
-### May
 
 1. **Configuration Manager**
    - Unified configuration system
    - Tool integration
    - Migration utilities
+
+### May
+
+1. **CUTEST Development**
+   - Test framework implementation
+   - Integration with CBA
+   - Documentation and examples
+
 
 ### June
 
@@ -99,21 +101,6 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
    - Advanced file operations
    - Project analysis tools
    - Various document generation capabilities
-
----
-
-## Current Focus Areas
-
-### Immediate Tasks (v1.2.x)
-- **CBA Refactoring:** Fix folder checking issues and improve CMake generation
-- **Installer Updates:** Ensure installer includes all necessary files
-- **New tools:** Add new tools as quick as possible until at least 2.0.0
-
-### Next Release (v1.3.0)
-- Enhanced CBA functionality with .config file support
-- Improved CL command structure
-- Better error handling and user feedback
-- More comprehensive documentation
 
 ---
 

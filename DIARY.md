@@ -315,12 +315,46 @@ it was pretty small and i didn't even test, thats why it's p1 instead of full pr
 Im too lazy to list so many things two times so, check [changelog.md](/CHANGELOG.md) please (sarcasm)
 
 ## 1.5.0  
-### InCEngine port
+### InCEngine port (InLine)
+Ufff, it's gonna be a hard one but let's dive into it  
+**What do i want for this port?**
+- To have a fully specialized game engine for cmd and work completely by itself.
+- Renderer with double buffer (to avoid flicker)
+- frame rate control
+- profiling tools
+- A fully optimized result
+- debugging features
+- scene managment
+- audio system (later)
+- resource managment
+- collision detection
+- game object managment
+- input system
+- console managment
+
+**Desired game loop structure**
+- Initialize
+- Process Input
+- Update
+- Render
+- Cleanup
+
+it's quite a bit but let's hope i can make it ;D
+
+For the first version, aka, this week's version, i'll make the text based engine.
+
+Im about halfway to make the textParser so i think its a good point to check on what i did  
+First of all, i made a new typedef, verb, it has a full name and a short so the user can either write "take sword" or "t sword" and still be   
+I'm having a bit of a conceptual crisis here so i'll just center in text based story centered games and then build the rest of features  
 
 ### Adding games to CL ;D
 
-## 1.4 minor updates
+### C Configuration Manager
+I started it as a side project for InLine engine so i could manage it's config files in an easier way. For now, it's just basic parsing and file managment.
 
+## 1.4 minor updates
+### 1.4.1p1
+- Setup only
 
 # Nerd things to read :D
 
@@ -373,3 +407,7 @@ The first "C" compiler was written by Dennis Ritchie at Bell Labs in the early 1
 ## Nerd thing 12
 ### (2026-03-19, Thursday (huge vacation here))
 The "segmentation fault" (segfault) you keep running into while coding in C? That error message was originally implemented in Unix to protect different programs from accidentally overwriting each other's memory. When you get one, you're literally experiencing a safety feature designed in the 1970s trying to save your computer from yourself. The OS is out here playing guardian angel while you forget to allocate memory properly.
+
+## Nerd thing 13
+### (2026-03-23, Monday)
+The `#include` directive in C doesn't actually "import" anything like modern languages. It's literally just a copy-paste. The preprocessor takes `#include <stdio.h>` and pastes the entire content of that file into your code before compilation. That's why you get massive compilation times if you're not careful — you're copy-pasting thousands of lines of code without even knowing it. Brutal, but effective. (im honestly bad at it)
