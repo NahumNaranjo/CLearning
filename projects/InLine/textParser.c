@@ -5,27 +5,28 @@ void* verbParser(char* verb){
     return function;
 }
 
-short isVerb(char* token, Map* verbs){
+short isVerb(char* token, Verb* verbs){
 }
 
-Verb* createDefaultVerbs(){
+void createDefaultVerbs(Verb* verbs){
     char* verbsChars[] = {
         "take", "put", "walk", "run", "attack", "shoot", "kill", "revive"
     };
-    char* shorts[] = {
+    static char shorts[] = {
         't', 'p', 'w', 'r', 'a', 's', 'k', 'r'
     };
-    Verb verbs[256];
-    for (int i = 0; verbsChars[i]; i++){
+    int maxVerbs = sizeof(verbsChars) / sizeof(verbsChars[0]);
+    for (int i = 0; i < maxVerbs; i++){
         verbs[i].full = verbsChars[i];
-        verbs[i].cut = shorts[i];
+        verbs[i].cut = &shorts[i];
     }
-    return verbs;
 }
 
 void parseFromText(char* text){
-    Verb* defaultVerbs = createDefaultVerbs();
+    Verb* defaultVerbs;
+    createDefaultVerbs(defaultVerbs);
     //TODO: IMPLEMENT DEVVERBS IN NEXT UPDATE!!!
+    // on it
     char* copy = text;
     char* token;
     token = strtok(copy, " ");

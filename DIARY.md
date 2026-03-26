@@ -351,8 +351,12 @@ I'm having a bit of a conceptual crisis here so i'll just center in text based s
 
 ### C Configuration Manager
 I started it as a side project for InLine engine so i could manage it's config files in an easier way. For now, it's just basic parsing and file managment.
+i've been super tired lately, anyways, tuesday i didnt update this project but i made and ported all tools' repositories so i guess that's enough.  
+for today, i just fixed some bugs 1.4.1p1 had.  
 
 ## 1.4 minor updates
+### 1.4.1p2
+- minor patches
 ### 1.4.1p1
 - Setup only
 
@@ -411,3 +415,7 @@ The "segmentation fault" (segfault) you keep running into while coding in C? Tha
 ## Nerd thing 13
 ### (2026-03-23, Monday)
 The `#include` directive in C doesn't actually "import" anything like modern languages. It's literally just a copy-paste. The preprocessor takes `#include <stdio.h>` and pastes the entire content of that file into your code before compilation. That's why you get massive compilation times if you're not careful — you're copy-pasting thousands of lines of code without even knowing it. Brutal, but effective. (im honestly bad at it)
+
+## Nerd thing 14
+### (2026-03-24, Tuesday)
+The `NULL` pointer in C isn't actually required to be `0` in memory — the standard says it's an implementation-defined null pointer constant that *compares equal* to 0. On most systems it's just `0`, but some ancient architectures used weird values like `0xFFFFFFFF`. So when you write `if (ptr == NULL)`, you're trusting your compiler to handle the magic behind the scenes. Pointer dereferencing a null is still guaranteed to crash though, no magic there.

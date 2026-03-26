@@ -266,9 +266,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Amended the versioning system again.
 - CHANGELOG.md's format changed a bit, full versions now contain every changed made during it's development instead of only that release's.
 
-## [1.4.1p1] - 2026-03-19
+## [1.4.1p1] - 2026-03-23
 ### Additions
 - **InLine & CCManager set up**
+
+## [1.4.1p2] - 2026-03-26
+### Fixes
+- **CCM**: It had some problems with pointers and typedefs, it's now fixed and next update (1.4.1) will be released tomorrow.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project

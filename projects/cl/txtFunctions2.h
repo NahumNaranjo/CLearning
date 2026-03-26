@@ -13,12 +13,12 @@
     //counts new lines
     size_t countNewLines(char *txt);
     //finds most common words in the file
-    commonWordsData mostCommonWord(char *txt);
+    CommonCommonWordsData mostCommonWord(char *txt);
     //! UNUSED FUNCTION
     /*
     //checks if the word 
     bool compareWords(char **token, Map *wordMap, size_t **size);
     */
     //analyzes the text and returns both data
-    AnalyzeTextData* AnalyzeText(char *txt, size_t *size);
+    CommonAnalyzeTextData* AnalyzeText(char *txt, size_t *size);
 #endif
