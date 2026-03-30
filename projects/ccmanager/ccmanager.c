@@ -1,6 +1,6 @@
 #include "ccmanager.h"
 
-void writeConfig(configFormat* config, char* filepath){
+void writeConfigFile(configFormat* config, char* filepath){
     FILE* fp = fopen(filepath, "w");
     if(!fp) return;
     for(int i = 0; config[i].arg; i++){
@@ -9,11 +9,20 @@ void writeConfig(configFormat* config, char* filepath){
     fclose(fp);
 }
 
-configFormat* readConfig(char* filepath){
-    FILE* fp = fopen(filepath, "w");
+void appendConfigFile(configFormat* config, char* filepath){
+    FILE* fp = fopen(filepath, "a");
+    if(!fp) return;
+    for(int i = 0; config[i].arg; i++){
+        fprintf(fp, "%s = %s\n", config[i].arg, config[i].val);
+    }
+    fclose(fp);
+}
+
+configFormat* readConfigFile(char* filepath){
+    FILE* fp = fopen(filepath, "r");
     if(!fp) return;
     char buffer[128];
-    configFormat returning[256];
+    configFormat returning[4096];
     char* token[2];
     size_t i = 0;
     while (fgets(buffer, sizeof(buffer), stdin) != NULL){
@@ -24,23 +33,30 @@ configFormat* readConfig(char* filepath){
         returning[i].val = token[1];
         i++;
     }
+    returning[i+1].val = '\0';
     return returning;
 }
 
 configFormat* parseStringToFormat(char* config){
-    configFormat format[256];
-    for(int i = 0; config[i]; i+2){
+    configFormat format[4096];
+    size_t count = 0;
+    for(int i = 0; config[i]; i+=2){
         format[i].arg = config[i];
         format[i].val = config[i+1];
+        count = i;
     }
+    format[count+1].val = '\0';
     return format;
 }
 
 char* parseFormatToString(configFormat* config){
-    char* returning[256];
-    for(int i = 0; config[i].val; i+2){
-        returning[i] = config[i].arg;
-        returning[i] = config[i+1].val;
+    char* returning[8192];
+    size_t j = 0;
+    for(int i = 0; config[i].val; i+=2){
+        returning[j] = config[i].arg;
+        returning[j+1] = " = ";
+        returning[j+2] = config[i+1].val;
+        j+=3;
     }
     return returning;
 }

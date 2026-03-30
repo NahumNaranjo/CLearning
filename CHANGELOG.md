@@ -274,5 +274,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixes
 - **CCM**: It had some problems with pointers and typedefs, it's now fixed and next update (1.4.1) will be released tomorrow.
 
+## [1.4.1] - 2026-03-30
+### Additions
+- **CCManager**: It has now been partially finished, the library part is still missing but the user part is now complete.
+- **InLine**: It has been set up and added a few functions (still useless).
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

@@ -354,7 +354,11 @@ I started it as a side project for InLine engine so i could manage it's config f
 i've been super tired lately, anyways, tuesday i didnt update this project but i made and ported all tools' repositories so i guess that's enough.  
 for today, i just fixed some bugs 1.4.1p1 had.  
 
+Today i locked in for ccmanager, it is now complete for the user part, you can append or read your config files easily now. It was pretty much the same as usual, strtok to manage input and using cui and hermes to literally everything, i love 'em. Anyways, see ya tmrw.
+
 ## 1.4 minor updates
+### 1.4.1
+- CCManager first half
 ### 1.4.1p2
 - minor patches
 ### 1.4.1p1
@@ -419,3 +423,8 @@ The `#include` directive in C doesn't actually "import" anything like modern lan
 ## Nerd thing 14
 ### (2026-03-24, Tuesday)
 The `NULL` pointer in C isn't actually required to be `0` in memory — the standard says it's an implementation-defined null pointer constant that *compares equal* to 0. On most systems it's just `0`, but some ancient architectures used weird values like `0xFFFFFFFF`. So when you write `if (ptr == NULL)`, you're trusting your compiler to handle the magic behind the scenes. Pointer dereferencing a null is still guaranteed to crash though, no magic there.
+
+## Nerd thing 15
+### (2026-03-30, Monday)
+(I forgot to  write Thursday's nerd thing of the day)  
+The `clock()` function in C doesn't measure real time — it measures CPU time consumed by your program. Big difference! If your program sleeps or waits for user input, clock() stops ticking. If you want actual wall-clock time, you need `time()` or `gettimeofday()`.

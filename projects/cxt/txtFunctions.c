@@ -193,18 +193,3 @@ commonWordsData mostCommonWord(char *txt){
     commonWordsData data = {tracker, mostUsed, count};
     return data;
 }
-
-// TODO: Add more functions
-// TODO: Optimize existing functions
-// TODO: Add more compatibility
-
-//! UNUSED FUNCTION, KEPT FOR FUTURE REFERENCE
-/*
-bool FreeTracker(Map *tracker, size_t count) {
-    for (size_t i = 0; i < count; i++) {
-        free(tracker[i].key);
-    }
-    free(tracker);
-    return true;
-}
-*/
