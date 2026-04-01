@@ -5,8 +5,8 @@
     #include <string.h>
     #include "cba.h"
     #include <cfm2.h>
-    #include <stringManipulation.h>
-    #include <screenManagment.h>
+    #include <ariadne.h>
+    #include <hermes.h>
     #include <windows.h>
     #include <stdbool.h>
     char* BuildUI();

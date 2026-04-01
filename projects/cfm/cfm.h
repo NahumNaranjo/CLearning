@@ -5,7 +5,7 @@
     #include <direct.h>
     #include <sys/stat.h>
     #include <stdio.h>
-    #include <stringManipulation.h>
+    #include <ariadne.h>
 
     FILE* lookInRoot(char* filename, char* type);
     char* getListedDirectories(char* directory);

@@ -1,6 +1,6 @@
 #include "ui.h"
 #include "hub.h"
-#include "screenManagment.h"
+#include <hermes.h>
 
 int main(){
     char res;

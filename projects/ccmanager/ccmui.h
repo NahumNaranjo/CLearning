@@ -4,4 +4,7 @@
     #include <string.h>
     #include "ccmanager.h"
     #include <hermes.h>
+    void displayCCManagerUI();
+    void displayConfigs(configFormat* info, char* mode, char* path);
+    char* getPath();
 #endif

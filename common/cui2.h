@@ -5,7 +5,7 @@
     #include <string.h>
     #include <windows.h>
     #include <direct.h>
-    #include "stringManipulation.h"
+    #include "ariadne.h"
 
     typedef struct {
         char* label;

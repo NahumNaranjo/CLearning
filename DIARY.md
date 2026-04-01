@@ -347,22 +347,36 @@ Im about halfway to make the textParser so i think its a good point to check on 
 First of all, i made a new typedef, verb, it has a full name and a short so the user can either write "take sword" or "t sword" and still be   
 I'm having a bit of a conceptual crisis here so i'll just center in text based story centered games and then build the rest of features  
 
+I think i'm almost finished with the file manager so i guess its enough for today. Honestly i was quite disapointed i couldn't use cfm for this (portability issues). Anyways, i did a lot of things today.
+
+first of all, i did the innit() function, which is the largest for now, it's not finished just yet but i guess it's like a 90%. It uses the same techniques i used to make cfm but adapted to the specific syntax i needed for this project, also, i forgot to mention that the text based games will be saved into a file and compiled in real time while the user plays.
+
+Also started to code the dialog system which will act more like an internal thing than something the user will need to use, it'll be automatically handled (obviusly, if we're speaking of text based games).
+
+Lastly, i deleted all screenManagment.c/.h and stringManupulation.c/.h references, they have finally been replaced with the more modern hermes and ariadne versions respectively.
+
 ### Adding games to CL ;D
 
-### C Configuration Manager
+### C Configuration Manager (Done as of 2026-03-30)
 I started it as a side project for InLine engine so i could manage it's config files in an easier way. For now, it's just basic parsing and file managment.
 i've been super tired lately, anyways, tuesday i didnt update this project but i made and ported all tools' repositories so i guess that's enough.  
 for today, i just fixed some bugs 1.4.1p1 had.  
 
 Today i locked in for ccmanager, it is now complete for the user part, you can append or read your config files easily now. It was pretty much the same as usual, strtok to manage input and using cui and hermes to literally everything, i love 'em. Anyways, see ya tmrw.
 
+I didn't realize how buggy 1.4.1 was, i literally spent the first 30 minutes just bugfixing and patching some little things (hundreds of them). Anyways, it's 13:30 and i have a lunch break by 4 so i still have time.
+
 ## 1.4 minor updates
+## 1.4.2
+- InFile has been added to InLine
 ### 1.4.1
 - CCManager first half
 ### 1.4.1p2
 - minor patches
 ### 1.4.1p1
 - Setup only
+
+## 1.6.0
 
 # Nerd things to read :D
 
@@ -386,7 +400,7 @@ The `strcmp` function in C returns `0` when strings match because it was designe
 
 ## Nerd thing 5
 ### (2026-03-02, Monday)
-You won't believe it, they killed a mexican cartel capo and everything exploded so and my brother's boss let him to do home office all week so i wasn't able to use my studio (I could've coded in my laptop but 1, im too lazy and 2, i can't focus if isn't in my studio so meh). I also made a good beat this week, check my spotify ;D.
+You won't believe it, they killed a mexican cartel capo and everything exploded so my brother's boss let him do home office all week so i wasn't able to use my studio (I could've coded in my laptop but 1, im too lazy and 2, i can't focus if isn't in my studio so meh). I also made a good beat this week, check my spotify ;D.
 
 ## Nerd thing 6
 ### (2026-03-03, Tuesday)
@@ -428,3 +442,12 @@ The `NULL` pointer in C isn't actually required to be `0` in memory — the stan
 ### (2026-03-30, Monday)
 (I forgot to  write Thursday's nerd thing of the day)  
 The `clock()` function in C doesn't measure real time — it measures CPU time consumed by your program. Big difference! If your program sleeps or waits for user input, clock() stops ticking. If you want actual wall-clock time, you need `time()` or `gettimeofday()`.
+
+## Nerd thing 16
+### (2026-03-31, Tuesday)
+The `static` keyword in C does three completely different things depending on where you put it:
+- Inside a function: variable keeps its value between calls (persistent memory)
+- Outside a function: variable is only visible within that file (file scope)
+- On a function: function is only visible within that file (encapsulation)
+
+Three meanings, one keyword. C is beautiful and terrifying at the same time. Whoever designed this either loved minimalism or hated developers. Maybe both.

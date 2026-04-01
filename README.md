@@ -85,6 +85,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-CLEARNING v1.4.1 
+CLEARNING v1.4.2
 
 Author: Nahum Naranjo

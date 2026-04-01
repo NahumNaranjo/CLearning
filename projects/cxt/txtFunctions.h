@@ -6,7 +6,7 @@
     #include <stddef.h>
     #include <string.h>
     #include <stdlib.h>
-    #include <screenManagment.h>
+    #include <hermes.h>
     #include "generalData.h"
 
     //counts all words in the txt file

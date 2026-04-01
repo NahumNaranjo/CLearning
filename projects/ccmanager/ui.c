@@ -9,12 +9,12 @@ char* getPath(){
     };
     Menu* menu = createMenu("C Config Manager", options, 0);
     displayTitle(menu->title);
-    char result = displayMenu(menu);
+    char* result = displayMenu(menu);
     
     printf("Now write your (absolute) file's address:\n");
-    char* path = readLIne();
+    char* path = readLine();
 
-    if(result == 'a' || result == 'r'){
+    if(*result == 'a' || *result == 'r'){
         FILE* fp = fopen(path, "r");
         if(!fp){
             printf("Couldn't find that file, please, try again... \n");
@@ -22,8 +22,14 @@ char* getPath(){
             return NULL;
         }
         fclose(fp);
-        char* returning[] = {path, result};
-        return path;
+        size_t pathLen = strlen(path);
+        char* combined = malloc(pathLen + 2);
+        if(!combined) return NULL;
+
+        combined[0] = *result;
+        strcpy(combined+1, path);
+
+        return combined;
     }
     return NULL;
 }
@@ -101,7 +107,7 @@ void displayConfigs(configFormat* info, char* mode, char* path){
             int resInt = atoi(result);
             if(!resInt) {
                 printf("Couldn't parse your choice...\n");
-                return NULL;
+                return;
             }
             printf("Previous value: \n");
             printf("%d. %s - %s\n", resInt, info[resInt].arg, info[resInt].val);
@@ -115,9 +121,12 @@ void displayConfigs(configFormat* info, char* mode, char* path){
 
 // sort of main.c
 void displayCCManagerUI(){
-    char* result;
+    char* combined;
     do {
-        result = getPath();
-    } while(!result);
-    displayConfigs(readConfigFile(result[0]), result[1], result[0]);
+        combined = getPath();
+    } while(!combined);
+
+    char mode = combined[0];
+    char* path = combined + 1;
+    displayConfigs(readConfigFile(path), &mode, path);
 }

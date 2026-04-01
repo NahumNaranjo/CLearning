@@ -2,7 +2,7 @@
 #define READFILE_H
     #include <stdio.h>
     #include <stdlib.h>
-    #include <screenManagment.h>
+    #include <hermes.h>
     #include "map.h"
     #include "txtFunctions.h"
     char* readFile(const char *file, size_t *size_out);

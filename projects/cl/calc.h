@@ -2,7 +2,7 @@
 #define CALC_H
     #include <stdio.h>
     #include <loops.h>
-    #include <stringManipulation.h>
+    #include <ariadne.h>
     #include <stdlib.h>
     #include <math.h>
     #include "generalData.h"

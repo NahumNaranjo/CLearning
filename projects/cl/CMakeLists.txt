@@ -7,5 +7,5 @@ add_executable(cl ${SOURCES} ${HEADERS})
 target_link_libraries(cl PRIVATE 
         common
         cfm_lib
-        
+        ccm_lib
     )

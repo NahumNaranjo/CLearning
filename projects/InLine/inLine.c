@@ -1,6 +1,5 @@
 #include "inLine.h"
 
-
 void textStart(Verb* devVerbs){
     
 }

@@ -279,5 +279,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **CCManager**: It has now been partially finished, the library part is still missing but the user part is now complete.
 - **InLine**: It has been set up and added a few functions (still useless).
 
+## [1.4.2] - 2026-03-31
+### Additions
+- **CCManager**: It has been completed, i was wrong about the "library" part, user and library were already finished last update, library part was just buggy.
+- **InLine**: InFile has been added (and adapted) succesfully to the project and the dialog system set up.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

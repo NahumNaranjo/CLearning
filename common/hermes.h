@@ -51,8 +51,9 @@
 
     // Reads line
     static inline char* readLine(){
-        char returning[256];
-        fgets(returning, 0, stdin);
+        char buffer[256];
+        fgets(buffer, 0, stdin);
+        char* returning = buffer;
         return returning;
     }
 

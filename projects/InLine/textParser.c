@@ -27,6 +27,8 @@ void parseFromText(char* text){
     createDefaultVerbs(defaultVerbs);
     //TODO: IMPLEMENT DEVVERBS IN NEXT UPDATE!!!
     // on it
+
+    // Detect verbs, nouns and adjectives
     char* copy = text;
     char* token;
     token = strtok(copy, " ");

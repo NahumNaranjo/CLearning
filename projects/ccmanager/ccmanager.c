@@ -20,12 +20,12 @@ void appendConfigFile(configFormat* config, char* filepath){
 
 configFormat* readConfigFile(char* filepath){
     FILE* fp = fopen(filepath, "r");
-    if(!fp) return;
+    if(!fp) return NULL;
     char buffer[128];
     configFormat returning[4096];
     char* token[2];
     size_t i = 0;
-    while (fgets(buffer, sizeof(buffer), stdin) != NULL){
+    while (fgets(buffer, sizeof(buffer), fp) != NULL){
         token[0] = strtok(buffer, " = ");
         token[1] = strtok(buffer, " = ");
         if(!token[0] || !token[1]) return returning;
@@ -37,12 +37,13 @@ configFormat* readConfigFile(char* filepath){
     return returning;
 }
 
+// recives 
 configFormat* parseStringToFormat(char* config){
     configFormat format[4096];
     size_t count = 0;
     for(int i = 0; config[i]; i+=2){
-        format[i].arg = config[i];
-        format[i].val = config[i+1];
+        *format[i].arg = config[i];
+        *format[i].val = config[i+1];
         count = i;
     }
     format[count+1].val = '\0';
@@ -58,5 +59,5 @@ char* parseFormatToString(configFormat* config){
         returning[j+2] = config[i+1].val;
         j+=3;
     }
-    return returning;
+    return *returning;
 }

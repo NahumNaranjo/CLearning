@@ -87,3 +87,6 @@ backup/
 # Packages
 /common/packages
 /*.txt
+
+# Useless doc
+/GOOD_CODING_GUIDE.md

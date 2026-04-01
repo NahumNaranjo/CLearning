@@ -2,7 +2,6 @@
 #define CCMANAGER_H
     #include <cfm2.h>
     #include <stdio.h>
-    #include "ccmui.h"
 
     typedef struct {
         char* arg;
