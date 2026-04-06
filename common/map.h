@@ -9,14 +9,44 @@ typedef struct {
     void* value;
 } Map;
 
-// Pass the same Map* to every call (allocate once, reuse).
-// Returns index of key in map, or -1 if not found.
-int FindKey(void* key, Map* map, size_t n);
+//Finds key position in the array. Returns index or -1 if not found.
+static inline int FindKey(void* key, Map* map, size_t n){
+    for(size_t i = 0; i < n; i++){
+        if(map[i].key == key){
+            return (int)i;
+        }
+    }
+    return -1;
+}
 
-// Returns index of value in map, or -1 if not found.
-int FindValue(void* value, Map* map, size_t n);
+//Finds value position in the array. Returns index or -1 if not found.
+static inline int FindValue(void* value, Map* map, size_t n){
+    for(size_t i = 0; i < n; i++){
+        if(map[i].value == value){
+            return (int)i;
+        }
+    }
+    return -1;
+}
 
-bool ExistKey(void* key, Map* map, size_t n);
-bool ExistValue(void* value, Map* map, size_t n);
+//Confirms the existence of a key.
+static inline bool ExistKey(void* key, Map* map, size_t n){
+    for(size_t i = 0; i < n; i++){
+        if(map[i].key == key){
+            return true;
+        }
+    }
+    return false;
+}
+
+//Confirms the existence of a value.
+static inline bool ExistValue(void* value, Map* map, size_t n){
+    for(size_t i = 0; i < n; i++){
+        if(map[i].value == value){
+            return true;
+        }
+    }
+    return false;
+}   
 
 #endif

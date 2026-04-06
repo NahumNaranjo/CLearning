@@ -6,6 +6,6 @@
     #include "inFile.h"
     #include "inputLogger.h"
     #include "dialog.h"
-    #include <cfm.h>
+    #include <cfm2.h>
 
 #endif

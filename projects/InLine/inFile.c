@@ -11,20 +11,20 @@ programInfo* innit(char* root){
     programInfo info;
     char buffer[1024];
     while(fgets(buffer, 1024, fp) != NULL){
-        char bufCopy = buffer;
+        char* bufCopy = buffer;
         char* param;
         param = strtok(bufCopy, " = ");
         
         char dest[1024];
         if(strstr(buffer, "{") != 0){
-            int idx1 = strchr(buffer, '{');
-            int idx2 = strchr(buffer, '}');
+            int idx1 = (int)(strchr(buffer, '{') - &buffer);
+            int idx2 = (int)(strchr(buffer, '}') - &buffer);
 
             strncpy(dest, buffer + idx1, idx2 - idx1 + 1);
             dest[idx2 - idx1] = '\0';
             trimWhitespace(dest);
         } else{
-            char paramCopy = param;
+            char* paramCopy = param;
             strtok(NULL, " = ");
             strcpy(dest, param);
             param = paramCopy;
@@ -32,13 +32,13 @@ programInfo* innit(char* root){
 
         if(strcmp(param, "title") != NULL){
             info.title = dest;
-            return;
+            continue;
         } else if(strcmp(param, "dev") != NULL){
             info.dev = dest;
-            return;
+            continue;
         } else if(strcmp(param, "genre") != NULL){
             info.genre = dest;
-            return;
+            continue;
         }
 
         char* token;
@@ -90,33 +90,36 @@ programInfo* innit(char* root){
 }
 
 // use a mode in case bit is an array of strings, if not, use s mode
-void writeInFile(char* bit, FILE* file, char mode){
-    if(!file) return;
-    if(mode != 'a' && mode != 's') return;
-    if(mode == 'a'){
-        char* name = bit[0];
-        size_t idx = 0;
+//TODO: Use pointer to pointer in bit to divide this function into writeToFileFromArray() and writeToFileFromString()
+int writeToFileFromArray(char** bit, FILE* file){
+    char* name = bit[0];
+    size_t idx = 0;
 
-        size_t length = 0;
-        for(int i = 0; bit[i] != NULL; i++){
-            length += strlen(bit[i]);
-        }
+    size_t length = 0;
+    for(int i = 0; bit[i] != NULL; i++){
+        length += strlen(bit[i]);
+    }
 
-        char* values = malloc(length + 1);
-        if(values == NULL){
-            printf("Memory allocation failed\n");
-            return;
-        }
-
-        values[0] = '\0';
-        for(int i = 0; bit[i] != NULL; i++){
-            strcat(values, bit[i]);
-        }
-
-        fprintf(file, "%s = {%s}", bit, values);
-        free(values);
+    char* values = malloc(length + 1);
+    if(values == NULL){
+        printf("Memory allocation failed\n");
         return;
-    } else {
-        fprintf(file, "%s", bit);
-    }    
+    }
+
+    values[0] = '\0';
+    for(int i = 0; bit[i] != NULL; i++){
+        strcat(values, bit[i]);
+    }
+
+    fprintf(file, "%s = {%s}", bit, values);
+    free(values);
+    return;
 }
+
+int writeToFileFromString(char* bit, FILE* file){
+    char* copy = bit;
+    char* token; 
+    token = strtok(copy, ";");
+}
+
+// If you find this, i really wanna play songs of syx

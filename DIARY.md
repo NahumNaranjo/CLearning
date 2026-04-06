@@ -355,7 +355,13 @@ Also started to code the dialog system which will act more like an internal thin
 
 Lastly, i deleted all screenManagment.c/.h and stringManupulation.c/.h references, they have finally been replaced with the more modern hermes and ariadne versions respectively.
 
+You won't believe it but my brother's office litterally ran out of water so he stole my studio for the first week, anyways, i discovered [FXTap](https://github.com/SpeedyOrc-C/fxTap) and i think i could port it to arduino, how? idk but it'll be funny. Anyways, let's get to work.
+
+I'm honestly a bit burnt out, it's time to eat and now i have another side quest, clist. Anyways, didn't really do anything today, cheers!
+
 ### Adding games to CL ;D
+
+### CList
 
 ### C Configuration Manager (Done as of 2026-03-30)
 I started it as a side project for InLine engine so i could manage it's config files in an easier way. For now, it's just basic parsing and file managment.
