@@ -361,7 +361,15 @@ I'm honestly a bit burnt out, it's time to eat and now i have another side quest
 
 ### Adding games to CL ;D
 
-### CList
+### CList (Done as of 04-07-26)
+I'm basically just gonna copy python's list cause it's way easier than fighting against an array every time i wanna store data.
+
+Today was a very productive day, i think clist is ready, i'll summarize everything i did function by function.
+
+- First of all, i made createList() cause i didn't really know how to start (fyi, i made this based on python's lists), it was simple, i just did a bit of reaserch on how did cpython allocate its lists and recreated it, pretty simple tbh.
+- Secondly i made add() and insert(), which were also easy cause they just move all the data one position to the right (and more importantly, reallocate if needed) and then insert what they need. I struggled at first cause i was obsessed with finding an O(1) solution to this but it seems to be imposible.
+- lastly, cherryPick(), pop(), append() and len() which were pretty much easy.
+- Then (once i finished) i started optimizing, moved all the capchecks to capCheck() and the movelists to moveList().
 
 ### C Configuration Manager (Done as of 2026-03-30)
 I started it as a side project for InLine engine so i could manage it's config files in an easier way. For now, it's just basic parsing and file managment.
@@ -370,9 +378,13 @@ for today, i just fixed some bugs 1.4.1p1 had.
 
 Today i locked in for ccmanager, it is now complete for the user part, you can append or read your config files easily now. It was pretty much the same as usual, strtok to manage input and using cui and hermes to literally everything, i love 'em. Anyways, see ya tmrw.
 
-I didn't realize how buggy 1.4.1 was, i literally spent the first 30 minutes just bugfixing and patching some little things (hundreds of them). Anyways, it's 13:30 and i have a lunch break by 4 so i still have time.
+I didn't realize how buggy 1.4.1 was, i literally spent the first 30 minutes just bugfixing and patching some little things (hundreds of them). Anyways, it's 13:30 and i have a lunch break by 16 so i still have time.
+
+Yeah, i forgot to tell you guys but i did finish everything that day
 
 ## 1.4 minor updates
+## 1.4.3
+- CList officiallt added to CLearning
 ## 1.4.2
 - InFile has been added to InLine
 ### 1.4.1
@@ -457,3 +469,11 @@ The `static` keyword in C does three completely different things depending on wh
 - On a function: function is only visible within that file (encapsulation)
 
 Three meanings, one keyword. C is beautiful and terrifying at the same time. Whoever designed this either loved minimalism or hated developers. Maybe both.
+
+## Nerd thing 17
+### (2026-04-06)
+The `volatile` keyword in C tells the compiler: "Don't optimize this variable away, it might change at any moment." Why? Because external things like hardware devices, signal handlers, or other threads can modify it without the compiler knowing. Use it wrong and your code becomes slower. Forget to use it when you need it and your code breaks in ways that only happen when optimizations are on. Debugging that is a nightmare. Just ask anyone who's ever written embedded C.
+
+## Nerd thing 18
+### (2026-04-07)
+The `goto` statement in C isn't actually evil — it's just misunderstood. In fact, the Linux kernel uses `goto` extensively for error handling. One function, one label for cleanup, and you jump to it when something fails. No nested `if` hell, no memory leaks. The real sin isn't using `goto` — it's using it to create spaghetti code. Use it wisely and it's beautiful. Abolish it completely and you're just making life harder for yourself.

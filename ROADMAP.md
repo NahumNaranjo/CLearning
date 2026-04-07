@@ -82,7 +82,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ### April
 
-1. **Configuration Manager**
+1. **Configuration Manager (Done in 1.4.2)**
    - Unified configuration system
    - Tool integration
    - Migration utilities

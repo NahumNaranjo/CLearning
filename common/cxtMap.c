@@ -14,7 +14,7 @@ int CxtFindKey(char* key, CxtMap* map, size_t n){
 //Confirms the existence of a key.
 bool CxtExistKey(char* key, CxtMap* map, size_t n){
     for(size_t i = 0; i < n; i++){
-        if(map[i].key == key){
+        if(strcmp(map->key, key) == 0){
             return true;
         }
     }
