@@ -382,10 +382,21 @@ I didn't realize how buggy 1.4.1 was, i literally spent the first 30 minutes jus
 
 Yeah, i forgot to tell you guys but i did finish everything that day
 
+### unrelated content
+Today i didn't work on anything related to the update, instead, i literally spent all day bugfixing to make this baby compile, it was surprisingly easier than coding new functions, i guess my brain rested today.  
+
+Also, i decided to make this "unrelated" section for days like this, for example, this friday will be only testing every change since the las stable version (1.4.0) which is kinda a lot.
+
+Also, i learnt a lot today and yesterday working on clist, i think i should make more things like that, before this, i know so little about arrays (and i thought i knew everything about them), i saw them as simple little guys. Now they're my worst enemy and i love it; I also learnt about these (void**) things and so, don't really know when they're necessary but i'll keep trying to put them everywhere.
+
+Aaaaaaaalso, this version is the first built pre-release since a while ago.
+
 ## 1.4 minor updates
-## 1.4.3
-- CList officiallt added to CLearning
-## 1.4.2
+### 1.4.4
+- General bugfixing, testing's this friday
+### 1.4.3
+- CList officially added to CLearning
+### 1.4.2
 - InFile has been added to InLine
 ### 1.4.1
 - CCManager first half
@@ -477,3 +488,7 @@ The `volatile` keyword in C tells the compiler: "Don't optimize this variable aw
 ## Nerd thing 18
 ### (2026-04-07)
 The `goto` statement in C isn't actually evil — it's just misunderstood. In fact, the Linux kernel uses `goto` extensively for error handling. One function, one label for cleanup, and you jump to it when something fails. No nested `if` hell, no memory leaks. The real sin isn't using `goto` — it's using it to create spaghetti code. Use it wisely and it's beautiful. Abolish it completely and you're just making life harder for yourself.
+
+## Nerd thing 19
+### (2026-04-08)
+The `++` and `--` operators in C are a blessing and a curse. You can do `x++` (use then increment) or `++x` (increment then use). Looks simple, right? WRONG. Combine that with pointers and you get nightmares like `*p++` vs `(*p)++` vs `*++p`. One increments the pointer, one increments the value, one does god knows what. I've spent 20 minutes tracing through code just to realize I used the wrong one. And for what? Saving one line of code? We've all been there. Don't lie.

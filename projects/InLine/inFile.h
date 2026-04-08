@@ -2,6 +2,7 @@
 #define INFILE_H
     #include <cfm2.h>
     #include <ariadne.h>
+    #include <clist.h>
     typedef struct{
         char* title;
         char* dev;
@@ -14,5 +15,6 @@
     } programInfo;
 
     programInfo* innit(char* root);
-    void writeInFile(char* bit, FILE* file, char mode)
+    int writeToFileFromArray(char** bit, FILE* file);
+    int writeToFileFromString(char* bit, FILE* file);
 #endif

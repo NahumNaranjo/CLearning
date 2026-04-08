@@ -17,8 +17,8 @@ programInfo* innit(char* root){
         
         char dest[1024];
         if(strstr(buffer, "{") != 0){
-            int idx1 = (int)(strchr(buffer, '{') - &buffer);
-            int idx2 = (int)(strchr(buffer, '}') - &buffer);
+            int idx1 = (strchr(buffer, '{') - buffer);
+            int idx2 = (strchr(buffer, '}') - buffer);
 
             strncpy(dest, buffer + idx1, idx2 - idx1 + 1);
             dest[idx2 - idx1] = '\0';
@@ -30,13 +30,13 @@ programInfo* innit(char* root){
             param = paramCopy;
         }
 
-        if(strcmp(param, "title") != NULL){
+        if(strcmp(param, "title") != 0){
             info.title = dest;
             continue;
-        } else if(strcmp(param, "dev") != NULL){
+        } else if(strcmp(param, "dev") != 0){
             info.dev = dest;
             continue;
-        } else if(strcmp(param, "genre") != NULL){
+        } else if(strcmp(param, "genre") != 0){
             info.genre = dest;
             continue;
         }
@@ -47,35 +47,35 @@ programInfo* innit(char* root){
         size_t loop = 0;
         while(token){
             char add[1024];
-            if(strcmp(param, "verbs") != NULL){
+            if(strcmp(param, "verbs") != 0){
                 if(loop == 0){
                     strcat(info.verbs, token);
                     continue;
                 }
                 sprintf(add, ", %s", token);
                 strcat(info.verbs, add);
-            } else if(strcmp(param, "nouns") != NULL){
+            } else if(strcmp(param, "nouns") != 0){
                 if(loop == 0){
                     strcat(info.nouns, token);
                     continue;
                 }
                 sprintf(add, ", %s", token);
                 strcat(info.nouns, add);
-            } else if(strcmp(param, "adjectives") != NULL){
+            } else if(strcmp(param, "adjectives") != 0){
                 if(loop == 0){
                     strcat(info.adjectives, token);
                     continue;
                 }
                 sprintf(add, ", %s", token);
                 strcat(info.adjectives, add);
-            } else if(strcmp(param, "script") != NULL){
+            } else if(strcmp(param, "script") != 0){
                 if(loop == 0){
                     strcat(info.script, token);
                     continue;
                 }
                 sprintf(add, ", %s", token);
                 strcat(info.script, add);
-            } else if(strcmp(param, "characters") != NULL){
+            } else if(strcmp(param, "characters") != 0){
                 if(loop == 0){
                     strcat(info.characters, token);
                     continue;
@@ -89,8 +89,7 @@ programInfo* innit(char* root){
     }
 }
 
-// use a mode in case bit is an array of strings, if not, use s mode
-//TODO: Use pointer to pointer in bit to divide this function into writeToFileFromArray() and writeToFileFromString()
+// write to an existing config file
 int writeToFileFromArray(char** bit, FILE* file){
     char* name = bit[0];
     size_t idx = 0;
@@ -103,7 +102,7 @@ int writeToFileFromArray(char** bit, FILE* file){
     char* values = malloc(length + 1);
     if(values == NULL){
         printf("Memory allocation failed\n");
-        return;
+        return 1;
     }
 
     values[0] = '\0';
@@ -113,13 +112,31 @@ int writeToFileFromArray(char** bit, FILE* file){
 
     fprintf(file, "%s = {%s}", bit, values);
     free(values);
-    return;
+    return 0;
 }
 
 int writeToFileFromString(char* bit, FILE* file){
+    if(!file || !bit) return 1;
     char* copy = bit;
     char* token; 
     token = strtok(copy, ";");
+    List tokenList = createList(128);
+    if(!tokenList.content) return 1;
+    while(token){
+        add(&tokenList, token);
+        strtok(NULL, ";");
+    }
+    char* arg;
+    char* val;
+    for(size_t i = 0; i < tokenList.size; i++){
+        arg = strtok(tokenList.content[i], " = ");
+        val = arg;
+        strtok(NULL, " = ");
+        fprintf(file, "%s = %s", arg, val);
+        if(tokenList.content[i+1] == NULL) break;
+    }
+    destroyList(&tokenList);
+    return 0;
 }
 
 // If you find this, i really wanna play songs of syx

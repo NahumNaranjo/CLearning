@@ -5,7 +5,6 @@
     #include <direct.h>
     #include <windows.h>
     #include <string.h>
-    #include <lookForRootFiles.h>
     #include <ariadne.h>
     #include <generalData.h>
     #include <cfm2.h>

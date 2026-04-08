@@ -91,7 +91,7 @@ void generateCMake(BuildInfo* buildInfo) {
     }
     
     // Add subdirectories automatically
-    char* directories = ListDirectories(".");
+    char* directories = getListedDirectories(".");
     if(directories) {
         char* dir = strtok(directories, "\n");
         while(dir) {

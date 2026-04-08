@@ -8,4 +8,6 @@
     #include "dialog.h"
     #include <cfm2.h>
 
+    void textUpdate(char* text);
+    void textStart(Verb* devVerbs);
 #endif

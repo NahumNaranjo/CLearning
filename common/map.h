@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <string.h>
 
 typedef struct {
     void* key;
@@ -42,7 +43,7 @@ static inline bool ExistKey(void* key, Map* map, size_t n){
 //Confirms the existence of a value.
 static inline bool ExistValue(void* value, Map* map, size_t n){
     for(size_t i = 0; i < n; i++){
-        if(map[i].value == value){
+        if(sizeof(value) == sizeof(char*) ? strcmp((char*)map[i].value, (char*)value) == 0: map[i].value == value){
             return true;
         }
     }

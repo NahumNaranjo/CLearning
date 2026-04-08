@@ -3,7 +3,7 @@
 // Looks for files inside the CL folder path in InCGames parent folder
 FILE* lookInRoot(char* filename, char* type){
     char path[1024];
-    snprintf(path, sizeof(path), "C:\\InCGames\\CL\\%s", filename);
+    snprintf(path, sizeof(path), "C:/InCGames/CL/%s", filename);
     FILE *fp = fopen(path, type);
     if(fp == NULL){
         return NULL;
@@ -13,7 +13,7 @@ FILE* lookInRoot(char* filename, char* type){
 
 // returns the CL folder path in InCGames parent folder
 char* getRootFilePath(){
-    return "C:\\InCGames\\cl\\";
+    return "C:/InCGames/cl/";
 }
 
 WIN32_FIND_DATA* listFiles(char* key, char* path){
@@ -25,10 +25,10 @@ WIN32_FIND_DATA* listFiles(char* key, char* path){
 
     if(!path){
         snprintf(fullPath, sizeof(fullPath), "%s*.*", getRootFilePath());
-    }else if(strstr(path, "C:\\") == NULL){
-        snprintf(fullPath, sizeof(fullPath), "%s%s\\*.*", getRootFilePath(), path);
-    }else if(strstr(path, "\\*.*") == NULL){
-        snprintf(fullPath, sizeof(fullPath), "%s\\*.*", path);
+    }else if(strstr(path, "C:/") == NULL){
+        snprintf(fullPath, sizeof(fullPath), "%s%s/*.*", getRootFilePath(), path);
+    }else if(strstr(path, "/*.*") == NULL){
+        snprintf(fullPath, sizeof(fullPath), "%s/*.*", path);
     }
     printf("[DEBUG] filepath: %s\n", fullPath);
     hfind = FindFirstFileA(fullPath, &wfd);
@@ -58,7 +58,7 @@ char* getListedDirectories(char* directory){
     char path[1024];
     strncpy(path, directory, sizeof(path)-4);
     path[sizeof(path)-1] = '\0';
-    strcat(path, "\\*");
+    strcat(path, "/*");
     
     WIN32_FIND_DATAA findData;
     HANDLE hFind = FindFirstFileA(path, &findData);
@@ -107,7 +107,7 @@ void* findFile(char* name, char* root, char* type){
         root = _getcwd(NULL, 0);
     }
 
-    if(strstr(name, "\\") != NULL){
+    if(strstr(name, "/") != NULL){
         cleanBackSlash(name);
     }
 
@@ -116,7 +116,7 @@ void* findFile(char* name, char* root, char* type){
     char* token = strtok(directories, "\n");
     FILE* fp;
     while(token){
-        if(strstr(token, "\\") != NULL){
+        if(strstr(token, "/") != NULL){
             cleanBackSlash(token);
         }
         strcat(token, ("/%s", name));

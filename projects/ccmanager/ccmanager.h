@@ -13,4 +13,5 @@
     void writeConfigFile(configFormat* config, char* filepath);
     char* parseFormatToString(configFormat* config);
     void appendConfigFile(configFormat* config, char* filepath);
+    void capCheck(configFormat* config, size_t* size);
 #endif

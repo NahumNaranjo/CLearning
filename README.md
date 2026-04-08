@@ -8,16 +8,23 @@ CLEARNING is a set of learning projects written in pure C. It demonstrates a var
 
 ### Main Tools
 
-- **[CL](projects/cl/README.md)** — Command-line launcher that runs tools, includes a built-in calculator, and can install helper packages.
+- **[CXT](projects/cxt/README.md)** — Text analysis tool for word counts, frequency statistics, and report generation. **Download [here](https://github.com/NahumNaranjo/CXT).**
+- **[CBA](projects/cba/README.md)** — Build assistant that generates CMake files and runs CMake + Ninja. **Download [here](https://github.com/NahumNaranjo/CBA).**
+- **[CFM](projects/cfm/README.md)** — Helper library for file and directory utilities. **Download [here](https://github.com/NahumNaranjo/CFM).**
+- **[CUI](projects/cui/README.md)** — Console UI helper library. **Download [here](https://github.com/NahumNaranjo/CUI).**
+- **[InLine]()** — Console game engine.
+
+### Internal libraries (not intended to be publicly used)
 - **[HUB](projects/hub/README.md)** — Console menu interface for easy tool launching.
-- **[CXT](projects/cxt/README.md)** — Text analysis tool for word counts, frequency statistics, and report generation.
-- **[CBA](projects/cba/README.md)** — Build assistant that generates CMake files and runs CMake + Ninja.
-- **[CFM](projects/cfm/README.md)** — Helper library for file and directory utilities.
-- **[CUI](projects/cui/README.md)** — Console UI helper library.
+- **[CL](projects/cl/README.md)** — Command-line launcher that runs tools, includes a built-in calculator, and can install helper packages.
+- **[CCM](projects/ccmanager/ccmanager.h)** - Configuration manager.
 
-### Shared Library
-
-- **[Common](common/README.md)** — Shared utility library (map data structure, screen management, etc.).
+### Header only libraries
+- **[CList](common/clist.h)** - CPython list style library. **Download [here](https://github.com/NahumNaranjo/CList).**
+- **[CMap](common/map.h)** - C# map style library. **Download [here](https://github.com/NahumNaranjo/CMap).**
+- **[Hermes](common/hermes.h)** - console screen manager. **Download [here](https://github.com/NahumNaranjo/Hermes).**
+- **[Ariadne](common/ariadne.h)** - string manipulator. **Download [here](https://github.com/NahumNaranjo/Ariadne).**
+- **[README](common/README.md)** — Shared utility library (map data structure, screen management, etc.).
 
 ---
 
@@ -85,6 +92,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-CLEARNING v1.4.2
+CLEARNING v1.4.4
 
 Author: Nahum Naranjo

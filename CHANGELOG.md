@@ -231,7 +231,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Technical Details
 - Installer should be significantly heavier now.
 
-#### [1.3.2] -2026-03-12
+### [1.3.2] -2026-03-12
 - It's just a formality, this version never really existed, it just has to be here for the file to have sense.
 
 ### [1.3.3p1] - 2026-03-12
@@ -287,6 +287,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### [1.4.3] - 2026-04-07
 #### Additions
 - **CList**: Has been added to the ecosystem, it is just as python's list but obviusly simpler, this one only has about 150 lines and is way less polished.
+
+### [1.4.4] - 2026-04-07
+#### Additions
+- **inFile.c**: Has been completed, next file to be made for InLine is dialog.c
+- **CList**: Added destroyList() for easier removal of lists.
+
+#### Fixes
+- **CList**: Deleted unused vars in the list struct and solved logic issues.
+- **CFM**: Replaced all `\\` with `/` for better compatibility.
+- **CL**: install.c is now universal.
+- **CCM**: Changed older, less safe, fixed buffer allocations to safer `malloc`'s and `realloc`'s like CList.
+- **CMap**: Didn't checked for `char*` comparisons, now it does `sizeof(map[i].value) == sizeof(char*) ? strcmp(map[i].value, value) == 0 : map[i].value == value`.
+
+#### Technical changes
+- **CFM**: Finally took over lookForRootFiles.c, please, if you hadn't changed, do it, lookForRootFile.c is now unaviable. 
+
+#### Documentation
+- **README's**: Common and CLearning readme's have been updated.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project

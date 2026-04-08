@@ -1,4 +1,4 @@
-# Common - Shared Library for CLEARNING
+# Common - Shared Library for CLEARNING 
 
 Common is a static library written in pure C that provides shared utilities used by multiple projects within the CLEARNING ecosystem.
 
@@ -12,6 +12,7 @@ Common is a static library written in pure C that provides shared utilities used
 
 ### Map (map.h / map.c)
 Provides a simple data structure for maps:
+Download [here](https://github.com/NahumNaranjo/CMap).
 
 - `Map`: Structure containing key and value (void pointers).
 - `FindKey()`: Searches for the index of a key in the map.
@@ -19,13 +20,27 @@ Provides a simple data structure for maps:
 - `ExistKey()`: Checks if a key exists.
 - `ExistValue()`: Checks if a value exists.
 
-### Screen Management (screenManagment.h / screenManagment.c)
+### Hermes (hermes.h)
 Functions for console handling:
+Download [here](https://github.com/NahumNaranjo/Hermes).
 
 - `clearConsole()`: Clears the console screen.
 - `Stop()`: Pauses execution waiting for user input.
+- `readLine()`: Retunrs a `char*` to the user's input.
+- `StopM()`: Stops the execution until the user presses enter and displays a custom message.
+- `clearUntil()`: Waits for the user to press enter and clears.
+- `clearConsoleM()`: Clears console and shows a message.
+
+### Ariadne (ariadne.h)
+Functions for string managment:
+Download [here](https://github.com/NahumNaranjo/Ariadne).
+
+- **cleanBackSlash()**: Will replace all backslashes with normal ones to imrpove your project's compatibility.
+- **trimWhitespace()**: Will trim all whitespaces your string has.
 
 ## Usage in Other Projects
+
+**WARNING: Most of the libraries can be found in my [profile](https://github.com/NahumNaranjo) as lone, header-only repos.**
 
 To use the common library in a project:
 
@@ -48,12 +63,6 @@ The library is built automatically as part of the main CLEARNING project. See th
 
 - **Standard C Libraries**: Uses only the standard library (stdbool.h, stddef.h, stdio.h).
 
-## File Structure
-
-- `CMakeLists.txt`: Library build configuration.
-- `map.c` and `map.h`: Map structure implementation.
-- `screenManagment.c` and `screenManagment.h`: Screen management functions.
-
 ## Notes
 
 - Designed to be lightweight and reusable.
@@ -62,5 +71,5 @@ The library is built automatically as part of the main CLEARNING project. See th
 
 ## Version
 
-Common v1.0.0 - Part of CLEARNING</content>
+Common v1.2.0 - Part of CLEARNING</content>
 <parameter name="filePath">d:\Programacion\CLearning\common\README.md

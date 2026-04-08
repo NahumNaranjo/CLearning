@@ -2,8 +2,9 @@
 #define DIALOG_H
     #include <stdio.h>
     
-    typedef struct{
+    typedef struct {
         char* name;
         char* text;
     } dialog;
+
 #endif

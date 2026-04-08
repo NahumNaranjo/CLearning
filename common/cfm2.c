@@ -3,7 +3,7 @@
 // Looks for files inside the CL folder path in InCGames parent folder
 FILE* lookInRoot(char* filename, char* type){
     char path[1024];
-    snprintf(path, sizeof(path), "C:\\InCGames\\CL\\%s", filename);
+    snprintf(path, sizeof(path), "C:/InCGames/CL/%s", filename);
     FILE *fp = fopen(path, type);
     if(fp == NULL){
         return NULL;

@@ -114,11 +114,8 @@ void interpreter(int argc, char** argv){
             }
             if(strcmp(inst, "init") == 0){
                 printf("Preparing...\n");
-                /*BuildInfo* build;
-                FILE* fp = lookInRoot("\\configs\\cba.config", "r");
-                BuildParser(fp, build);*/
                 init();
-                // printf("Your files are ready to use\n");
+                printf("Your files are ready to use\n");
                 return;
             }
             if(strcmp(inst, "clean") == 0){
