@@ -312,7 +312,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **errorHandler.c**: has been added.
 
 #### Fixes
-- **inFile.c**: Added env variables.
+- **inFile.c**: Added env variables and fixed the returning value.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
