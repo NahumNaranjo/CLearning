@@ -359,6 +359,8 @@ You won't believe it but my brother's office litterally ran out of water so he s
 
 I'm honestly a bit burnt out, it's time to eat and now i have another side quest, clist. Anyways, didn't really do anything today, cheers!
 
+Dialog was kinda easy to make but i learnt environment variables are incredibly useful, anyways, see you later!
+
 ### Adding games to CL ;D
 
 ### CList (Done as of 04-07-26)
@@ -392,6 +394,8 @@ Also, i learnt a lot today and yesterday working on clist, i think i should make
 Aaaaaaaalso, this version is the first built pre-release since a while ago.
 
 ## 1.4 minor updates
+### 1.4.5
+- Small update to dialog.c
 ### 1.4.4
 - General bugfixing, testing's this friday
 ### 1.4.3

@@ -1,6 +1,7 @@
 #include "inFile.h"
 
 programInfo* innit(char* root){
+    // Open file
     cleanBackSlash(root);
     FILE* fp = fopen(root, "r");
     if(!fp){
@@ -16,6 +17,7 @@ programInfo* innit(char* root){
         param = strtok(bufCopy, " = ");
         
         char dest[1024];
+        // If {}, stores the values inside them
         if(strstr(buffer, "{") != 0){
             int idx1 = (strchr(buffer, '{') - buffer);
             int idx2 = (strchr(buffer, '}') - buffer);
@@ -27,16 +29,17 @@ programInfo* innit(char* root){
             char* paramCopy = param;
             strtok(NULL, " = ");
             strcpy(dest, param);
-            param = paramCopy;
+            strcpy(param, paramCopy);
         }
 
-        if(strcmp(param, "title") != 0){
+        // Sign
+        if(strcmp(param, "title") != 0){ // Game name
             info.title = dest;
             continue;
-        } else if(strcmp(param, "dev") != 0){
+        } else if(strcmp(param, "dev") != 0){ // dev name
             info.dev = dest;
             continue;
-        } else if(strcmp(param, "genre") != 0){
+        } else if(strcmp(param, "genre") != 0){ // game genre
             info.genre = dest;
             continue;
         }
@@ -87,6 +90,25 @@ programInfo* innit(char* root){
             strtok(NULL, ",");
         }
     }
+    char devEnv[1024];
+    char titleEnv[1024];
+    char scriptProgress[1024];
+
+    sprintf(devEnv, "DEV_NAME=%s", info.dev);
+    sprintf(titleEnv, "TITLE=%s", info.title);
+    sprintf(scriptProgress, "SCRIPT_PROGRESS=%d", 0);
+
+    if(putenv(devEnv) != 0){
+        perror("Couldn't set dev name to env, error logs won't work correctly");
+    } 
+    if(putenv(titleEnv) != 0){
+        perror("Couldn't set title name to env, error logs won't work correctly");
+    }
+    if(putenv(scriptProgress) != 0){
+        perror("Couln't set scriptProgress to env, program might crash.");
+    }
+
+    return &info;
 }
 
 // write to an existing config file

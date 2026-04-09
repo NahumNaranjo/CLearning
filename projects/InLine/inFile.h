@@ -3,6 +3,7 @@
     #include <cfm2.h>
     #include <ariadne.h>
     #include <clist.h>
+    #include <stdlib.h>
     typedef struct{
         char* title;
         char* dev;

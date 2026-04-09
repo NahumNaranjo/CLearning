@@ -288,7 +288,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Additions
 - **CList**: Has been added to the ecosystem, it is just as python's list but obviusly simpler, this one only has about 150 lines and is way less polished.
 
-### [1.4.4] - 2026-04-07
+### [1.4.4] - 2026-04-08
 #### Additions
 - **inFile.c**: Has been completed, next file to be made for InLine is dialog.c
 - **CList**: Added destroyList() for easier removal of lists.
@@ -305,6 +305,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Documentation
 - **README's**: Common and CLearning readme's have been updated.
+
+### [1.4.5] - 2026-04-09
+#### Additions
+- **dialog.c**: Is partially complete, 1.4.6 will have it.
+- **errorHandler.c**: has been added.
+
+#### Fixes
+- **inFile.c**: Added env variables.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
