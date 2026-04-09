@@ -15,7 +15,7 @@
         char* characters;
     } programInfo;
 
-    programInfo* innit(char* root);
+    programInfo innit(char* root);
     int writeToFileFromArray(char** bit, FILE* file);
     int writeToFileFromString(char* bit, FILE* file);
 #endif

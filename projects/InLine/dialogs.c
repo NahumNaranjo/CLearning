@@ -19,7 +19,7 @@ void dialogSequence(dialog* dialogs){
     for(int i = 0; i < (sizeof(dialogs[i]) / sizeof(dialog)); i++){
         if(dialogs[i].type == 's'){ // sequence
             printf("%s: %s\n", dialogs[i].name, dialogs[i].text);
-            stop();
+            Stop();
         } else if (dialogs[i].type == 'd'){ // decision
             // Print
             printDecision(dialogs[i]);

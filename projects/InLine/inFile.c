@@ -1,15 +1,15 @@
 #include "inFile.h"
 
-programInfo* innit(char* root){
+programInfo innit(char* root){
     // Open file
     cleanBackSlash(root);
     FILE* fp = fopen(root, "r");
+    programInfo info;
+
     if(!fp){
         printf("Invalid root file\n");
-        return NULL;
+        return info;
     }
-
-    programInfo info;
     char buffer[1024];
     while(fgets(buffer, 1024, fp) != NULL){
         char* bufCopy = buffer;
@@ -108,7 +108,7 @@ programInfo* innit(char* root){
         perror("Couln't set scriptProgress to env, program might crash.");
     }
 
-    return &info;
+    return info;
 }
 
 // write to an existing config file
