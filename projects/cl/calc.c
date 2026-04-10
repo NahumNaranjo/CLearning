@@ -208,7 +208,7 @@ calcData initialize() {
     }
     // printf("debug - whiled");
     fclose(fp);
-    printf("debug - initialized");
+    // printf("debug - initialized");
     return data;
 }
 
