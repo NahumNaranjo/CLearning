@@ -314,5 +314,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Fixes
 - **inFile.c**: Added env variables and fixed the returning value.
 
+### [1.4.6] - 2026-04-10
+#### Fixes
+- **CFM**: Fixed `ParseFile()` memory handling and removed the duplicate broken implementation in `cfm.c`. Fixed file lookup in `lookInRoot()`, now it searches the hardcoded InCGames folder and falls back to repo/current directory paths.
+- **calc.c**: Updated `configs/calc.config` lookup so `cl calc` can load mode configuration again. Corrected config parsing to use the actual line count returned by `ParseFile()` instead of `sizeof(config) / sizeof(char*)`.
+
+#### Notes
+- This was causing `cl calc to stop right after` `debug - file`, because the config file was never opening.
+
+- The fix is now stable enough for a small patch release.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

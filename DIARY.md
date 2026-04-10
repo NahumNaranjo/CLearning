@@ -393,7 +393,25 @@ Also, i learnt a lot today and yesterday working on clist, i think i should make
 
 Aaaaaaaalso, this version is the first built pre-release since a while ago.
 
+Today's testing day, i think it'll be a loooooooong day
+
+I found the bug in lookInRoot() and ParseFile():
+
+lookInRoot() was only trying the hardcoded CL path, so on my repo it failed to open calc.config.
+ParseFile() was also broken in cfm.c: it had a duplicate old implementation and bad buffer growth logic.
+calc.c was reading config lines with sizeof(config) / sizeof(char*), which is wrong for dynamically returned arrays.
+So i fixed it:
+
+made lookInRoot() try both the hardcoded InCGames path and local repo/cwd fallback paths
+cleaned up ParseFile() to allocate lines properly, return the real line count, and avoid the duplicate broken block
+updated calc.c to use ParseFile(fp, &configLines) and loop over the actual number of lines
+changed the config lookup to configs/calc.config
+After that, the calculator finally worked again:
+build\cl.exe calc 1+1 => Result: 2
+
 ## 1.4 minor updates
+### 1.4.6
+- test and fix
 ### 1.4.5
 - Small update to dialog.c
 ### 1.4.4
@@ -496,3 +514,9 @@ The `goto` statement in C isn't actually evil — it's just misunderstood. In fa
 ## Nerd thing 19
 ### (2026-04-08)
 The `++` and `--` operators in C are a blessing and a curse. You can do `x++` (use then increment) or `++x` (increment then use). Looks simple, right? WRONG. Combine that with pointers and you get nightmares like `*p++` vs `(*p)++` vs `*++p`. One increments the pointer, one increments the value, one does god knows what. I've spent 20 minutes tracing through code just to realize I used the wrong one. And for what? Saving one line of code? We've all been there. Don't lie.
+
+## Nerd thing 20
+### (2026-04-09)
+
+## Nerd thing 21
+### (2026-04-10)

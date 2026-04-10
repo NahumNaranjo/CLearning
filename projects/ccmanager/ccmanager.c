@@ -25,7 +25,6 @@ void appendConfigFile(configFormat* config, char* filepath){
     fclose(fp);
 }
 
-//TODO: Pass returning to malloc
 configFormat* readConfigFile(char* filepath){
     size_t size = 128;
     FILE* fp = fopen(filepath, "r");

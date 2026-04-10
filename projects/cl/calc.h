@@ -6,7 +6,7 @@
     #include <stdlib.h>
     #include <math.h>
     #include "generalData.h"
-    #include <cfm2.h>
+    #include <cfm.h>
     #include <cxtMap.h>
     #define _GNU_SOURCE
     #include <string.h>

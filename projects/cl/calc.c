@@ -73,6 +73,7 @@ int getPrecedence(char op) {
 
 // Parsear expresión en tokens
 int tokenize(char* exp, Token* tokens) {
+    printf("debug - tokenizing");
     int count = 0;
     int i = 0;
     
@@ -116,12 +117,13 @@ int tokenize(char* exp, Token* tokens) {
             i++;  // Ignorar caracteres inválidos
         }
     }
-    
+    printf("debug - tokenized");
     return count;
 }
 
 // Realizar operación aritmética
 double performOperation(double num1, double num2, char op, calcData data) {
+    printf("debug - calculating");
     switch(op) {
         case '+': return num1 + num2;
         case '-': return num1 - num2;
@@ -141,10 +143,12 @@ double performOperation(double num1, double num2, char op, calcData data) {
             return (data.mode == 'd') ? tan(num1) * (180.0/M_PI) : tan(num1);
         default: return 0;
     }
+    printf("debug - calculated");
 }
 
 // Evaluar expresión tokenizada
 double evaluateTokens(Token* tokens, int count, calcData data) {
+    printf("debug - evaluating");
     Stack output;
     CharStack operators;
     output.top = 0;
@@ -173,32 +177,43 @@ double evaluateTokens(Token* tokens, int count, calcData data) {
         char op = charStackPop(&operators);
         stackPush(&output, performOperation(num1, num2, op, data));
     }
-    
+    printf("debug - evualted");
     return stackPeek(&output);
 }
 
 
 calcData initialize() {
+    printf("debug - initializing");
     calcData data;
     data.mode = 'd';  // Default to degrees
-    FILE* fp = lookInRoot("\\configs\\calc.config", "r");
+    FILE* fp = lookInRoot("configs/calc.config", "r");
+    printf("debug - file");
     if(!fp) {
         printf("Error: Could not open configuration file. Defaulting to degrees mode.\n");
         return data;
     }
-    char* config = ParseFile(fp, 0);
-    char* token = strtok(config, "\n");
-    while(token) {
-        if(strcmp(token, "MODE = d") == 0) data.mode = 'd';
-        else if(strcmp(token, "MODE = r") == 0) data.mode = 'r';
-        token = strtok(NULL, "\n");
+    size_t configLines = 0;
+    char** config = ParseFile(fp, &configLines);
+    printf("debug - filed");
+
+    if(config){
+        for(size_t i = 0; i < configLines; i++){
+            if(config[i]){
+                if(strcmp(config[i], "MODE = r") == 0) data.mode = 'r';
+                if(strcmp(config[i], "MODE = d") == 0) data.mode = 'd';
+                free(config[i]);
+            }
+        }
+        free(config);
     }
-    free(config);
+    printf("debug - whiled");
     fclose(fp);
+    printf("debug - initialized");
     return data;
 }
 
 void calc(char* exp) {
+    printf("debug - calc");
     calcData data = initialize();
     if (exp == NULL) {
         printf("Error: No expression provided\n");
@@ -225,4 +240,5 @@ void calc(char* exp) {
     } else {
         printf("Error: Invalid operation\n");
     }
+    printf("debug - calcd");
 }

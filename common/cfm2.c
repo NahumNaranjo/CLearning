@@ -1,14 +1,76 @@
 #include "cfm2.h"
 
 // Looks for files inside the CL folder path in InCGames parent folder
+// Falls back to the current repository directory if the hardcoded path is not available.
 FILE* lookInRoot(char* filename, char* type){
-    char path[1024];
-    snprintf(path, sizeof(path), "C:/InCGames/CL/%s", filename);
-    FILE *fp = fopen(path, type);
-    if(fp == NULL){
+    if(!filename || !type) {
         return NULL;
     }
-    return fp; // caller must close
+
+    char normalized[1024];
+    strncpy(normalized, filename, sizeof(normalized) - 1);
+    normalized[sizeof(normalized) - 1] = '\0';
+    cleanBackSlash(normalized);
+
+    while(normalized[0] == '/' || normalized[0] == '\\'){
+        memmove(normalized, normalized + 1, strlen(normalized));
+    }
+
+    char cwd[1024] = {0};
+    _getcwd(cwd, sizeof(cwd));
+
+    char parent[1024] = {0};
+    if(cwd[0]){
+        strncpy(parent, cwd, sizeof(parent) - 1);
+        parent[sizeof(parent) - 1] = '\0';
+        char* lastSlash = strrchr(parent, '/');
+        if(!lastSlash) lastSlash = strrchr(parent, '\\');
+        if(lastSlash) {
+            *lastSlash = '\0';
+        }
+    }
+
+    char candidates[6][1024];
+    int count = 0;
+
+    if(strchr(filename, ':') || filename[0] == '/' || filename[0] == '\\'){
+        strncpy(candidates[count++], normalized, sizeof(candidates[0]));
+    }
+    else {
+        snprintf(candidates[count++], sizeof(candidates[0]), "C:/InCGames/CL/%s", normalized);
+        if(cwd[0]){
+            snprintf(candidates[count++], sizeof(candidates[0]), "%s/%s", cwd, normalized);
+            snprintf(candidates[count++], sizeof(candidates[0]), "%s/common/%s", cwd, normalized);
+        }
+        if(parent[0]){
+            snprintf(candidates[count++], sizeof(candidates[0]), "%s/%s", parent, normalized);
+            snprintf(candidates[count++], sizeof(candidates[0]), "%s/common/%s", parent, normalized);
+        }
+    }
+
+    for(int i = 0; i < count; i++){
+        FILE *fp = fopen(candidates[i], type);
+        if(fp){
+            return fp;
+        }
+    }
+    return NULL;
+}
+
+char** capCheck(char** config, size_t* capacity, size_t length){
+    if(!capacity) return config;
+    if(length + 1 >= *capacity){
+        size_t newCapacity = *capacity + (*capacity >> 2);
+        if(newCapacity <= length + 1){
+            newCapacity = length + 2;
+        }
+        char** tmp = (char**)realloc(config, sizeof(char*) * newCapacity);
+        if(tmp){
+            config = tmp;
+            *capacity = newCapacity;
+        }
+    }
+    return config;
 }
 
 // returns the CL folder path in InCGames parent folder
@@ -91,73 +153,108 @@ char* getListedDirectories(char* directory){
 
 // Looks for a file in a root dir and all its child dirs
 void* findFile(char* name, char* root, char* type){
-    if(!type) return NULL;
-    if(
-        strcmp(type, "fr") == 0 && 
-        strcmp(type, "frb") == 0 &&
-        strcmp(type, "p") == 0
-    ) {}
-    else return NULL;
-
-    if(strcmp(root, "r") == 0){
-        root = getRootFilePath();
-    }
-    if(strcmp(root, "p") == 0){
-        root = NULL;
-        root = _getcwd(NULL, 0);
+    if(!name || !type) return NULL;
+    if(strcmp(type, "fr") != 0 && strcmp(type, "frb") != 0 && strcmp(type, "p") != 0){
+        return NULL;
     }
 
-    char* directories = getListedDirectories(root);
+    const char* searchRoot = root;
+    char* cwdRoot = NULL;
+    if(searchRoot == NULL){
+        searchRoot = getRootFilePath();
+    } else if(strcmp(searchRoot, "r") == 0){
+        searchRoot = getRootFilePath();
+    } else if(strcmp(searchRoot, "p") == 0){
+        cwdRoot = _getcwd(NULL, 0);
+        if(!cwdRoot) return NULL;
+        searchRoot = cwdRoot;
+    }
+
+    char normalizedName[1024];
+    strncpy(normalizedName, name, sizeof(normalizedName) - 1);
+    normalizedName[sizeof(normalizedName) - 1] = '\0';
+    if(strstr(normalizedName, "/") != NULL){
+        cleanBackSlash(normalizedName);
+    }
+
+    char* directories = getListedDirectories((char*)searchRoot);
+    if(!directories){
+        free(cwdRoot);
+        return NULL;
+    }
 
     char* token = strtok(directories, "\n");
-    FILE* fp;
     while(token){
-        strcat(token, ("/%s", name));
-        fp = fopen(token, "r");
+        if(strstr(token, "/") != NULL){
+            cleanBackSlash(token);
+        }
+
+        char fullPath[1024];
+        snprintf(fullPath, sizeof(fullPath), "%s/%s", token, normalizedName);
+
+        FILE* fp = NULL;
+        if(strcmp(type, "frb") == 0){
+            fp = fopen(fullPath, "rb");
+        } else {
+            fp = fopen(fullPath, "r");
+        }
 
         if(fp == NULL){
-            fclose(fp);
             token = strtok(NULL, "\n");
             continue;
         }
 
         if(strcmp(type, "p") == 0){
-            return token;
+            char* p = _strdup(fullPath);
+            fclose(fp);
+            free(directories);
+            free(cwdRoot);
+            return p;
         }
-        if(strcmp(type, "fr") == 0){
-            return fp;
-        }
-        fclose(fp);
-        fp = NULL;
-        if(strstr(type, "frb")){
-            fp = fopen(root, "rb");
-            return fp;
-        }
+
+        free(directories);
+        free(cwdRoot);
+        return fp;
     }
+
+    free(directories);
+    free(cwdRoot);
     return NULL;
 }
 
 // returns a line by line string of the file
-char* ParseFile(FILE* fp, size_t* line){
+char** ParseFile(FILE* fp, size_t* line){
     if(fp == NULL) return NULL;
 
-    //TODO it really shouldnt go here but CSON is a great idea
+    size_t capacity = 128;
+    size_t lines = 0;
+    char** text = (char**)malloc(capacity * sizeof(char*));
+    if(!text) return NULL;
 
-    char* text[2048];
-    size_t size;
-    if(line == 0 || line == NULL){
-        fgets(text[0], 0, fp);
-        for(int i = 1; text[i]; i++){
-            fgets(text[i], sizeof(text), fp);
+    char buffer[1024];
+    while(fgets(buffer, sizeof(buffer), fp)) {
+        if(lines + 1 >= capacity) {
+            text = capCheck(text, &capacity, lines);
+            if(!text) return NULL;
         }
+
+        size_t len = strlen(buffer);
+        text[lines] = (char*)malloc(len + 1);
+        if(!text[lines]){
+            for(size_t j = 0; j < lines; j++){
+                free(text[j]);
+            }
+            free(text);
+            return NULL;
+        }
+        memcpy(text[lines], buffer, len + 1);
+        lines++;
     }
 
-    for (int i = 0; *line > i; i++){
-        if(fgets(text[i], size, fp) != NULL){
-            continue;
-        }
-        break;
+    if(line) {
+        *line = lines;
     }
+    return text;
 }
 
 int dirExists(const char* path) {
@@ -193,3 +290,4 @@ TCHAR* getCurrentDirectory(){
     }
     return tszBuffer;
 }
+
