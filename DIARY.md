@@ -409,6 +409,8 @@ changed the config lookup to configs/calc.config
 After that, the calculator finally worked again:
 build\cl.exe calc 1+1 => Result: 2
 
+Im honestly too tired to work today
+
 ## 1.4 minor updates
 ### 1.4.6
 - test and fix
@@ -517,6 +519,12 @@ The `++` and `--` operators in C are a blessing and a curse. You can do `x++` (u
 
 ## Nerd thing 20
 ### (2026-04-09)
+The `switch` statement in C falls through by default. Yep, if you don't write `break`, it just keeps executing the next case like nothing happened. Sometimes that's useful (multiple cases sharing the same code), but most of the time it's a bug waiting to happen. I can't count how many times I've forgotten a `break` and spent an hour wondering why my program was acting possessed. The designers thought "let's make fall-through the default" was a good idea. It was not. But here we are, decades later, still suffering.
 
 ## Nerd thing 21
 ### (2026-04-10)
+The `enum` in C isn't really a type — it's just glorified integers. You can literally do `enum Color { RED, GREEN, BLUE }; int x = RED;` and the compiler won't even blink. No type safety, no "this variable can only be one of these three values." Just ints with fancy names. Python programmers would have a heart attack. But honestly? Sometimes I love it. Other times I want to scream. Depends on how many bugs it's caused me that week.
+
+## Nerd thing 22
+### (2026-04-13)
+The `sizeof` operator in C is evaluated at compile time, not runtime. Which means `sizeof(array)` only works if the compiler knows the size at compile time. Pass that array to a function and suddenly `sizeof` just gives you the pointer size (usually 8 bytes on 64-bit systems), not the actual array size. So many beginners fall for this. I fell for this. We all fell for this. That's why you always pass the size as a separate parameter. Every. Single. Time. No shortcuts. The language won't save you.
