@@ -4,7 +4,8 @@
 Menu* createMenu(char* title, MenuOption* options, size_t count){ 
     Menu* menu = (Menu*)malloc(sizeof(Menu));
     if(menu == NULL) return NULL;
-    menu->title, title;
+    strncpy(menu->title, title, sizeof(menu->title) - 1);
+    menu->title[sizeof(menu->title) - 1] = '\0';
     menu->options = options;
     menu->optionCount = count;
 

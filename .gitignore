@@ -11,6 +11,9 @@ compile_commands.json
 compile_commands.json.tmp7d18c
 CTestTestfile.cmake
 _deps/
+cmake_trace.txt
+cmake_trace2.txt
+
 
 # Ninja build files
 build.ninja
@@ -71,22 +74,10 @@ lib/
 *.user
 *.userosscache
 *.sln.docstates
-.VSCodeCounter
 
 # Temporary files
 *.tmp
 *.bak
 *.log
-*.exe
-*.i
 
-# Backup directories
-/backup/
-backup/
-
-# Packages
-/common/packages
-/*.txt
-
-# Useless doc
-/GOOD_CODING_GUIDE.md
+GOOD_CODING_GUIDE.md

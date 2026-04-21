@@ -49,11 +49,11 @@ Run the CL installer, this dependencie does not have a separate one yet.
 ## File Structure
 
 - `main.c`: Main program logic, user interface, and command handling.
-- `txtFunctions.c`: Core text analysis functions (word counting, frequency analysis).
+- `txtFunctions.c`: Thin wrapper; analysis logic lives in `common/txtFunctions2.c` (shared with CL).
 - `ui.c`: User interface functions (menus, input handling).
 - `readFile.c`: File reading and report parsing utilities.
 - `writeFile.c`: Report writing functionality.
-- `map.h`: Data structure definitions.
+- Word-frequency map type: `common/cxtMap.h` (`CxtMap`).
 - `txtFunctions.h`: Function declarations for text analysis.
 - `ui.h`: UI function declarations.
 - `readFile.h`: File handling declarations.

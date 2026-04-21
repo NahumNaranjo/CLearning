@@ -3,10 +3,9 @@
 # -----------------------------------------------------------------------------
 # Add all .c source files that belong to this library:
 file(GLOB COMMON_SOURCES "*.c")
-file(GLOB COMMON_HEADERS "*.h")
 
 # Build as a static library (libcommon.a on Unix, common.lib on Windows with MSVC)
-add_library(common STATIC ${COMMON_SOURCES} ${COMMON_HEADERS})
+add_library(common STATIC ${COMMON_SOURCES})
 
 # Any code that links to "common" will get this include path automatically,
 # so they can #include "map.h" etc. from the common folder.

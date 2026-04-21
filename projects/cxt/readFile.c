@@ -87,7 +87,7 @@ AnalyzeTextData* parseReportFiles(char *content){
             data->mostUsed = strdup(line + strlen("Most Common Word: "));
         } else if(strstr(line, "Total Unique Words: ") != NULL){
             sscanf(line, "Total Unique Words: %zu", &data->uniqueWords);
-            data->tracker = malloc(data->uniqueWords * sizeof(Map));
+            data->tracker = malloc(data->uniqueWords * sizeof(CxtMap));
             if(!data->tracker){
                 free(data->words);
                 free(data->newLines);

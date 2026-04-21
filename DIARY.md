@@ -411,7 +411,17 @@ build\cl.exe calc 1+1 => Result: 2
 
 Im honestly too tired to work today
 
+My head hurts today, anyways, look at thisI wired the root CMakeLists.txt so a single configure builds common, CFM, CCManager, InLine, CL, hub, CBA, the CUI static lib, and CXT instead of only CXT, then hit build until it went green.
+
+CXT was the messy one: there were two different map.h ideas fighting each other (common's void-pointer Map vs the half-written cxt-local header), AnalyzeText didn't exist in the cxt tree at all so the linker was doomed, and txtFunctions.c wasn't even valid C anymore. The sane fix was to stop pretending cxt is a separate implementation and typedef AnalyzeTextData to the same structs as common/cxtGeneralData.h, delegate AnalyzeText() to commonAnalyzeText(), and delete the duplicate projects/cxt/map.h. After that, cxt_app finally links again.
+
+Hub was sneakier: a clean build failed with undefined gamesInterpreter / toolsInterpreter because I typo'd gameInterpreter in hub.c and never defined the tools one. Also main.c used if (res = 'e') twice (assignment, not compare), and ui.c passed an uninitialized count into createMenu(), which is the kind of bug that only shows up when you're unlucky with stack garbage. CUI's project CMakeLists.txt was building a .exe from a library with no main, hence the WinMain linker whine; turning it into cui_lib fixed that. Patched projects/cui/cui.c too because menu->title, title wasn't assigning anything (strncpy now).
+
+
 ## 1.4 minor updates
+### 1.4.7
+- Test and fix (again)
+
 ### 1.4.6
 - test and fix
 ### 1.4.5
@@ -435,7 +445,6 @@ Im honestly too tired to work today
 
 ## Nerd thing 1 
 ### (2026-02-16, Monday)
-
 The first computer bug was literally a moth found trapped inside a Harvard Mark II computer in 1947. Grace Hopper and her team taped it into the logbook with the note "First actual case of bug being found." That's why we call them bugs today!
 (i should make something to link these .md's to my web site so i don't do the same thing twice)
 
@@ -528,3 +537,7 @@ The `enum` in C isn't really a type — it's just glorified integers. You can li
 ## Nerd thing 22
 ### (2026-04-13)
 The `sizeof` operator in C is evaluated at compile time, not runtime. Which means `sizeof(array)` only works if the compiler knows the size at compile time. Pass that array to a function and suddenly `sizeof` just gives you the pointer size (usually 8 bytes on 64-bit systems), not the actual array size. So many beginners fall for this. I fell for this. We all fell for this. That's why you always pass the size as a separate parameter. Every. Single. Time. No shortcuts. The language won't save you.
+
+## Nerd thing 23
+### (2026-04-20)
+The `const` keyword in C is more of a promise than a rule. You can declare something as `const`, but nothing stops you from casting away the constness with a pointer and changing it anyway. The compiler will warn you, sure, but it won't stop you. It's more like "hey, I really don't think you should change this" instead of "you absolutely cannot change this." Meanwhile, C++ actually enforces it properly. Yet another reason people say C is just "high-level assembly" — the language trusts you to know what you're doing, even when you clearly don't.

@@ -9,7 +9,7 @@ int main(){
         if(res == 'g'){
             while(1){
                 res = gamesUI();
-                if(res = 'e'){
+                if(res == 'e'){
                     break;
                 }
                 gamesInterpreter(&res);
@@ -19,7 +19,7 @@ int main(){
         if(res == 't'){
             while(1){
                 res = toolsUI();
-                if(res = 'e'){
+                if(res == 'e'){
                     break;
                 }
                 toolsInterpreter(&res);

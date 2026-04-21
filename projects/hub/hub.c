@@ -2,8 +2,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-void gameInterpreter(char* choice){
-    switch(*choice){
-        
+void gamesInterpreter(char* choice){
+    switch (*choice) {
+        default:
+            break;
+    }
+}
+
+void toolsInterpreter(char* choice){
+    switch (*choice) {
+        default:
+            break;
     }
 }

@@ -324,5 +324,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - The fix is now stable enough for a small patch release.
 
+### [1.4.7] - 2026-04-20
+#### Additions
+- **Build**: Root `CMakeLists.txt` now also builds CFM (`cfm_lib`), CCManager (`ccm_lib`), InLine (`inl_lib`), CL (`cl`), hub, CBA, CXT (`cxt_app`), and the standalone CUI sources as static library `cui_lib` so one `cmake --build` covers the main toolchain.
+
+#### Fixes
+- **CXT**: Removed duplicate `projects/cxt/map.h` that collided with `common/map.h`. `AnalyzeTextData` now aliases `CommonAnalyzeTextData`; `AnalyzeText()` wraps `commonAnalyzeText()` from `txtFunctions2.c`. Repaired `readFile.c` / `writeFile.c` to use `CxtMap` consistently so the project compiles and links again.
+- **Hub**: Renamed `gameInterpreter` to `gamesInterpreter`, added `toolsInterpreter`, fixed `==` vs `=` in `main.c` exit checks, and initialized menu option counts in `ui.c`.
+- **CUI (project copy)**: `CMakeLists.txt` builds `cui_lib` instead of a console `.exe` without `main` (fixes `WinMain` link error). `createMenu()` now copies the title string into `menu->title` instead of using a stray comma expression.
+
+#### Documentation
+- **CXT README**: File list updated for the shared `common` analysis code and `cxtMap.h`.
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

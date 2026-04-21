@@ -6,7 +6,7 @@ char gamesUI(){
         {"No games yet", "1"},
         {"Main menu", "e"}
     };
-    size_t count;
+    size_t count = sizeof(options) / sizeof(options[0]);
     Menu* menu = createMenu("Built-in Games", options, count);
     displayTitle(menu->title);
     char result = *displayMenu(menu);
@@ -18,7 +18,7 @@ char toolsUI(){
         {"CXT", "x"},
         {"Main menu", "e"}
     };
-    size_t count;
+    size_t count = sizeof(options) / sizeof(options[0]);
     Menu* menu = createMenu("Clearning Executable Tools", options, count);
     displayTitle(menu->title);
     char result = *displayMenu(menu);
@@ -31,7 +31,7 @@ char mainMenu(){
         {"Tools", "t"},
         {"Exit", "e"}
     };
-    size_t count;
+    size_t count = sizeof(options) / sizeof(options[0]);
     Menu* menu = createMenu("CLearning HUB", options, count);
     displayTitle(menu->title);
     char result = *displayMenu(menu);

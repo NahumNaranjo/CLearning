@@ -11,7 +11,7 @@ bool writeFile(const char* path, AnalyzeTextData* data) {
     fprintf(file, "Total New Lines: %zu\n", *data->newLines);
     fprintf(file, "Most Common Word: %s\n", data->mostUsed);
     fprintf(file, "Total Unique Words: %zu\n", data->uniqueWords);
-    Map* tracker = data->tracker;
+    CxtMap* tracker = data->tracker;
     for (size_t i = 0; i < data->uniqueWords; i++) {
         fprintf(file, "Word: %s - Frequency: %d\n", tracker[i].key, tracker[i].timesAppeared);
     }
