@@ -81,3 +81,4 @@ lib/
 *.log
 
 GOOD_CODING_GUIDE.md
+/.VSCodeCounter
