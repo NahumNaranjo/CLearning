@@ -1,0 +1,6 @@
+// This file is moddable so please keep the same format, numer = text, the user made errors are expected to be in the 200's.
+100 = No script file found
+101 = No dialogs extracted
+102 = Script not correctly formatted
+103 = Script file wasn't correctly signed
+999 = Unexpected error happened

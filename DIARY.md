@@ -361,6 +361,10 @@ I'm honestly a bit burnt out, it's time to eat and now i have another side quest
 
 Dialog was kinda easy to make but i learnt environment variables are incredibly useful, anyways, see you later!
 
+After a LOOOOOOOOONG week of not being able to work, im able to sneak a little today, let's see what i can do.
+
+Didn't do much, i'm honestly rusty but it's ok, ill get used to it again in no time. Didn't have much trouble but one little thing i didn't know, C has operator precedance too! so i had to call `((inlineError*)errList.content[0])->code` instead of just `(inlineError*)errList.content[0]->code` cause `->` is more important. Weird, isn't it?
+
 ### Adding games to CL ;D
 
 ### CList (Done as of 04-07-26)
@@ -541,3 +545,7 @@ The `sizeof` operator in C is evaluated at compile time, not runtime. Which mean
 ## Nerd thing 23
 ### (2026-04-20)
 The `const` keyword in C is more of a promise than a rule. You can declare something as `const`, but nothing stops you from casting away the constness with a pointer and changing it anyway. The compiler will warn you, sure, but it won't stop you. It's more like "hey, I really don't think you should change this" instead of "you absolutely cannot change this." Meanwhile, C++ actually enforces it properly. Yet another reason people say C is just "high-level assembly" — the language trusts you to know what you're doing, even when you clearly don't.
+
+## Nerd thing 24
+### (2026-04-30)
+I've been offline for most of the last two weeks due to my brother stealing my studio because his boss told him to do home office for those two weeks, we both don't know why. Anyways, he had to actually go the weekdays i did push something to github.

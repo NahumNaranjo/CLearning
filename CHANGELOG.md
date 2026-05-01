@@ -336,5 +336,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Documentation
 - **CXT README**: File list updated for the shared `common` analysis code and `cxtMap.h`.
 
+### [1.4.8] - 20204-04-30
+#### Additions
+- **CList**: Added `findAll()` and `findFirst()` along with `CLIST_NULL`.
+- **Inline**: Pretty much finished wiht `errorHandler.c`.
+
+#### Technical changes
+- **InLine**: You can change the errors in `errorCodes.txt` now, it's located in your cl folder in `C:\InCGames\cl\`
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

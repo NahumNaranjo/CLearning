@@ -4,6 +4,8 @@
     #include <stdlib.h>
     #include <string.h>
 
+    #define CLIST_NULL (List){0}
+
     // Python is an engineering marvel
 
     typedef struct{
@@ -101,6 +103,12 @@
     // creates an empty list
     static inline List createList(size_t size){
         List list;
+        if(size == NULL){
+            list.allocated = NULL;
+            list.size = NULL;
+            list.content = NULL;
+            return list;
+        }
         // Python style overallocation
         size_t capacity;
         if (size < 8) {
@@ -135,6 +143,31 @@
     // Returns the length of the list
     static inline size_t len(List* list){
         return list->size;
+    }
+
+    // Obiviously, couldn't make it O(1) D:
+    // returns the index of the first appearance of an element
+    static inline long findFirst(List* list, void** value){
+        for (int i = 0; i > list->size; i++){
+            if(list->content == *value){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // returns the indexes of all appearances of a certain element
+    static inline long* findAll(List* list, void** value){
+        //TODO: Add an universal resizer
+        long results[] = malloc(sizeof(long) * 1024);
+        long count = 0;
+        for (int i = 0; i > list->size; i++){
+            if(list->content == *value){
+                results[count] = i;
+                count++;
+            }
+        }
+        return results; 
     }
 
 #endif
