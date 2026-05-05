@@ -421,6 +421,7 @@ CXT was the messy one: there were two different map.h ideas fighting each other 
 
 Hub was sneakier: a clean build failed with undefined gamesInterpreter / toolsInterpreter because I typo'd gameInterpreter in hub.c and never defined the tools one. Also main.c used if (res = 'e') twice (assignment, not compare), and ui.c passed an uninitialized count into createMenu(), which is the kind of bug that only shows up when you're unlucky with stack garbage. CUI's project CMakeLists.txt was building a .exe from a library with no main, hence the WinMain linker whine; turning it into cui_lib fixed that. Patched projects/cui/cui.c too because menu->title, title wasn't assigning anything (strncpy now).
 
+Today was research day for CList, i have to find a way to identify strings without the user having to manually type it, how? i dont know, it's easier to just divide the functions in `stringFunction` and `function` but i guess it's more boring that way. I've tried everything, even assembly, but nothing seems to work exactly as i want it to and with 100% efectiveness so i guess i'll implement a vote system where different systems work together and vote to have the highest chance of a correct guess. Anyways, that's a lot of work and it already took me a lot to find out what to do, i'll see how i do with such complex thing tomorrow. No new this update
 
 ## 1.4 minor updates
 ### 1.4.7
@@ -549,3 +550,7 @@ The `const` keyword in C is more of a promise than a rule. You can declare somet
 ## Nerd thing 24
 ### (2026-04-30)
 I've been offline for most of the last two weeks due to my brother stealing my studio because his boss told him to do home office for those two weeks, we both don't know why. Anyways, he had to actually go the weekdays i did push something to github.
+
+## Nerd Thing 25 
+### (2026-05-04)
+The `setjmp()` and `longjmp()` functions in C are basically a DIY exception system before exceptions were cool. `setjmp()` saves the current execution context (registers, stack pointer, all that jazz), and `longjmp()` jumps right back to that saved point like nothing happened. It's like goto on steroids — you can jump across functions, not just within one. Sounds useful, right? WRONG. It completely skips normal function cleanup. No stack unwinding, no resource deallocation, just poof you're somewhere else. Use it wrong and your memory leaks could fill an ocean. That's why nobody uses it. Except database guys. They're built different.

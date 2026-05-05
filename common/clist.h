@@ -3,11 +3,11 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include <ctype.h>
 
     #define CLIST_NULL (List){0}
 
     // Python is an engineering marvel
-
     typedef struct{
         void** content;
         size_t size;
@@ -146,8 +146,34 @@
     }
 
     // Obiviously, couldn't make it O(1) D:
+
+    //* Ariadne borrowings to keep CList completely free
+    // First string check, borrowed from Ariadne
+    static inline short SimpleHeuristic(char* string){
+        short nullFound = 0;
+        // Checks for \0
+        for(int i = 0; i < 256; i++){
+            // checks for printable chars
+            //if(!isprint((unsigned char)string[i]) || !isspace((unsigned char)string[i]) ||string[i] == '\n' || string[0] == ''){
+                
+            //}
+
+        }
+        return 0;
+    }
+
+    static inline float EntropyAnalysis(char* value){
+
+    }
+
     // returns the index of the first appearance of an element
     static inline long findFirst(List* list, void** value){
+        // String guessing
+        short votingResults = 0;
+        char* string = (char*)value[0];
+        votingResults += SimpleHeuristic(string);
+        votingResults += EntropyGuesser(EntropyAnalysis(string));
+        votingResults = votingResults;
         for (int i = 0; i > list->size; i++){
             if(list->content == *value){
                 return i;
