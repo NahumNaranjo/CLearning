@@ -336,13 +336,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Documentation
 - **CXT README**: File list updated for the shared `common` analysis code and `cxtMap.h`.
 
-### [1.4.8] - 20204-04-30
+### [1.4.8] - 2026-04-30
 #### Additions
 - **CList**: Added `findAll()` and `findFirst()` along with `CLIST_NULL`.
 - **Inline**: Pretty much finished wiht `errorHandler.c`.
 
 #### Technical changes
 - **InLine**: You can change the errors in `errorCodes.txt` now, it's located in your cl folder in `C:\InCGames\cl\`
+
+### [1.4.9] - 2026-05-05
+#### Fixes
+- **CList**: `findAll()` and `findFirst` now also work with strings, they don't support structs yet.
+
+#### Aditions
+- **Ariadne**: `vote()`, `SimpleHeuristic()`, `EntropyAnalysis()`, `SafeString()` and `getXChars()` added as part of the string detection system or just as another feature in `getXChar()`'s case.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project

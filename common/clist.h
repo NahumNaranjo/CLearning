@@ -4,6 +4,10 @@
     #include <stdlib.h>
     #include <string.h>
     #include <ctype.h>
+    #include <setjmp.h>
+    #include <signal.h>
+    #include <math.h>
+    static jmp_buf buf;
 
     #define CLIST_NULL (List){0}
 
@@ -145,52 +149,167 @@
         return list->size;
     }
 
-    // Obiviously, couldn't make it O(1) D:
+    //* ↓↓↓ Ariadne borrowings ↓↓↓
 
-    //* Ariadne borrowings to keep CList completely free
+    // returns x quantity of characters of a string, f returns the first x and l returns the last x
+    static inline char getXChars(char* string, int chars, char mode){
+        if(chars <= 0 || !chars){
+            perror("Can't get less than 1 character");
+            return NULL;
+        }
+        if(!string){
+            perror("No string to read");
+            return NULL;
+        }
+        if((mode != 'l' && mode != 'f') || !mode){
+            perror("Unsopported mode");
+            return NULL;
+        }
+        char *returning = (char*)malloc(sizeof(char)*chars);
+        if(mode == 'f'){
+            for(int i = 0; i < chars; i++){
+                returning[i] = string[i];
+            }
+        } else if(mode == 'l'){
+            for(int i = chars; i > 0; i--){
+                returning[-(i - chars)] = string[-(i - chars)];
+            }
+        }
+        return *returning;
+    }
+
     // First string check, borrowed from Ariadne
     static inline short SimpleHeuristic(char* string){
         short nullFound = 0;
         // Checks for \0
         for(int i = 0; i < 256; i++){
-            // checks for printable chars
-            //if(!isprint((unsigned char)string[i]) || !isspace((unsigned char)string[i]) ||string[i] == '\n' || string[0] == ''){
-                
-            //}
+            // checks for valid string chars
+            if(
+                isprint((unsigned char)string[i]) || 
+                isspace((unsigned char)string[i]) ||
+                string[i] == '\n' || string[i] == '\t' ||
+                string[i] == '\\' || string[i] == '\"' ||
+                string[i] == '\'' || string[i] == '\b' ||
+                string[i] == '\a' || string[i] == '\r' ||
+                string[i] == '\v' || string[i] == '\f'
+            ){
+                continue;
+            }
 
+            // checks for null terminator
+            if(string[i] == '\0' && i > 0){
+                return 1;
+            }
+            if(string[i] == '\0' && i == 0){
+                return 0;
+            }
         }
         return 0;
     }
 
-    static inline float EntropyAnalysis(char* value){
-
+    // return's a string's randomness
+    float EntropyAnalysis(char* value) {
+        if (!value || !SimpleHeuristic(value)) return 8.0; // High entropy if not string
+    
+        int counts[256] = {0};
+        int len = 0;
+    
+        // scan up to 256 chars or until null
+        for (int i = 0; i < 256 && value[i] != '\0'; i++) {
+            counts[(unsigned char)value[i]]++;
+            len++;
+        }
+    
+        if (len == 0) return 8.0;
+    
+        float entropy = 0;
+        for (int i = 0; i < 256; i++) {
+            if (counts[i] > 0) {
+                float p = (float)counts[i] / len;
+                entropy -= p * log2f(p);
+            }
+        }
+        return entropy;
     }
 
-    // returns the index of the first appearance of an element
-    static inline long findFirst(List* list, void** value){
+    // Does string-only operations and returns 1 if it all went alright
+    static inline short SafeString(char* string){
+        if(!string) return 0;
+        if(setjmp(buf) == 0){
+            signal(SIGSEGV, handleCrash); 
+            volatile size_t len = 0;
+            char* p = string;
+            for(int i = 0; i < 512; i++) {
+                if (p[i] == '\0') {
+                    signal(SIGSEGV, SIG_DFL);
+                    return 1;
+                }
+            }
+            signal(SIGSEGV, SIG_DFL);
+            return 0;
+        } else {
+            signal(SIGSEGV, SIG_DFL);
+            return 0;
+        }
+        
+    }
+
+    static inline void handleCrash(int sig){
+        longjmp(buf, 1);
+    }
+
+    static inline int vote(void* value){
+        signal(SIGSEGV, handleCrash);
         // String guessing
-        short votingResults = 0;
-        char* string = (char*)value[0];
+        int votingResults = 0;
+        char* string = (char*)value;
+
+        votingResults += SafeString(string);
         votingResults += SimpleHeuristic(string);
-        votingResults += EntropyGuesser(EntropyAnalysis(string));
-        votingResults = votingResults;
-        for (int i = 0; i > list->size; i++){
-            if(list->content == *value){
-                return i;
+        float entropy = EntropyAnalysis(string);
+        if(entropy > 3.0 && entropy < 6.0){
+            votingResults += 1;
+        }
+        return votingResults;
+    }
+    
+    //* ↑↑↑ Ariadne borrowings ↑↑↑
+
+    // Obiviously, couldn't make them O(1) D:
+
+    // returns the index of the first appearance of an element
+    // WARNING: Use only for string or numbers, structs are not supported
+    static inline long findFirst(List* list, void* value){
+        int votingResults = vote(value);
+        for (int i = 0; i < list->size; i++){
+            if(votingResults > 2){
+                if((char*)strcmp(list->content[i], (char*)value)){
+                    return i;
+                } 
+            } else {
+                if(*(size_t *)list->content[i] == *(size_t *)value) return i;
             }
         }
         return -1;
     }
+    //TODO: Add an universal resizer
 
     // returns the indexes of all appearances of a certain element
-    static inline long* findAll(List* list, void** value){
-        //TODO: Add an universal resizer
+    static inline long* findAll(List* list, void* value){
+        int votingResults = vote(value);
         long results[] = malloc(sizeof(long) * 1024);
         long count = 0;
         for (int i = 0; i > list->size; i++){
-            if(list->content == *value){
-                results[count] = i;
-                count++;
+            if(votingResults > 2){
+                if(strcmp((char*)list->content, (char*)value)){
+                    results[count] = i;
+                    count++;
+                }
+            } else {
+                if(*(size_t*)list->content == *(size_t*)value){
+                    results[count] = i;
+                    count++;
+                } 
             }
         }
         return results; 

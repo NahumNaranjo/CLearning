@@ -12,7 +12,7 @@ It's kinda hard to do and I know it (have no idea) but I think I'll be alright. 
 - Version management
 - Dependency resolution
 
-## 2. CMNGR (C Configuration Manager)
+## 2. CMNGR (C Configuration Manager) (Done in 1.4.2)
 Basically, another CL DLC to configure all the project's libraries in one central configuration. I'm thinking of having configuration files, something like "cxt.cconfig" (intentional double c) or so, it won't be that necessary but it'll be fun to code.
 
 **Goals:**
@@ -32,7 +32,7 @@ Basically, just another tool for doing tests just like CUnit or Check. I don't r
 - Code coverage reporting
 - Integration with CBA build system
 
-## 4. CFM (C File Manager)
+## 4. CFM (C File Manager) (Done in 1.3.0)
 Another DLC for cl.c (I think it's my favorite part of the project), this one will be just as good as Windows built-in file manager (just joking, obviously better). I'm planning to do it for maybe the 2.0.0 or so, it's a bigger project than it seems.
 
 **Goals:**
@@ -56,7 +56,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
 
 ## Development Timeline
 
-### Febraury (Acconplished!!!)
+### Febraury (Accomplished!!!)
 1. **CBA Improvements & Bug Fixes**
    - Refactor folder checking and CMake generation
    - Add .config file support
@@ -67,7 +67,7 @@ Just a garbage file generator, maybe you wanna make a 3 GB file worth of pure ch
    - Add more built-in commands
    - Improve help system and documentation
 
-### March
+### March (Accomplished too )
 1. **HUB Overhaul (To be done from 1.4.0 to 1.5.0)**
    - Added games to the launcher
    - Made a whole new engine for (not so) text based games for bored coders
