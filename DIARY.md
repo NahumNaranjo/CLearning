@@ -425,6 +425,8 @@ Today was research day for CList, i have to find a way to identify strings witho
 
 Today's coding day!! I was finally able to code what i reasearched for yesterday, and it was easier than i thought but taught me so much about c!!!! first of all, **C DOES HAVE A WAY TO HANDLE EXCEPTIONSSSSS** its called setjmp and longjmp, they work kinda weird but are like try/catch and i used them together with signals so i could modify its flow to exactly what i needed ;D. 
 
+I'm sorry guys but i hurt my fingers and i can't really code today, sorry D:
+
 ## 1.4 minor updates
 ### 1.4.7
 - Test and fix (again)

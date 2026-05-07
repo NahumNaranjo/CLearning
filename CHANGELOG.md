@@ -351,5 +351,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Aditions
 - **Ariadne**: `vote()`, `SimpleHeuristic()`, `EntropyAnalysis()`, `SafeString()` and `getXChars()` added as part of the string detection system or just as another feature in `getXChar()`'s case.
 
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

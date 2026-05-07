@@ -107,10 +107,10 @@
     // creates an empty list
     static inline List createList(size_t size){
         List list;
-        if(size == NULL){
-            list.allocated = NULL;
-            list.size = NULL;
-            list.content = NULL;
+        if(size == 0){
+            list.allocated = 0;
+            list.size = 0;
+            list.content = 0;
             return list;
         }
         // Python style overallocation
@@ -149,10 +149,14 @@
         return list->size;
     }
 
+    static inline void handleCrash(int sig){
+        longjmp(buf, 1);
+    }
+
     //* ↓↓↓ Ariadne borrowings ↓↓↓
 
     // returns x quantity of characters of a string, f returns the first x and l returns the last x
-    static inline char getXChars(char* string, int chars, char mode){
+    static inline char* getXChars(char* string, int chars, char mode){
         if(chars <= 0 || !chars){
             perror("Can't get less than 1 character");
             return NULL;
@@ -252,10 +256,6 @@
             return 0;
         }
         
-    }
-
-    static inline void handleCrash(int sig){
-        longjmp(buf, 1);
     }
 
     static inline int vote(void* value){
