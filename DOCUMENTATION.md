@@ -215,6 +215,32 @@ Invalid option, please try again.
 
 ---
 
+## InLine - Console Game Engine
+
+InLine is a new console-oriented game engine module in the CLEARNING project. It is built as a static library in `projects/InLine` and includes core support for game configuration, text input, parsing, rendering, dialogs, and runtime error handling.
+
+### Current capabilities
+- Loads game metadata from a text-based game root file.
+- Reads player input from the console using `inputLogger.c`.
+- Parses simple commands and detects verbs via `textParser.c`.
+- Handles runtime error codes through `errorHandler.c` and `errorCodes.txt`.
+- Includes an example entry point in `projects/InLine/example/main.c`.
+
+### Files and modules
+- `projects/InLine/inFile.c` — game configuration loader
+- `projects/InLine/errorHandler.c` — error lookup and reporting
+- `projects/InLine/inputLogger.c` — console input capture
+- `projects/InLine/textParser.c` — command parsing logic
+- `projects/InLine/renderer.c` — output renderer (engine support)
+- `projects/InLine/dialog.h` / `dialogs.c` — dialog sequences and choices
+- `projects/InLine/errorCodes.txt` — configurable error code definitions
+
+### Notes
+- InLine is currently integrated into the main build system as `inl_lib`.
+- The engine is still under active development; future updates will complete dialog support and command execution.
+
+---
+
 ## CXT - Text Analysis Tool
 
 CXT is a text analysis tool that provides word/line counts, frequency statistics, and report generation.
@@ -323,6 +349,7 @@ cba clean
 ### Notes
 - If `cba.build` is missing, `cba build` will auto-detect the project and generate it.
 - `cba init` always regenerates `cba.build` based on the current directory contents.
+- The root project build now includes `InLine` as `inl_lib`, as well as `cui_lib` from the standalone CUI sources.
 
 ---
 
@@ -337,6 +364,8 @@ Install:
 ```bash
 cl install cui
 ```
+
+**Build note:** The standalone CUI sources are also built as a static library (`cui_lib`) in the main CLEARNING build.
 
 ### CFM - File Manager Utility
 A small library for listing files/directories and locating files by name.

@@ -1,73 +1,139 @@
 #include "errorHandler.h"
+#include <stdlib.h>
+
+static char* buildErrorCodesPath(void){
+    static char path[512];
+    char temp[512];
+    strncpy(temp, __FILE__, sizeof(temp) - 1);
+    temp[sizeof(temp) - 1] = '\0';
+    char* lastBackslash = strrchr(temp, '\\');
+    char* lastSlash = strrchr(temp, '/');
+    char* lastSeparator = lastBackslash > lastSlash ? lastBackslash : lastSlash;
+    if(lastSeparator){
+        *(lastSeparator + 1) = '\0';
+    } else {
+        temp[0] = '\0';
+    }
+    snprintf(path, sizeof(path), "%serrorCodes.txt", temp);
+    return path;
+}
 
 void logError(int *code, char* name){
+    if(!code){
+        fprintf(stderr, "logError: null code pointer\n");
+        return;
+    }
+
     List errList = getErrList();
     if(errList.allocated == 0){
-        perror("Couldn't allocate errList");
+        fprintf(stderr, "Couldn't allocate errList\n");
     }
+
     char error[1024];
     char* errorText = NULL;
-    for (int i = 0; i > errList.size; i++){
-        // Damn operator precedance
-        if(((inlineError*)errList.content[i])->code == *code){
-            errorText = ((inlineError*)errList.content[i])->text;
+    for (size_t i = 0; i < errList.size; i++){
+        inlineError* err = (inlineError*)errList.content[i];
+        if(!err) continue;
+        if(err->code == *code){
+            errorText = err->text;
             break;
         }
     }
-    if(!errorText){ 
-        perror("Invalid error code");
+
+    if(!errorText){
+        fprintf(stderr, "Invalid error code: %d\n", *code);
         return;
     }
+
     time_t now = time(NULL);
-    fprintf(error, "Error code number %d found at %d while executing %s", code, ctime(&now), name);
-    perror(error);
+    char* when = ctime(&now);
+    if(when){
+        size_t len = strlen(when);
+        if(len && when[len - 1] == '\n'){
+            when[len - 1] = '\0';
+        }
+    }
+
+    snprintf(error, sizeof(error), "Error code number %d found at %s while executing %s: %s",
+             *code,
+             when ? when : "unknown time",
+             name ? name : "unknown",
+             errorText);
+    fprintf(stderr, "%s\n", error);
 }
 
 List getErrList(){
-    // get the file
-    char path[256] = "C:/InCGames/cl/errorCodes.txt";
+
+    char* path = buildErrorCodesPath();
     FILE* fp = fopen(path, "r");
     if(!fp) {
-        perror("Couldn't open errorCodes.txt\n");
+        fprintf(stderr, "Couldn't open errorCodes.txt at '%s'\n", path);
         return CLIST_NULL;
     }
 
-    // Declare the buffer
-    fseek(fp, 0, SEEK_END);
+    if(fseek(fp, 0, SEEK_END) != 0){
+        fclose(fp);
+        return CLIST_NULL;
+    }
+
     long length = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    char* buffer = malloc(length + 1);
+    if(length < 0){
+        fclose(fp);
+        return CLIST_NULL;
+    }
+    rewind(fp);
 
-    // Read the whole file
-    if(buffer){
-        fread(buffer, 1, length, fp);
-        buffer[length+1] = '\0';
-    } else {
-        char errorMsg[128];
-        fprintf(errorMsg, "Couldn't allocate %d bytes for a buffer", length);
-        perror(errorMsg);
+    char* buffer = malloc((size_t)length + 1);
+    if(!buffer){
+        fprintf(stderr, "Couldn't allocate %ld bytes for a buffer\n", length);
+        fclose(fp);
         return CLIST_NULL;
     }
 
-    char* copy = buffer;
-    char* token;
-    token = strtok(copy, "\n");
-    if(token[0] = "/") token = NULL;
+    size_t read = fread(buffer, 1, (size_t)length, fp);
+    fclose(fp);
+    buffer[read] = '\0';
 
-    strtok(copy, NULL);
-    char* delim = " = ";
     List returning = createList(5);
+    char* line = strtok(buffer, "\r\n");
+    while(line){
+        trimWhitespace(line);
+        if(line[0] == '\0' || (line[0] == '/' && line[1] == '/')){
+            line = strtok(NULL, "\r\n");
+            continue;
+        }
 
-    // tokenize and save it to a list
-    while(token){
-        static inlineError error;
-        char* p = strstr(token, delim);
-        if(!p) continue;
-        *p = '\0';
-        error.code = atoi(token);
-        error.text = (p + strlen(delim));
-        add(&returning, &error);
-        strtok(copy, NULL);
+        char* delim = strstr(line, " = ");
+        if(!delim){
+            delim = strchr(line, '=');
+        }
+        if(!delim){
+            line = strtok(NULL, "\r\n");
+            continue;
+        }
+
+        *delim = '\0';
+        char* codeText = line;
+        char* message = delim + 1;
+        trimWhitespace(codeText);
+        trimWhitespace(message);
+        if(message[0] == '='){
+            message++;
+            trimWhitespace(message);
+        }
+
+        inlineError* error = malloc(sizeof(*error));
+        if(!error){
+            line = strtok(NULL, "\r\n");
+            continue;
+        }
+        error->code = atoi(codeText);
+        error->text = strdup(message ? message : "");
+        add(&returning, error);
+
+        line = strtok(NULL, "\r\n");
     }
+
+    free(buffer);
     return returning;
 }

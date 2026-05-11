@@ -5,6 +5,8 @@
     #include <stdlib.h>
     #include "cxt.h"
     #include <cba2.h>
+    #include <ctype.h>
+    #include <ariadne.h>
     #include "calc.h"
     #include "install.h"
 

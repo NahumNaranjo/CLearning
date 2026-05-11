@@ -6,6 +6,8 @@
     #include "inFile.h"
     #include "inputLogger.h"
     #include "dialog.h"
+    #include "errorHandler.h"
+    #include <clist.h>
     #include <cfm2.h>
 
     void textUpdate(char* text);

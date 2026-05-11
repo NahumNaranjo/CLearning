@@ -5,7 +5,11 @@ int checkDirs(){
     char* dir = getCurrentDirectory();
     snprintf(root, sizeof(root), "%s/common/", dir);
     if(dirExists(root) == 0){
-        _mkdir(root);
+        #ifdef _WIN32
+            _mkdir(root);
+        #else
+            mkdir(root);
+        #endif
     }
     free(dir);
     char pack[2048];
@@ -17,10 +21,10 @@ int checkDirs(){
     return 1;
 }
 
-int isAviable(char* name){
+int isAvailable(char* name){
     const char* tools[] = {"cui", "ariadne", "cba", "hermes", "cxt", "clist", "cmap"};
     for (int i = 0; tools[i]; i++){
-        if(strcmp(name, tools[i]) != 0) return 1;
+        if(strcmp(name, tools[i]) == 0) return 1;
     }
     return 0;
 }
@@ -29,7 +33,7 @@ void* clInstall(char* name){
     if(checkDirs() == 0){
         return NULL;
     }
-    char opt;
+    
     char root[2048];
     snprintf(root, sizeof(root), "%spackages/", getRootFilePath());
     if(!root) {
@@ -37,7 +41,7 @@ void* clInstall(char* name){
         return NULL;
     }
 
-    if(isAviable(name) == 0){
+    if(isAvailable(name) == 0){
         printf("No such dependency found, check for new updates on https://github.com/NahumNaranjo/CLearning\n");
         return NULL;
     }
@@ -50,15 +54,23 @@ void* clInstall(char* name){
         printf("Couldn't obtain current working directory");
         return NULL;
     }
-    strcat(root, name);
+    
+    // Build the source and destination paths
+    char sourcePath[2048];
+    char destPath[2048];
+    snprintf(sourcePath, sizeof(sourcePath), "%s%s", root, name);
+    snprintf(destPath, sizeof(destPath), "%s/%s", current, name);
+    
     char command[2048];
-    char createDir[2048];
-    snprintf(createDir, sizeof(createDir), "mkdir %s", name);
+    
     #if defined(_WIN32) || defined(_WIN64)
-        snprintf(command, sizeof(command), "robocopy \"%s\" \"%s/%s\" /e", root, current, name);
+        snprintf(command, sizeof(command), "robocopy \"%s\" \"%s\" /e", sourcePath, destPath);
     #elif defined(__linux__) || defined(__APPLE__)
-        snprintf(createDirm, sizeof(createDir), "rsync -avR \"%s\" \"%s/%s\"", root, current, name);
+        snprintf(command, sizeof(command), "cp -r \"%s\" \"%s\"", sourcePath, current);
     #endif
-    system(createDir);
+    
+    printf("Copying package: %s\n", command);
     system(command);
+    
+    return NULL; // Add appropriate return value
 }

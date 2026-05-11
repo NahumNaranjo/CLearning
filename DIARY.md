@@ -427,10 +427,21 @@ Today's coding day!! I was finally able to code what i reasearched for yesterday
 
 I'm sorry guys but i hurt my fingers and i can't really code today, sorry D:
 
+Today, as all fridays, i fixed all bugs i added during the week so i can release the weekly .exe file. Anyways, see ya later!
+
+I finally beat the InLine mess into something that doesn't look like a half-dead skeleton.
+
+- `errorHandler.c` was literally the worst: bad loop, bad buffer, and bad error formatting. fixed it all and now `errorCodes.txt` is actually usable.
+- `inFile.c` now parses the game root file properly, handles values with `{ }`, and doesn't overwrite stack memory for `putenv()`.
+- `inputLogger.c` finally reads console text correctly and even has a single-key logger.
+- `textParser.c` no longer tries to use an uninitialized verb list, and it prints detected verbs so i can debug the parser flow.
+- Also updated `DOCUMENTATION.md` with an InLine section, because if i'm adding a new engine i better write it down.
+
+This was one of those days where nothing looks flashy, but the foundation got way stronger. next is making the example actually run from `projects/InLine/example/main.c` and then maybe add a real game loop.
+
 ## 1.4 minor updates
 ### 1.4.7
 - Test and fix (again)
-
 ### 1.4.6
 - test and fix
 ### 1.4.5
@@ -562,3 +573,7 @@ The `setjmp()` and `longjmp()` functions in C are basically a DIY exception syst
 ## Nerd thing 26
 ### (2026-05-05)
 The `#pragma` directive in C is the compiler's way of saying "here, have some vendor-specific magic, I don't want to standardize this." Every compiler does its own thing. ``#pragma once`` works on GCC, Clang, and MSVC but isn't officially in the C standard. ``#pragma pack`` for struct alignment? Different syntax everywhere. Warnings? Good luck. It's the wild west. You write ``#pragma`` and pray your code still compiles when someone uses a different compiler. The standard committee basically gave up and said "yeah, compilers, do whatever, we don't care." Chaos incarnated into a preprocessor directive.
+
+## Nerd thing 27
+### (2026-05-11)
+The ``assert()`` macro in C doesn't just crash your program — it writes a nice little message telling you exactly which file and line number failed. ``assert(x > 0);`` fails? Boom: "``Assertion failed: x > 0, file main.c, line 42.``" Then it calls ``abort()`` and dies with dignity. Here's the kicker though: if you define ``NDEBUG`` before including ``assert.h``, all your asserts disappear. Poof. Gone. Compiled out of existence. Perfect for release builds. Until you forget to test something that only breaks in release. Then you're debugging without your safety net. Living on the edge, my friend.

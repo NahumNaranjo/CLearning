@@ -9,27 +9,30 @@ void interpreter(int argc, char** argv){
     if(argv[1] == NULL){
         return;
     }
-    if (argv[1] != NULL && (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0)) {
+    if (argv[1] != NULL && (strcmp(toLowerCase(argv[1]), "-v") == 0 || strcmp(toLowerCase(argv[1]), "--version") == 0)) {
         if(argv[2] == NULL) {
-            printf("CL (Ecosystem) version 1.4.3. Author: Nahum Naranjo \n"); 
+            printf("CL (Ecosystem) version 1.4.9. Author: Nahum Naranjo \n"); 
             return;
         }
-        if(strcmp(argv[2], "cxt") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cxt") == 0){
             printf("CXT version 1.1.0. Author: Nahum Naranjo \n");
         }
-        if(strcmp(argv[2], "cba") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cba") == 0){
             printf("CBA version 1.0.0. Author: Nahum Naranjo \n");
         }
-        if(strcmp(argv[2], "cl") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cl") == 0){
             printf("CL (Command line) version 3.1.0. Author: Nahum Naranjo");
         }
-        if(strcmp(argv[2], "hub") == 0){
+        if(strcmp(toLowerCase(argv[2]), "hub") == 0){
             printf("CLHub version 1.1.0. Author: Nahum Naranjo");
         }
-        if(strcmp(argv[2], "cfm") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cfm") == 0){
             printf("CFM version 1.2.0. Author: Nahum Naranjo");
         }
-        if(strcmp(argv[2], "cui") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cui") == 0){
+            printf("CUI version 1.1.0. Author: Nahum Naranjo");
+        }
+        if(strcmp(toLowerCase(argv[2]), "inline") == 0 || strcmp(argv[2], "")){
             printf("CUI version 1.1.0. Author: Nahum Naranjo");
         }
         return;
@@ -46,15 +49,15 @@ void interpreter(int argc, char** argv){
         return;
     }
     // Exec
-    if((strcmp(argv[1], "exec") == 0 || strcmp(argv[1], "-e") == 0)){
+    if((strcmp(toLowerCase(argv[1]), "exec") == 0 || strcmp(toLowerCase(argv[1]), "-e") == 0)){
         if(argc < 2) return;
         // Executing specific commands from cl
-        if(strcmp(argv[2], "cxt") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cxt") == 0){
             char* path = argv[3];
-                for(int i = 0; path[i]; i++) {
+            for(int i = 0; path[i]; i++) {
                 if(path[i] == '\\') path[i] = '/';
             }
-            char* inst = argv[4];
+            char* inst = toLowerCase(argv[4]);
             size_t size;
             char* fileData = readFile(path, &size);
             CommonAnalyzeTextData* data = commonAnalyzeText(fileData, &size);
@@ -69,7 +72,7 @@ void interpreter(int argc, char** argv){
                 }
                 // Info options
                 if(strcmp(inst, "info") == 0){
-                    char* spec = argv[5];
+                    char* spec = toLowerCase(argv[5]);
                     if(strcmp(spec, "-a") == 0){
                         printf("Number of lines: %i\n", *data->newLines);
                         printf("Number of words: %i\n", *data->words);
@@ -106,8 +109,8 @@ void interpreter(int argc, char** argv){
                 }
             }
         }
-        if(strcmp(argv[2], "cba") == 0){
-            char* inst = argv[3];
+        if(strcmp(toLowerCase(argv[2]), "cba") == 0){
+            char* inst = toLowerCase(argv[3]);
             if(strcmp(inst, "build") == 0){
                 build();
                 return;
@@ -131,7 +134,7 @@ void interpreter(int argc, char** argv){
             system("cba.exe");
         }
     }
-    if(argv[1] != NULL && (strcmp(argv[1], "exec") == 0 || strcmp(argv[1], "-e") == 0)){
+    if(argv[1] != NULL && (strcmp(toLowerCase(argv[1]), "exec") == 0 || strcmp(toLowerCase(argv[1]), "-e") == 0)){
         if(argv[2] != NULL){
             printf("Interpreting tool: %s\n", argv[2]);        
         } 
@@ -139,26 +142,26 @@ void interpreter(int argc, char** argv){
             printf("No tool provided to interpret.\n");
             return;
         }
-        if(strcmp(argv[2], "hub") == 0){
+        if(strcmp(toLowerCase(argv[2]), "hub") == 0){
             printf("Going to the hub...");
             system("hub.exe");
         }
-        if(strcmp(argv[2], "cxt") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cxt") == 0){
             printf("Executing CXT...");
             system("cxt.exe");
         }
-        if(strcmp(argv[2], "cba") == 0){
+        if(strcmp(toLowerCase(argv[2]), "cba") == 0){
             printf("Executing CBA...");
             system("cba.exe");
         }
         return;
     }
-    if(strcmp(argv[1], "calc") == 0 || strcmp(argv[1], "-c") == 0){
+    if(strcmp(toLowerCase(argv[1]), "calc") == 0 || strcmp(toLowerCase(argv[1]), "-c") == 0){
         calc(argv[2]);
         return;
     }
-    if(strcmp(argv[1], "install") == 0 || strcmp(argv[1], "-i") == 0){
-        clInstall(argv[2]);
+    if(strcmp(toLowerCase(argv[1]), "install") == 0 || strcmp(toLowerCase(argv[1]), "-i") == 0){
+        clInstall(toLowerCase(argv[2]));
         return;
     }
 

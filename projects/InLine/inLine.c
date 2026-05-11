@@ -1,10 +1,12 @@
 #include "inLine.h"
 
 void textStart(Verb* devVerbs){
-    
+    (void)devVerbs;
 }
 
 void textUpdate(char* text){
-    text = textLogger();
-
+    if(!text){
+        return;
+    }
+    parseFromText(text);
 }

@@ -351,6 +351,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Aditions
 - **Ariadne**: `vote()`, `SimpleHeuristic()`, `EntropyAnalysis()`, `SafeString()` and `getXChars()` added as part of the string detection system or just as another feature in `getXChar()`'s case.
 
+### [1.4.10] - 2026-05-11
+#### Additions
+- **InLine**: Added a new engine documentation section and support notes to `DOCUMENTATION.md`.
+- **InLine**: Added a basic example entrypoint and clarified `errorCodes.txt` usage.
+
+#### Fixes
+- **InLine**: Fixed `errorHandler.c` loop, file parsing, and error reporting.
+- **InLine**: Fixed `inFile.c` config parsing, safe string handling, and environment variable storage for `putenv()`.
+- **InLine**: Implemented `inputLogger.c` and corrected `textParser.c` verb detection to avoid uninitialized data.
+- **Build/Docs**: Documented `InLine` as `inl_lib` in the main project and noted `cui_lib` static library support.
+
+#### Documentation
+- Updated `DOCUMENTATION.md` with InLine engine details, module list, and build integration notes.
 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
