@@ -32,8 +32,8 @@ void detectProject(BuildInfo* buildInfo) {
     
     // Guess project name from directory
     char cwd[1024];
-    GetCurrentDirectoryA(1024, cwd);
-    char* lastSlash = strrchr(cwd, '\\');
+    getcwd(cwd, 1024);
+    char* lastSlash = strrchr(cwd, PATH_SEPARATOR);
     if(lastSlash) {
         strcpy(buildInfo->name, lastSlash + 1);
     } else {

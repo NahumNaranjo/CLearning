@@ -3,11 +3,9 @@
 #include "txtFunctions.h"
 #include "writeFile.h"
 #include <stdlib.h>
-#include <windows.h>
 #include <string.h>
 #include <hermes.h>
 #include <cfm2.h>
-#include <windows.h>
 #include <cui2.h>
 
 int main(){

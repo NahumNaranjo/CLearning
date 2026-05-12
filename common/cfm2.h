@@ -1,10 +1,7 @@
 #ifndef CFM2_H
 #define CFM2_H
     #include <stdio.h>
-    #include <windows.h>
-    #include <direct.h>
-    #include <sys/stat.h>
-    #include <stdio.h>
+    #include "platform.h"
     #include <ariadne.h>
 
     FILE* lookInRoot(char* filename, char* type);

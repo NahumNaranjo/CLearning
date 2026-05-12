@@ -17,7 +17,7 @@ FILE* lookInRoot(char* filename, char* type){
     }
 
     char cwd[1024] = {0};
-    _getcwd(cwd, sizeof(cwd));
+    getcwd(cwd, sizeof(cwd));
 
     char parent[1024] = {0};
     if(cwd[0]){
@@ -165,8 +165,11 @@ void* findFile(char* name, char* root, char* type){
     } else if(strcmp(searchRoot, "r") == 0){
         searchRoot = getRootFilePath();
     } else if(strcmp(searchRoot, "p") == 0){
-        cwdRoot = _getcwd(NULL, 0);
-        if(!cwdRoot) return NULL;
+        cwdRoot = (char*)malloc(1024);
+        if(!cwdRoot || !getcwd(cwdRoot, 1024)) {
+            free(cwdRoot);
+            return NULL;
+        }
         searchRoot = cwdRoot;
     }
 

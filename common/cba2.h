@@ -2,9 +2,8 @@
 #define CBA2_H
     #include <stdio.h>
     #include <stdlib.h>
-    #include <direct.h>
-    #include <windows.h>
     #include <string.h>
+    #include "platform.h"
     #include <ariadne.h>
     #include <generalData.h>
     #include <cfm2.h>

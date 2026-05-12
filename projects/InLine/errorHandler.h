@@ -4,6 +4,7 @@
     #include <stdio.h>
     #include <clist.h>
     #include <time.h>
+    #include <ariadne.h>
 
     typedef struct {
         int code;

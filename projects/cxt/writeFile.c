@@ -1,4 +1,5 @@
 #include "writeFile.h"
+#include "../common/platform.h"
 
 
 bool writeFile(const char* path, AnalyzeTextData* data) {
@@ -36,12 +37,12 @@ int mkdir_p(const char *path) {
     for (p = tmp + 1; *p; p++) {
         if (*p == '\\' || *p == '/') {
             *p = 0;
-            _mkdir(tmp);  // Ignore errors (directory might already exist)
+            mkdir(tmp);  // Ignore errors (directory might already exist)
             *p = '\\';
         }
     }
     
-    return _mkdir(tmp);  // Create final directory
+    return mkdir(tmp);  // Create final directory
 }
 
 char* getFilePath(){

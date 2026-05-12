@@ -437,7 +437,9 @@ I finally beat the InLine mess into something that doesn't look like a half-dead
 - `textParser.c` no longer tries to use an uninitialized verb list, and it prints detected verbs so i can debug the parser flow.
 - Also updated `DOCUMENTATION.md` with an InLine section, because if i'm adding a new engine i better write it down.
 
-This was one of those days where nothing looks flashy, but the foundation got way stronger. next is making the example actually run from `projects/InLine/example/main.c` and then maybe add a real game loop.
+This was one of those days where nothing looks flashy, but the foundation got way stronger. next is making the example actually run from `projects/InLine/example/main.c` and then maybe add a real game loop.`
+
+Today's is my brother's birthday party so i'll just upload what i could do.
 
 ## 1.4 minor updates
 ### 1.4.7
@@ -577,3 +579,7 @@ The `#pragma` directive in C is the compiler's way of saying "here, have some ve
 ## Nerd thing 27
 ### (2026-05-11)
 The ``assert()`` macro in C doesn't just crash your program — it writes a nice little message telling you exactly which file and line number failed. ``assert(x > 0);`` fails? Boom: "``Assertion failed: x > 0, file main.c, line 42.``" Then it calls ``abort()`` and dies with dignity. Here's the kicker though: if you define ``NDEBUG`` before including ``assert.h``, all your asserts disappear. Poof. Gone. Compiled out of existence. Perfect for release builds. Until you forget to test something that only breaks in release. Then you're debugging without your safety net. Living on the edge, my friend.
+
+## Nerd thing 28
+### (2026-05-12)
+The ``variable`` in C is a global variable that holds the last error code. Sounds simple, right? WRONG. It's not actually a variable — it's a macro that expands to something thread-safe (usually a function call like ``(*__errno_location())``). Why? Because if it were a real global variable, threads would step all over each other's errors. So the standard library plays tricks on you. Also, errno only gets set when something fails. If a function succeeds, it might leave errno alone. So you HAVE to check it right after a failure, not before. And don't forget to set it to 0 before calling a function, otherwise you might see an old error and panic for no reason. It's a mess. But it's OUR mess. 
