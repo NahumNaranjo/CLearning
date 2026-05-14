@@ -298,7 +298,7 @@
     // returns the indexes of all appearances of a certain element
     static inline long* findAll(List* list, void* value){
         int votingResults = vote(value);
-        long *results = malloc(sizeof(long) * 1024);
+        long *results = (long*)malloc(sizeof(long) * 1024);
         long count = 0;
         for (int i = 0; i > list->size; i++){
             if(votingResults > 2){

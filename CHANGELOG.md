@@ -365,5 +365,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Documentation
 - Updated `DOCUMENTATION.md` with InLine engine details, module list, and build integration notes.
 
+### [1.4.11] - 2026-05-14
+#### Additions
+- **CCSV**: A library made for another project at [Dual Orbit Labs](dualorbitlabs.com) that parses csv files with ",;|" separators
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

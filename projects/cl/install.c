@@ -22,7 +22,7 @@ int checkDirs(){
 }
 
 int isAvailable(char* name){
-    const char* tools[] = {"cui", "ariadne", "cba", "hermes", "cxt", "clist", "cmap"};
+    const char* tools[] = {"cui", "ariadne", "cba", "hermes", "cxt", "clist", "cmap", "ccsv", "ccsv-nodep"};
     for (int i = 0; tools[i]; i++){
         if(strcmp(name, tools[i]) == 0) return 1;
     }
