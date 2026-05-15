@@ -1,12 +1,9 @@
 #include "textParser.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-void* verbParser(char* verb){
+void* verbParser(char* verb, Verb* verbs){
     if(!verb){
         return NULL;
     }
-    printf("Verb detected: %s\n", verb);
     return NULL;
 }
 
@@ -19,7 +16,7 @@ short isVerb(char* token, Verb* verbs){
         if(strcmp(token, verbs[i].full) == 0){
             return 1;
         }
-        if(verbs[i].cut && strcmp(token, verbs[i].cut) == 0){
+        if(verbs[i].shortened && strcmp(token, verbs[i].shortened) == 0){
             return 1;
         }
     }
@@ -35,11 +32,11 @@ void createDefaultVerbs(Verb* verbs){
     };
     int maxVerbs = sizeof(verbsChars) / sizeof(verbsChars[0]);
     for (int i = 0; i < maxVerbs; i++){
-        verbs[i].full = verbsChars[i];
-        verbs[i].cut = shorts[i];
+        verbs[i].full = strdup(verbsChars[i]);
+        verbs[i].shortened = shorts[i][0];
     }
     verbs[maxVerbs].full = NULL;
-    verbs[maxVerbs].cut = NULL;
+    verbs[maxVerbs].shortened = NULL;
 }
 
 void parseFromText(char* text){

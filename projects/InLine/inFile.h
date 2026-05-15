@@ -4,6 +4,11 @@
     #include <ariadne.h>
     #include <clist.h>
     #include <stdlib.h>
+    #include <stdio.h>
+    #include <string.h>
+    #define USE_CMAP
+    #define USE_ARIADNE
+    #include <ccsv.h>
     typedef struct{
         char* title;
         char* dev;

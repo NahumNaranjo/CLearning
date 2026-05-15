@@ -369,5 +369,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Additions
 - **CCSV**: A library made for another project at [Dual Orbit Labs](dualorbitlabs.com) that parses csv files with ",;|" separators
 
+### [1.4.12] - 2026-05-15
+Not much change, development update 
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

@@ -441,6 +441,10 @@ This was one of those days where nothing looks flashy, but the foundation got wa
 
 Today's is my brother's birthday party so i'll just upload what i could do.
 
+I refined ccsv (new library btw) today and i think ill add a nodep version of every library now
+
+Last update of the week, kinda mid, i went to the doctor to check the finger i almost broke the other week, see ya!
+
 ## 1.4 minor updates
 ### 1.4.7
 - Test and fix (again)

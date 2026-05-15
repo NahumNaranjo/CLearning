@@ -39,3 +39,14 @@ bool ExistValue(void* value, Map* map, size_t n){
     }
     return false;
 }   
+
+Map* createMap(int size) {
+    Map* returning = (Map*)malloc(sizeof(Map) * size);
+    if (returning) {
+        for (size_t i = 0; i < size; i++) {
+            returning[i].key = NULL;
+            returning[i].value = NULL;
+        }
+    }
+    return returning;
+}

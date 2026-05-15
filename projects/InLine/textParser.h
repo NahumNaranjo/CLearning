@@ -2,6 +2,7 @@
 #define TEXTPARSER_H
     #include <string.h>
     #include <stdio.h>
+    #include <stdlib.h>
     #include <map.h>
     #include <cfm2.h>
 
@@ -11,12 +12,11 @@
     } instruction;
 
     typedef struct{
-        char full[256];
-        char cut[256];
-        forms forms[20];
-    } Verb;
+        char* full;
+        char shortened;
+        void* action;
 
-    typedef struct{
+        // Time forms
         // Simples
         char simplePresent[256];
         char simplePast[256];
@@ -33,7 +33,7 @@
         // Perfect Continuous
         char presentPerfectContinuous[256];
         char pastPerfectContinuous[256];
-    } forms;
+    } Verb;
 
     void parseFromText(char* text);
 #endif

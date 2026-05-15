@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <map.h>
 
 // --- Conditional Dependency Management ---
 #ifdef USE_CLIST
@@ -27,7 +28,6 @@ static inline int isKeyword(const char* compared, char keywordsArray[256][256], 
     return 0;
 }
 
-// Fixed resize: takes a pointer to the array and updates its capacity variable
 static inline void resize(int needed_count, int* current_capacity, char*** array_ptr) {
     if (needed_count >= *current_capacity) {
         int new_capacity = *current_capacity + (*current_capacity >> 2) + 4;
@@ -39,16 +39,35 @@ static inline void resize(int needed_count, int* current_capacity, char*** array
     }
 }
 
-static inline List parse(char* path, char* keywords) {
+#ifdef USE_CLIST
+    static inline List parse(char* path, char* keywords) 
+#elif defined(USE_CMAP)
+    static inline Map* parse(char* path, char* keywords)
+#else     
+    static inline char** parse(char* path, char* keywords)
+#endif
+    {
     if (strstr(path, ".csv") == NULL) {
         printf("That's not a valid CSV file. Returning to main menu.\n");
-        return CLIST_NULL;
+        #ifdef USE_CLIST
+            return CLIST_NULL;
+        #elif defined(USE_CMAP)
+            return (Map*)NULL;
+        #else
+            return (char**)NULL;
+        #endif
     }
 
     FILE* fp = fopen(path, "r");
     if (!fp) {
         printf("Couldn't open the file.\n");
-        return CLIST_NULL;
+        #ifdef USE_CLIST
+            return CLIST_NULL;
+        #elif defined(USE_CMAP)
+            return (Map*)NULL;
+        #else
+            return (char**){0};
+        #endif
     }
     
     #ifdef USE_ARIADNE
@@ -86,6 +105,9 @@ static inline List parse(char* path, char* keywords) {
     
     #ifdef USE_CLIST
         List results = createList(256);
+    #elif defined(USE_CMAP)
+        int count = 0;
+        Map* results = createMap(256);
     #else
         int capacity = 32;
         int count = 0;
@@ -95,25 +117,42 @@ static inline List parse(char* path, char* keywords) {
     while (fgets(buffer, sizeof(buffer), fp)) {
         buffer[strcspn(buffer, "\n")] = 0;
         char* token = strtok(buffer, ",;|");
-        
-        while (token) {
-            if (keywords && isKeyword(token, keywordsArray, position)) {
-                token = strtok(NULL, ",;|");
-                continue;
-            }
+        #ifndef USE_CMAP
+            while (token) {
+                if (keywords && isKeyword(token, keywordsArray, position)) {
+                    token = strtok(NULL, ",;|");
+                    continue;
+                }   
             
-            #ifdef USE_CLIST
-                add(&results, token);
-            #else
-                resize(count + 1, &capacity, &results);
-                results[count] = strdup(token); 
-                count++;
-            #endif
-            token = strtok(NULL, ",;|");
-        }
+                #ifdef USE_CLIST
+                    add(&results, token);
+                #else
+                    resize(count + 1, &capacity, &results);
+                    results[count] = strdup(token); 
+                    count++;
+                #endif
+                token = strtok(NULL, ",;|");
+            }
+        #else
+            while (token) {
+                if (keywords && isKeyword(token, keywordsArray, position)) {
+                    for(int i = 0; token && isKeyword(token, keywordsArray, position); i++){
+                        if(token){results[i].key = strdup(token);} else break;
+                        strtok(NULL, ",;|");
+                    }
+                    continue;
+                }
+                for(int i = 0; i<position; i++){
+                    if(token){results[i].value = strdup(token);} else break;
+                    strtok(NULL, ",;|");
+                }
+            }
+        #endif
     }
     
-    #ifndef USE_CLIST
+    #ifdef USE_CLIST
+    #elif defined(USE_CMAP)
+    #else
         resize(count + 1, &capacity, &results);
         results[count] = NULL;
     #endif

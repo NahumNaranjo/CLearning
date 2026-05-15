@@ -1,7 +1,5 @@
 #include "inFile.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+
 
 static void appendCommaSeparated(char* dest, const char* value){
     if(!dest || !value) return;
@@ -52,7 +50,9 @@ programInfo innit(char* root){
         return info;
     }
 
-    cleanBackSlash(root);
+    #ifndef _WIN32
+        cleanBackSlash(root);
+    #endif
     FILE* fp = fopen(root, "r");
     if(!fp){
         fprintf(stderr, "Invalid root file: %s\n", root);
@@ -180,4 +180,42 @@ int writeToFileFromString(char* bit, FILE* file){
     return 0;
 }
 
+char* unzip(FILE* fp){
+
+}
+
+void* readFile(char* path, char mode){
+    FILE* fp = fopen(path, "r");
+    switch (mode){
+        case 's':
+            if(strstr(path, ".docx") == 0){
+                
+            }
+            if(strstr(path, ".txt") == 0){
+
+            }
+            break;
+        case 'k':
+            if(strstr(path, ".docx") == 0){
+                
+            }
+            if(strstr(path, ".csv") == 0){
+
+            }
+            break;
+        case 'd':
+            if(strstr(path, ".docx") == 0){
+                
+            }
+            if(strstr(path, ".csv") == 0){
+                char* keywords = "developer, dev, owner, genre, topic, date";
+                Map* data = parse(path, keywords);
+
+            }
+            break;
+    }
+    fclose(fp);
+}
+
 // If you find this, i really wanna play songs of syx
+// Hey! Alex from the future here, you did play songs of syx that day
