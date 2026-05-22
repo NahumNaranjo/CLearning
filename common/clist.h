@@ -23,7 +23,8 @@
     static inline void capCheck(List* list){
         if(list->size >= list->allocated){
             size_t newSize = list->allocated + (list->allocated >> 2);
-            list->content = (void**)realloc(list->content, newSize * sizeof(void*)); // Crazier realloc
+            list->content = (void**)realloc(list->content, newSize * sizeof(void*)); // Crazier reallo
+            list = (List *)realloc(list, newSize*sizeof(List));
             list->allocated = newSize;
         }
     }
@@ -106,13 +107,13 @@
     //TODO: ERROR MANAGER
 
     // creates an empty list
-    static inline List createList(size_t size){
-        List list;
+    static inline List* createList(size_t size){
+        List* list = (List*)malloc(sizeof(List));
         if(size == 0){
-            list.allocated = 0;
-            list.size = 0;
-            list.content = 0;
-            return list;
+            list->allocated = 0;
+            list->size = 0;
+            list->content = 0;
+            return &list;
         }
         // Python style overallocation
         size_t capacity;
@@ -122,18 +123,19 @@
             // ~22.5% overallocation: size + size/4 + small constant
             capacity = size + (size >> 2) + 6;
         }
-        list.content = (void**)malloc(capacity * sizeof(void*)); // Crazy allocation
-        if(!list.content) {
-            list.size = 0;
-            list.allocated = 0;
-            return list;
+        list->content = (void**)malloc(capacity * sizeof(void*)); // Crazy allocation
+        list = (List*)realloc(list, capacity * sizeof(List));
+        if(!list->content) {
+            list->size = 0;
+            list->allocated = 0;
+            return &list;
         }
 
         // Initialize all to NULL
-        memset(list.content, 0, capacity * sizeof(void*));
-        list.size = 0;
-        list.allocated = capacity;
-        return list;
+        memset(list->content, 0, capacity * sizeof(void*));
+        list->size = 0;
+        list->allocated = capacity;
+        return &list;
     }
 
     static inline void destroyList(List *list) {

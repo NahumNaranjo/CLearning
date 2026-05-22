@@ -3,22 +3,23 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <ariadne.h>
 
 typedef struct {
     void* key;
-    void* value;
+    void** value;
 } Map;
 
 #define CMAP_NULL (Map){0}
 // Pass the same Map* to every call (allocate once, reuse).
-// Returns index of key in map, or -1 if not found.
-int FindKey(void* key, Map* map, size_t n);
+// Returns index of key in  map, or -1 if not found.
+int FindKey(void* key, Map* map, size_t n, char mode);
 
 // Returns index of value in map, or -1 if not found.
-int FindValue(void* value, Map* map, size_t n);
+int FindValue(void** value, Map* map, size_t n, char mode);
 
-bool ExistKey(void* key, Map* map, size_t n);
-bool ExistValue(void* value, Map* map, size_t n);
+int ExistKey(void* key, Map* map, size_t n);
+int ExistValue(void** value, Map* map, size_t n);
 
 Map* createMap(int size);
 

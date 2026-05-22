@@ -445,6 +445,8 @@ I refined ccsv (new library btw) today and i think ill add a nodep version of ev
 
 Last update of the week, kinda mid, i went to the doctor to check the finger i almost broke the other week, see ya!
 
+Damn, i was really stupid when i wrote cxt, its illegible, i have to rewrite it so it's prettier and hopefully more efficient, anyways, i have some work to do so this week's updates have been just small patches
+
 ## 1.4 minor updates
 ### 1.4.7
 - Test and fix (again)

@@ -11,6 +11,6 @@
 
     char BuildUI();
     void Help();
-    char* HelpUI();
+    char* AnalysisUI();
     void analysisMode(char* txt, size_t* size, AnalyzeTextData* dataOut);
 #endif

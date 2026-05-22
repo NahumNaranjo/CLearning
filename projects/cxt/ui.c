@@ -13,7 +13,7 @@ char BuildUI(){
     return result;
 }
 
-char* HelpUI(){
+char* AnalysisUI(){
     static char option[256]; // Buffer for input
     printf("CXT Analysis Menu:\n");
     printf("Type 'exit' to return to the main menu.\n");
@@ -53,9 +53,9 @@ void analysisMode(char* txt, size_t* size, AnalyzeTextData* dataOut){
     }
     while(1){
             clearConsole();
-            ptrToOption = HelpUI();
-            if(strcmp(ptrToOption, "exit") == 0 || strcmp(ptrToOption, "Exit") == 0) {printf("Exiting analysis mode.\n"); clearConsole(); break;}
-            if(strcmp(ptrToOption, "help") == 0 || strcmp(ptrToOption, "Help") == 0) {Help(); continue;}
+            ptrToOption = AnalysisUI();
+            if(strcmpcase(ptrToOption, "exit") == 0) {printf("Exiting analysis mode.\n"); clearConsole(); break;}
+            if(strcmpcase(ptrToOption, "help") == 0) {Help(); continue;}
             if(strstr(ptrToOption, "info") != NULL){
                 if(strstr(ptrToOption, "-l") != NULL){
                     printf("Number of lines: %i\n", *data->newLines);

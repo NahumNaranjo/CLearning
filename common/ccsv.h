@@ -134,17 +134,24 @@ static inline void resize(int needed_count, int* current_capacity, char*** array
                 token = strtok(NULL, ",;|");
             }
         #else
+            int loop = 0;
             while (token) {
+                // \n check
+                if(strcmp(token, '\n')) continue;
+                // Stores keywords
                 if (keywords && isKeyword(token, keywordsArray, position)) {
-                    for(int i = 0; token && isKeyword(token, keywordsArray, position); i++){
+                    for(int i = 0; i < position && isKeyword(token, keywordsArray, position); i++){
                         if(token){results[i].key = strdup(token);} else break;
                         strtok(NULL, ",;|");
                     }
                     continue;
                 }
+                // stores all values in that line that are lower than the total amount of keywords
                 for(int i = 0; i<position; i++){
-                    if(token){results[i].value = strdup(token);} else break;
+                    if(strcmp(token, '\n')) break;
+                    if(token){results[i].value[loop] = strdup(token);} else break;
                     strtok(NULL, ",;|");
+                    loop++;
                 }
             }
         #endif
@@ -152,6 +159,7 @@ static inline void resize(int needed_count, int* current_capacity, char*** array
     
     #ifdef USE_CLIST
     #elif defined(USE_CMAP)
+
     #else
         resize(count + 1, &capacity, &results);
         results[count] = NULL;
