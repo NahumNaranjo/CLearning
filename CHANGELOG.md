@@ -372,5 +372,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### [1.4.12] - 2026-05-15
 Not much change, development update 
 
+### [1.4.13] - 2026-06-01
+#### Additions
+- **InLine**: Made a new extension and scripting language for the engine, documentation this friday
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project

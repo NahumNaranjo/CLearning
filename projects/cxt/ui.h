@@ -8,6 +8,7 @@
     #include "txtFunctions.h"
     #include <hermes.h>
     #include <cui2.h>
+    #include <ariadne.h>
 
     char BuildUI();
     void Help();

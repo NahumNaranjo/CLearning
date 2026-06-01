@@ -1,0 +1,35 @@
+#TYPE WRITTEN
+##Comentary
+#SECTION sign
+TITLE: Your_Game_Title
+DEV: Your_Name
+GENRE: Your_Game’s_genre
+
+#SECTION nouns
+Character_1
+Character_2
+MAIN_CHARACTER: Main_Character_Name, Character_Color, Attribute_1, Attribute_2 (…), #TYPEDEF name
+MULTIPLE: Multiple_Characters_Name
+SPECIAL: Special_Character_Name, Character_Color, Character_Description
+
+#SECTION verbs
+Verb_Keyword_1, action
+Verb_Keyword_2, action
+Verb_Keyword_3, action
+Verb_Keyword_4, action
+Verb_Keyword_5, action
+
+#SECTION adjectives
+Adjective_Keyword_1, attribute_to_modify, amount
+Adjective_Keyword_2, attribute_to_modify, amount
+Adjective_Keyword_3, attribute_to_modify, amount
+Adjective_Keyword_4, attribute_to_modify, amount
+Adjective_Keyword_5, attribute_to_modify, amount
+
+
+#SECTION script
+START_SEQUENCE : Character_1 “text” (OPTIONS) “Option 1” Sequence_1, “Option 2” Sequence _2, “Option 3” Sequence _3 (END_OPTIONS)
+Sequence_1: (0)Multiple_Characters_Name “(COLOR: hex_code) text (END_COLOR)”
+Sequence_2: Character_1 “text” Character_2 “text”
+Sequence_3: (ATTRIBUTE) Main_Character_Name, Attribute_1, SET: 1 (END_ATTRIBUTE) “Your character’s attribute has been set to (EMBED) (ATTRIBUTE) Main_Character_Name, Attribute_1, GET (END_ATTRIBUTE)(END_EMBED)”
+End_Sequence: Character_1 “Bye!” (EMBED) #CLOSE (END_EMBED)

@@ -28,15 +28,15 @@ void createDefaultVerbs(Verb* verbs){
         "take", "put", "walk", "run", "attack", "shoot", "kill", "revive"
     };
     char* shorts[] = {
-        "t", "p", "w", "r", "a", "s", "k", "r"
+        "tk", "pt", "wk", "rn", "atk", "sht", "kll", "rve"
     };
     int maxVerbs = sizeof(verbsChars) / sizeof(verbsChars[0]);
     for (int i = 0; i < maxVerbs; i++){
         verbs[i].full = strdup(verbsChars[i]);
-        verbs[i].shortened = shorts[i][0];
+        verbs[i].shortened = strdup(shorts[i]);
     }
-    verbs[maxVerbs].full = NULL;
-    verbs[maxVerbs].shortened = NULL;
+    verbs[maxVerbs].full = (char*)NULL;
+    verbs[maxVerbs].shortened = (char*)NULL;
 }
 
 void parseFromText(char* text){
@@ -55,7 +55,7 @@ void parseFromText(char* text){
     char* token = strtok(copy, " \t\r\n");
     while(token != NULL){
         if(isVerb(token, defaultVerbs) == 1){
-            verbParser(token);
+            verbParser(token, defaultVerbs);
         } else {
             printf("Unknown token: %s\n", token);
         }

@@ -217,5 +217,20 @@ void* readFile(char* path, char mode){
     fclose(fp);
 }
 
+
+void build(char* script, char* verbs, char* sign, char* nouns){
+    FILE* scriptFp = fopen(script, "r");
+    FILE* verbsFp = fopen(verbs, "r");
+    FILE* nounsFp = fopen(nouns, "r");
+    FILE* signFp = fopen(sign, "r");
+
+    if(!scriptFp || !verbsFp || !nounsFp ||!signFp){
+        printf("Couldn't open one of the needed files\n");
+        return;
+    }
+
+    
+}
+
 // If you find this, i really wanna play songs of syx
 // Hey! Alex from the future here, you did play songs of syx that day

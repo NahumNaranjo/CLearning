@@ -13,7 +13,7 @@
 
     typedef struct{
         char* full;
-        char shortened;
+        char* shortened;
         void* action;
 
         // Time forms
@@ -36,4 +36,5 @@
     } Verb;
 
     void parseFromText(char* text);
+    void* verbParser(char* verb, Verb* verbs);
 #endif

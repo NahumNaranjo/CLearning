@@ -54,9 +54,9 @@ void analysisMode(char* txt, size_t* size, AnalyzeTextData* dataOut){
     while(1){
             clearConsole();
             ptrToOption = AnalysisUI();
-            if(strcmpcase(ptrToOption, "exit") == 0) {printf("Exiting analysis mode.\n"); clearConsole(); break;}
-            if(strcmpcase(ptrToOption, "help") == 0) {Help(); continue;}
-            if(strstr(ptrToOption, "info") != NULL){
+            if(strcmp(toLowerCase(ptrToOption), "exit") == 0) {printf("Exiting analysis mode.\n"); clearConsole(); break;}
+            if(strcmp(toLowerCase(ptrToOption), "help") == 0) {Help(); continue;}
+            if(strstr(toLowerCase(ptrToOption), "info") != NULL){
                 if(strstr(ptrToOption, "-l") != NULL){
                     printf("Number of lines: %i\n", *data->newLines);
                 }

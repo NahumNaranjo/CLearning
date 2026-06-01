@@ -365,6 +365,18 @@ After a LOOOOOOOOONG week of not being able to work, im able to sneak a little t
 
 Didn't do much, i'm honestly rusty but it's ok, ill get used to it again in no time. Didn't have much trouble but one little thing i didn't know, C has operator precedance too! so i had to call `((inlineError*)errList.content[0])->code` instead of just `(inlineError*)errList.content[0]->code` cause `->` is more important. Weird, isn't it?
 
+I finally beat the InLine mess into something that doesn't look like a half-dead skeleton.
+
+- `errorHandler.c` was literally the worst: bad loop, bad buffer, and bad error formatting. fixed it all and now `errorCodes.txt` is actually usable.
+- `inFile.c` now parses the game root file properly, handles values with `{ }`, and doesn't overwrite stack memory for `putenv()`.
+- `inputLogger.c` finally reads console text correctly and even has a single-key logger.
+- `textParser.c` no longer tries to use an uninitialized verb list, and it prints detected verbs so i can debug the parser flow.
+- Also updated `DOCUMENTATION.md` with an InLine section, because if i'm adding a new engine i better write it down.
+
+This was one of those days where nothing looks flashy, but the foundation got way stronger. next is making the example actually run from `projects/InLine/example/main.c` and then maybe add a real game loop.`
+
+Today was extension day,i made an extension for inline, its called inscript and i guess vs code now supports inline's scripting language, more information tomorrow i guess
+
 ### Adding games to CL ;D
 
 ### CList (Done as of 04-07-26)
@@ -429,15 +441,6 @@ I'm sorry guys but i hurt my fingers and i can't really code today, sorry D:
 
 Today, as all fridays, i fixed all bugs i added during the week so i can release the weekly .exe file. Anyways, see ya later!
 
-I finally beat the InLine mess into something that doesn't look like a half-dead skeleton.
-
-- `errorHandler.c` was literally the worst: bad loop, bad buffer, and bad error formatting. fixed it all and now `errorCodes.txt` is actually usable.
-- `inFile.c` now parses the game root file properly, handles values with `{ }`, and doesn't overwrite stack memory for `putenv()`.
-- `inputLogger.c` finally reads console text correctly and even has a single-key logger.
-- `textParser.c` no longer tries to use an uninitialized verb list, and it prints detected verbs so i can debug the parser flow.
-- Also updated `DOCUMENTATION.md` with an InLine section, because if i'm adding a new engine i better write it down.
-
-This was one of those days where nothing looks flashy, but the foundation got way stronger. next is making the example actually run from `projects/InLine/example/main.c` and then maybe add a real game loop.`
 
 Today's is my brother's birthday party so i'll just upload what i could do.
 
@@ -589,3 +592,7 @@ The ``assert()`` macro in C doesn't just crash your program — it writes a nice
 ## Nerd thing 28
 ### (2026-05-12)
 The ``variable`` in C is a global variable that holds the last error code. Sounds simple, right? WRONG. It's not actually a variable — it's a macro that expands to something thread-safe (usually a function call like ``(*__errno_location())``). Why? Because if it were a real global variable, threads would step all over each other's errors. So the standard library plays tricks on you. Also, errno only gets set when something fails. If a function succeeds, it might leave errno alone. So you HAVE to check it right after a failure, not before. And don't forget to set it to 0 before calling a function, otherwise you might see an old error and panic for no reason. It's a mess. But it's OUR mess. 
+
+## Nerd thing 29
+### (2026-06-01, Monday)
+The `restrict` keyword in C is basically you making a pinky promise to the compiler: "I swear on my stack pointer that this pointer is the ONLY way to access this memory." Why does the compiler care? Because without `restrict`, the compiler has to assume any pointer could point to the same memory as any other pointer (aliasing). That means it has to reload values from memory constantly, just in case someone changed them through another pointer. With `restrict`, the compiler can go crazy with optimizations — load once, keep it in a register, assume it never changes. The speed difference can be massive, especially with matrix math or image processing. But lie to the compiler with `restrict`? Your program will break in ways that make your ancestors weep. Undefined behavior doesn't even begin to cover it. The funny part? Almost no one uses `restrict` because it's scary and most people don't even know it exists. It's like C's secret turbo button that might also explode your engine.
