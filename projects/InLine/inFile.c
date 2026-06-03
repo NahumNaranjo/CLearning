@@ -38,7 +38,7 @@ programInfo innit(char* root){
     info.title = calloc(1024, 1);
     info.dev = calloc(1024, 1);
     info.genre = calloc(1024, 1);
-    info.verbs = calloc(1024, 1);
+    // info.verbs = (Verb*)calloc(1024, 1);
     info.nouns = calloc(1024, 1);
     info.adjectives = calloc(1024, 1);
     info.script = calloc(1024, 1);
@@ -218,19 +218,62 @@ void* readFile(char* path, char mode){
 }
 
 
-void build(char* script, char* verbs, char* sign, char* nouns){
-    FILE* scriptFp = fopen(script, "r");
-    FILE* verbsFp = fopen(verbs, "r");
-    FILE* nounsFp = fopen(nouns, "r");
-    FILE* signFp = fopen(sign, "r");
-
-    if(!scriptFp || !verbsFp || !nounsFp ||!signFp){
-        printf("Couldn't open one of the needed files\n");
+void build(char* script){
+    if(!strstr(script, ".inscript") && !strstr(script, ".inpt") && !strstr(script, ".incrpt") && !strstr(script, ".insc")){
+        perror("Not a valid inscript file");
+        return;
+    }
+    FILE* fp = fopen(script, "r");
+    char buffer[8192];
+    fgets(buffer, sizeof(buffer), fp != NULL);
+    if(!strstr(buffer, "#TYPE ")){
+        perror("Couldn't read the game type correctly, please check the first line of your file and inscript documentation. For more information, email nnaranjo1@ucol.mx");
+        return;
+    }
+    if(!strstr(buffer, "SEQUENCE") && !strstr(buffer, "SEQUENCE_BASED") && !strstr(buffer, "WRITTEN")){
+        perror("Invalid game type.");
         return;
     }
 
-    
+    char instruction;
+    if(strstr(buffer, "WRITTEN")){
+        printf("Written game types are not supported yet.");
+        return;
+    }
+
+    if(strstr(buffer, "SEQUENCE") || strstr(buffer, "SEQUENCE_BASED")){
+
+        return;
+    }
+
+    perror("There was an unexpected error, please check your code, you can find more information in the documentation or emailing nnaranjo1@ucol.mx.");
 }
 
+char interpreter(char* line){
+    if(strstr(line, "#SECTION ")){
+        return 's';
+    }
+    if(strstr(line, "#CLOSE")){
+        return 'c';
+    }
+    if(strstr(line, "#GOTO")){
+        return 'g';
+    }
+    if(strstr(line, "#VALUE")){
+        return 'v';
+    }
+    if(strstr(line, "(EMBED)")){
+        return 'e';
+    }
+    if(strstr(line, "(CALC)")){
+        return '+';
+    }
+    if(strstr(line, "(COLOR: ")){
+        return 'l';
+    }
+    if(strstr(line, "(OPTIONS)")){
+        return 'o';
+    }
+}
 // If you find this, i really wanna play songs of syx
 // Hey! Alex from the future here, you did play songs of syx that day

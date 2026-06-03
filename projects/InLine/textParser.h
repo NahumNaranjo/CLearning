@@ -35,6 +35,10 @@
         char pastPerfectContinuous[256];
     } Verb;
 
+    typedef struct{
+        char* Name
+    } Noun;
+
     void parseFromText(char* text);
     void* verbParser(char* verb, Verb* verbs);
 #endif

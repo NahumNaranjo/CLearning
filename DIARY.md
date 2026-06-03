@@ -377,6 +377,8 @@ This was one of those days where nothing looks flashy, but the foundation got wa
 
 Today was extension day,i made an extension for inline, its called inscript and i guess vs code now supports inline's scripting language, more information tomorrow i guess
 
+Shift ended and i think i had a good day. Lots of new content for inscript, i started actually coding the compiler and so. Made some estimations today and i think the whole engine will be ready in like a month, from that then i didn't really do much more. No bugs, no new things, just repetitive and creative work.
+
 ### Adding games to CL ;D
 
 ### CList (Done as of 04-07-26)

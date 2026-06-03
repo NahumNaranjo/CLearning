@@ -8,6 +8,20 @@
     #include <signal.h>
     #include <math.h>
     static jmp_buf buf;
+    static char arena[8192];
+    static size_t arena_offset = 0;
+
+    // Please, use it once or twice per function, its extremely inneficient and will consume ram quickly
+    #define REPLACE_CHAR(str, old, new) \
+    ({ \
+        size_t _len = strlen(str) + 1; \
+        char _buf[_len]; \
+        for(size_t _i = 0; _i < _len; _i++) \
+            _buf[_i] = (str[_i] == old) ? new : str[_i]; \
+        char* _result = (char[_len]){0}; \
+        memcpy(_result, _buf, _len); \
+        _result; \
+    })
 
     static inline void handleCrash(int sig){
         longjmp(buf, 1);
@@ -177,6 +191,36 @@
             returning[i] = toupper(string[i]);
         }
         return returning;
+    }
+
+    //Stores in arena, please clean up that every now and then with resetArena()
+    static inline char* replaceCharFromPointer(char* string, char toReplace, char character){
+        if(!string) return NULL;
+    
+        size_t len = strlen(string) + 1;
+        if(arena_offset + len > sizeof(arena)) return NULL;
+    
+        char* result = arena + arena_offset;
+        arena_offset += len;
+    
+        for(size_t i = 0; i < len; i++){
+            result[i] = (string[i] == toReplace) ? character : string[i];
+        }
+        return result;
+    }
+
+    void resetArena(void) { arena_offset = 0; }
+
+    static inline void replaceCharFromArray(char* string, char toReplace, char character){
+        if(!string || !toReplace || !character){
+            return;
+        }
+
+        for(int i = 0; string[i]; i++){
+            if(string[i] == toReplace){
+                string[i] = character;
+            }
+        }
     }
     
 #endif

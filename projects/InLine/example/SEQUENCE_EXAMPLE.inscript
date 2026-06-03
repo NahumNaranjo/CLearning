@@ -5,16 +5,30 @@ TITLE: Your_Game_Title
 DEV: Your_Name
 GENRE: Your_Game’s_genre
 
+#SECTION options
+INT_BUFFER_SIZE: 1024
+STRING_BUFFER_SIZE: 1024
+
+#SECTION data
+INT integer: 0
+INT num1;
+INT num2;
+STRING name;
+
 #SECTION nouns
 Character_1
 Character_2
-MAIN_CHARACTER: Main_Character_Name, Character_Color, Attribute_1, Attribute_2 (…), #TYPEDEF name
+MAIN_CHARACTER: Main_Character_Name, Character_Color, Attribute_1, Attribute_2 (…), #TYPEDEF typedef_name
 MULTIPLE: Multiple_Characters_Name
 SPECIAL: Special_Character_Name, Character_Color, Character_Description
 
 #SECTION script
 START_SEQUENCE : Character_1 “text” (OPTIONS) “Option 1” Sequence_1, “Option 2” Sequence _2, “Option 3” Sequence _3 (END_OPTIONS)
-Sequence_1: (0)Multiple_Characters_Name “(COLOR: hex_code) text (END_COLOR)”
-Sequence_2: Character_1 “text” Character_2 “text”
-Sequence_3: (ATTRIBUTE) Main_Character_Name, Attribute_1, SET: 1 (END_ATTRIBUTE) “Your character’s attribute has been set to (EMBED) (ATTRIBUTE) Main_Character_Name, Attribute_1, GET (END_ATTRIBUTE)(END_EMBED)”
-End_Sequence: Character_1 “Bye!” (EMBED) #CLOSE (END_EMBED)
+Sequence_1: (0)Multiple_Characters_Name “(COLOR: hex_code) text (END_COLOR)” #GOTO Sequence_4
+Sequence_2: Character_1 “text” Character_2 “text” #GOTO Sequence_4
+Sequence_3: (ATTRIBUTE) Main_Character_Name, Attribute_1, SET: 1 (END_ATTRIBUTE) “Your character’s attribute has been set to (EMBED) (ATTRIBUTE) Main_Character_Name, Attribute_1, GET (END_ATTRIBUTE) (END_EMBED)” #GOTO Sequence_4
+Sequence_4: (CALC) 1 + 1 * 1425/3 + (1+3*9), integer (END_CALC) "The result was (EMBED) #VALUE integer (END_EMBED) , now we're gonna ask for your name"
+Sequence_5: "Enter your name: " #GET_INPUT name "(EMBED) #VALUE name (END_EMBED)? is that even a name? anyways, now let's use your own numbers"
+Sequence_6: "First one: " #GET_INPUT num1 "Second one: " #GET_INPUT num2 "Now let's add them! (EMBED) (CALC)  (END_CALC) (END_EMBED)
+Sequence_7: #CLOSE
+END_SEQUENCE: Character_1 “Bye!” #CLOSE

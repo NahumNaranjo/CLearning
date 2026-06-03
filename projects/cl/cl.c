@@ -11,7 +11,7 @@ void interpreter(int argc, char** argv){
     }
     if (argv[1] != NULL && (strcmp(toLowerCase(argv[1]), "-v") == 0 || strcmp(toLowerCase(argv[1]), "--version") == 0)) {
         if(argv[2] == NULL) {
-            printf("CL (Ecosystem) version 1.4.9. Author: Nahum Naranjo \n"); 
+            printf("CL (Ecosystem) version 1.4.14. Author: Nahum Naranjo \n"); 
             return;
         }
         if(strcmp(toLowerCase(argv[2]), "cxt") == 0){

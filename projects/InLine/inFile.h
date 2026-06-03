@@ -9,6 +9,7 @@
     #define USE_CMAP
     #define USE_ARIADNE
     #include <ccsv.h>
+    #include "inLine.h"
     typedef struct{
         char* title;
         char* dev;
@@ -18,6 +19,8 @@
         char* adjectives;
         char* script;
         char* characters;
+        Verb verbs[];
+        
     } programInfo;
 
     programInfo innit(char* root);

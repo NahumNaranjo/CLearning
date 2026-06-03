@@ -23,7 +23,7 @@ int FindKey(void* key, Map* map, size_t n){
 int FindValue(void** value, Map* map, size_t n, char mode){
     int result = vote(value);
     switch (mode){
-        case 'c':
+        case 'c': //coincidence
             for(int i = 0; i < n; i++){
                 for(int j = 0; j < (sizeof(value) / sizeof(void**)); i++){
                     if(result >= 2){
@@ -38,7 +38,7 @@ int FindValue(void** value, Map* map, size_t n, char mode){
                 }
             }    
         break;
-        case 'a':
+        case 'a': //Full array
             int coincidence = 0;
             for(int i = 0; i < n; i++){
                 for(int j = 0; j < (sizeof(value) / sizeof(void**)); j++){
@@ -60,7 +60,7 @@ int FindValue(void** value, Map* map, size_t n, char mode){
                 }
             }
         break;
-        case 'l':
+        case 'l': // lone string
             for(int i = 0; i < n; i++){
                 if(result >= 2){
                     if(strcmp(map[i].value, value) == 0){

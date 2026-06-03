@@ -374,7 +374,16 @@ Not much change, development update
 
 ### [1.4.13] - 2026-06-01
 #### Additions
-- **InLine**: Made a new extension and scripting language for the engine, documentation this friday
+- **InLine**: Made a new extension and scripting language for the engine, documentation this friday.
 
+### [1.4.14] - 2026-06-03
+#### Additions
+- **Inscript**:
+  - **Data section:** Now you can declare variables, they will be stored as maps with the key being the name of the var and the value being the value of the var.
+  - **New Calculator:** Added ``(CALC)`` block so you can just calculate everything
+  - **Options section:** Now you don't have to actually go into the code to modify, just do it by code in ``#SECTION options``
+#### Changes
+- **InFile:** Now ``Build()`` will only accept .inscript files and execute them
+ 
 ### Author
 - Developed by Nahum Naranjo as a C learning project
