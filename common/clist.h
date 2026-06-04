@@ -20,71 +20,82 @@
     } List;
 
     // Checks if the ist hasn't gone out of bounds
-    static inline void capCheck(List* list){
+    static inline int capCheck(List* list){
+        if(!list) return 0;
+        if(list->allocated == 0){
+            size_t newSize = 8;
+            void **tmp = (void**)realloc(list->content, newSize * sizeof(void*));
+            if(!tmp) return 0;
+            list->content = tmp;
+            memset(list->content + list->size, 0, (newSize - list->size) * sizeof(void*));
+            list->allocated = newSize;
+            return 1;
+        }
         if(list->size >= list->allocated){
-            size_t newSize = list->allocated + (list->allocated >> 2);
-            list->content = (void**)realloc(list->content, newSize * sizeof(void*)); // Crazier reallo
-            list = (List *)realloc(list, newSize*sizeof(List));
+            size_t newSize = list->allocated + (list->allocated >> 2) + 1;
+            void **tmp = (void**)realloc(list->content, newSize * sizeof(void*));
+            if(!tmp) return 0;
+            list->content = tmp;
+            memset(list->content + list->size, 0, (newSize - list->size) * sizeof(void*));
             list->allocated = newSize;
         }
+        return 1;
     }
 
     // Moves all the values of a list, index makes it stop at a specific point and orientation ('l' or 'r') marks where it'll begin
-    static inline void moveList(List* list, size_t* index, char* orientation){
-        capCheck(list);
+    static inline void moveList(List* list, size_t index, char orientation){
+        if(!list || !list->content) return;
+        if(orientation != 'l' && orientation != 'r') return;
 
-        if(orientation[0] != 'l' && orientation[0] != 'r'){
-            return;
-        }
-
-        for(
-            int i = (orientation[0] == 'l' ? 0 : list->size);   // if it goes to the right, i = list->size
-            orientation[0] == 'l' ? i <= list->size : i >= 0;   
-            orientation[0] == 'l' ? i++ : i-- // if it goes to the right, i--
-        ){
-            if(i < *index && *index != 0){
-                break;
-            }
-            if(orientation[0] == 'r'){
+        if(orientation == 'r'){
+            /* move elements one position to the right starting at index */
+            if(list->size == 0 || index > list->size) return;
+            capCheck(list);
+            for(size_t i = list->size; i > index; i--){
                 list->content[i] = list->content[i-1];
-            } else{
+            }
+        } else {
+            /* move elements one position to the left starting at index */
+            if(list->size == 0 || index >= list->size) return;
+            for(size_t i = index; i < list->size - 1; i++){
                 list->content[i] = list->content[i+1];
             }
+            list->content[list->size-1] = NULL;
         }
     }
 
     // Deletes the last item
     static inline void pop(List* list){
-        list->content[list->size] = NULL;
+        if(!list || list->size == 0) return;
+        list->content[list->size - 1] = NULL;
         list->size--;
     }
 
     // Deletes a specific index and reorganizes the list
     static inline void cherryPick(List* list, size_t index){
-        list->content[index] = NULL;
-        
+        if(!list || list->size == 0 || index >= list->size) return;
+        for(size_t i = index; i < list->size - 1; i++){
+            list->content[i] = list->content[i+1];
+        }
+        list->content[list->size - 1] = NULL;
+        list->size--;
     }
 
 
     // Adds an item to the last position of the list
     static inline void append(List* list, void* obj){
-        capCheck(list);
-        if(list->size != 0) list->size++;
-
+        if(!list) return;
+        if(!capCheck(list)) return;
         list->content[list->size] = obj;
-
-        if(list->size == 0) list->size++;
+        list->size++;
     }
 
     // Inserts an item to a specific index
     static inline void insert(List* list, void* obj, size_t index){
-        capCheck(list);
-
-        // Move all objects to the right and insert the recieving one
-        for(int i = list->size; i > 0; i--){
-            if(i < index){
-                break;
-            }
+        if(!list) return;
+        if(index > list->size) index = list->size;
+        if(!capCheck(list)) return;
+        for(size_t i = list->size; i > index; i--){
             list->content[i] = list->content[i-1];
         }
         list->content[index] = obj;
@@ -93,11 +104,9 @@
 
     // Adds an item to the first position of the list
     static inline void add(List* list, void* obj){
-        capCheck(list);
-
-        // switch all to the right and add obj to the start
-        // Impossible to do O(1) but meh
-        for (int i = list->size; i > 0; i--) {
+        if(!list) return;
+        if(!capCheck(list)) return;
+        for(size_t i = list->size; i > 0; i--){
             list->content[i] = list->content[i-1];
         }
         list->content[0] = obj;
@@ -109,33 +118,27 @@
     // creates an empty list
     static inline List* createList(size_t size){
         List* list = (List*)malloc(sizeof(List));
-        if(size == 0){
-            list->allocated = 0;
-            list->size = 0;
-            list->content = 0;
-            return &list;
-        }
-        // Python style overallocation
+        if(!list) return NULL;
+        list->size = 0;
+        list->allocated = 0;
+        list->content = NULL;
+
+        if(size == 0) return list;
+
         size_t capacity;
         if (size < 8) {
-            capacity = size + 3;  // Small lists get more relative room
+            capacity = size + 3;
         } else {
-            // ~22.5% overallocation: size + size/4 + small constant
             capacity = size + (size >> 2) + 6;
         }
-        list->content = (void**)malloc(capacity * sizeof(void*)); // Crazy allocation
-        list = (List*)realloc(list, capacity * sizeof(List));
-        if(!list->content) {
-            list->size = 0;
-            list->allocated = 0;
-            return &list;
+        list->content = (void**)malloc(capacity * sizeof(void*));
+        if(!list->content){
+            free(list);
+            return NULL;
         }
-
-        // Initialize all to NULL
         memset(list->content, 0, capacity * sizeof(void*));
-        list->size = 0;
         list->allocated = capacity;
-        return &list;
+        return list;
     }
 
     static inline void destroyList(List *list) {
@@ -174,13 +177,19 @@
         }
         char *returning = (char*)malloc(sizeof(char)*chars);
         if(mode == 'f'){
-            for(int i = 0; i < chars; i++){
+            for(int i = 0; i < chars && string[i] != '\0'; i++){
                 returning[i] = string[i];
             }
+            returning[chars] = '\0';
         } else if(mode == 'l'){
-            for(int i = chars; i > 0; i--){
-                returning[-(i - chars)] = string[-(i - chars)];
+            int len = (int)strlen(string);
+            int start = len - chars;
+            if(start < 0) start = 0;
+            int idx = 0;
+            for(int i = start; i < len; i++){
+                returning[idx++] = string[i];
             }
+            returning[idx] = '\0';
         }
         return returning;
     }
@@ -283,14 +292,15 @@
     // returns the index of the first appearance of an element
     // WARNING: Use only for string or numbers, structs are not supported
     static inline long findFirst(List* list, void* value){
+        if(!list || !value) return -1;
         int votingResults = clistVote(value);
-        for (int i = 0; i < list->size; i++){
+        for (size_t i = 0; i < list->size; i++){
             if(votingResults > 2){
-                if(strcmp((char*)list->content[i], (char*)value)){
-                    return i;
-                } 
+                if(list->content[i] && strcmp((char*)list->content[i], (char*)value) == 0){
+                    return (long)i;
+                }
             } else {
-                if(*(size_t *)list->content[i] == *(size_t *)value) return i;
+                if(list->content[i] && *(size_t *)list->content[i] == *(size_t *)value) return (long)i;
             }
         }
         return -1;
@@ -299,23 +309,41 @@
 
     // returns the indexes of all appearances of a certain element
     static inline long* findAll(List* list, void* value){
+        if(!list || !value) return NULL;
         int votingResults = clistVote(value);
-        long *results = (long*)malloc(sizeof(long) * 1024);
-        long count = 0;
-        for (int i = 0; i > list->size; i++){
+        size_t capacity = 16;
+        long *results = (long*)malloc(sizeof(long) * capacity);
+        if(!results) return NULL;
+        size_t count = 0;
+        for(size_t i = 0; i < list->size; i++){
+            int matched = 0;
             if(votingResults > 2){
-                if(strcmp((char*)list->content, (char*)value)){
-                    results[count] = i;
-                    count++;
-                }
+                if(list->content[i] && strcmp((char*)list->content[i], (char*)value) == 0) matched = 1;
             } else {
-                if(*(size_t*)list->content == *(size_t*)value){
-                    results[count] = i;
-                    count++;
-                } 
+                if(list->content[i] && *(size_t*)list->content[i] == *(size_t*)value) matched = 1;
+            }
+            if(matched){
+                if(count >= capacity){
+                    capacity *= 2;
+                    long *tmp = (long*)realloc(results, sizeof(long) * capacity);
+                    if(!tmp) break;
+                    results = tmp;
+                }
+                results[count++] = (long)i;
             }
         }
-        return results; 
+        /* shrink to fit and append terminator -1 */
+        if(count == 0){
+            free(results);
+            return NULL;
+        }
+        long *final = (long*)realloc(results, sizeof(long) * (count + 1));
+        if(final){
+            final[count] = -1;
+            return final;
+        }
+        results[count] = -1;
+        return results;
     }
 
 #endif

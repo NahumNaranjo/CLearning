@@ -1,12 +1,14 @@
 #include "inLine.h"
 
-void textStart(Verb* devVerbs){
-    (void)devVerbs;
-}
+// TEXT
+// Sequence Based
 
-void textUpdate(char* text){
-    if(!text){
-        return;
-    }
-    parseFromText(text);
-}
+// Written
+
+// END TEXT
+// 2D
+
+// END 2D
+// 3D
+
+//END 3D

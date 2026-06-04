@@ -10,6 +10,39 @@
     #include <clist.h>
     #include <cfm2.h>
 
+    typedef struct{
+        //Sign
+        char* type;
+        char* name;
+        char* dev;
+        char* genre;
+
+        // Options
+        size_t intBufferSize;
+        size_t stringBufferSize;
+
+        // Verbs
+        List verbs;
+
+        // Nouns
+        List nouns;
+
+        //Vars
+        List ints;
+        List strings;
+
+    } ProgramInfo;
+
+    typedef struct{
+        char* name;
+        long value;
+    } IntVar;
+
+    typedef struct{
+        char* name;
+        char value[1024];
+    } stringVar;
+    
     void textUpdate(char* text);
     void textStart(Verb* devVerbs);
 #endif

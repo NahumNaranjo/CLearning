@@ -3,4 +3,6 @@
 101 = No dialogs extracted
 102 = Script not correctly formatted
 103 = Script file wasn't correctly signed
+104 = Invalid syntaxis
+105 = Unrecognized game type
 999 = Unexpected error happened

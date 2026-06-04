@@ -385,5 +385,9 @@ Not much change, development update
 #### Changes
 - **InFile:** Now ``Build()`` will only accept .inscript files and execute them
  
+### [1.4.15] - 2026-06-04
+#### Changes
+- **InLine:** Changed `ProgramInfo`'s location to this file, also made some modifications and implemented variables.
+- **textParser:** It now supports adjectives, nouns and no longer supports different time forms for verbs.
 ### Author
 - Developed by Nahum Naranjo as a C learning project

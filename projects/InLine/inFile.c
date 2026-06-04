@@ -33,7 +33,7 @@ static char* parseValue(const char* raw){
     return value;
 }
 
-programInfo innit(char* root){
+/*programInfo innit(char* root){
     programInfo info = {0};
     info.title = calloc(1024, 1);
     info.dev = calloc(1024, 1);
@@ -125,7 +125,7 @@ programInfo innit(char* root){
     }
 
     return info;
-}
+}*/
 
 int writeToFileFromArray(char** bit, FILE* file){
     if(!bit || !file || !bit[0]){
@@ -224,8 +224,12 @@ void build(char* script){
         return;
     }
     FILE* fp = fopen(script, "r");
+    if(!fp){
+        perror("Couldn't open the script");
+        return;
+    }
     char buffer[8192];
-    fgets(buffer, sizeof(buffer), fp != NULL);
+    fgets(buffer, sizeof(buffer), fp);
     if(!strstr(buffer, "#TYPE ")){
         perror("Couldn't read the game type correctly, please check the first line of your file and inscript documentation. For more information, email nnaranjo1@ucol.mx");
         return;
@@ -235,22 +239,103 @@ void build(char* script){
         return;
     }
 
-    char instruction;
+    ProgramInfo info;
+    char* token;
+    char* endptr;
     if(strstr(buffer, "WRITTEN")){
-        printf("Written game types are not supported yet.");
+        printf("Written game type not supported yet");
         return;
     }
-
     if(strstr(buffer, "SEQUENCE") || strstr(buffer, "SEQUENCE_BASED")){
-
-        return;
+        info.type = "SEQUENCE";
+    }
+    while(fgets(buffer, sizeof(buffer), fp)){
+        if(strstr(buffer, "##")){
+            continue;
+        }
+        if(strstr(buffer, "#SECTION")){
+            takeArgument(buffer, token);
+            if(strcmp(token, "sign") == 0){
+                while(fgets(buffer, sizeof(buffer), fp) && !strstr(buffer, "#SECTION")){
+                    if(strstr(buffer, "NAME: ")){
+                        takeArgument(buffer, token);
+                        info.name = token;
+                        continue;
+                    }
+                    if(strstr(buffer, "DEV: ")){
+                        takeArgument(buffer, token);
+                        info.dev = token;
+                        continue;
+                    }
+                    if(strstr(buffer, "GENRE: ")){
+                        takeArgument(buffer, token);
+                        info.genre = token;
+                    }
+                }
+            }
+            if(strcmp(token, "options") == 0){
+                while(fgets(buffer, sizeof(buffer), fp) && !strstr(buffer, "#SECTION")){
+                    if(strstr(buffer, "INT_BUFFER_SIZE: ")){
+                        takeArgument(buffer, token);
+                        info.intBufferSize = strtol(token, &endptr, 10);
+                        continue;
+                    }
+                    if(strstr(buffer, "STRING_BUFFER_SIZE: ")){
+                        takeArgument(buffer, token);
+                        info.stringBufferSize = strtol(token, &endptr, 10);
+                        continue;
+                    }
+                }
+            }
+            if(strcmp(token, "data") == 0){
+                while(fgets(buffer, sizeof(buffer), fp) && !strstr(buffer, "#SECTION")){
+                    if(strstr(buffer, "INT: ")){
+                        takeArgument(buffer, token);
+                        info.intBufferSize = strtol(token, &endptr, 10);
+                        continue;
+                    }
+                    if(strstr(buffer, "STRING: ")){
+                        takeArgument(buffer, token);
+                        info.stringBufferSize = strtol(token, &endptr, 10);
+                        continue;
+                    }
+                }
+            }
+            if(strcmp(token, "nouns") == 0){
+                
+            }
+            if(strcmp(token, "verbs") == 0){
+                
+            }
+            if(strcmp(token, "adjectives") == 0){
+                
+            }
+            if(strcmp(token, "script") == 0){
+                
+            }
+        }
     }
 
     perror("There was an unexpected error, please check your code, you can find more information in the documentation or emailing nnaranjo1@ucol.mx.");
 }
 
+
+void SequenceInterpreter(char* instruction, ProgramInfo* info){
+
+}
+
+void WrittenInterpreter(char* instruction, ProgramInfo* info){
+
+}
+
+
+void takeArgument(char buffer[], char* token){
+    token = strtok(buffer, " ");
+    token = strtok(NULL, " ");
+}
+
 char interpreter(char* line){
-    if(strstr(line, "#SECTION ")){
+    /*if(strstr(line, "#SECTION ")){
         return 's';
     }
     if(strstr(line, "#CLOSE")){
@@ -273,7 +358,7 @@ char interpreter(char* line){
     }
     if(strstr(line, "(OPTIONS)")){
         return 'o';
-    }
+    }*/
 }
 // If you find this, i really wanna play songs of syx
 // Hey! Alex from the future here, you did play songs of syx that day

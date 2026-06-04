@@ -13,32 +13,30 @@
 
     typedef struct{
         char* full;
-        char* shortened;
+        char* thirdPerson;
+        char* shortVer;
         void* action;
-
-        // Time forms
-        // Simples
-        char simplePresent[256];
-        char simplePast[256];
-        char simpleFuture[256];
-        
-        // Continuous
-        char presentContinuous[256];
-        char pastContinuous[256];
-
-        // Perfect
-        char presentPerfect[256];
-        char pastPerfect[256];
-
-        // Perfect Continuous
-        char presentPerfectContinuous[256];
-        char pastPerfectContinuous[256];
     } Verb;
 
     typedef struct{
-        char* Name
+        char* text;
+        void* value;
+    } Attribute;
+
+    typedef struct{
+        char* name;
+        char* description;
+        int type;
+        Attribute attributes[];
     } Noun;
 
+    typedef struct{
+        char* text;
+        char* attribute;
+        int modifier;
+    } Adjective;
+
+    void createDefaultVerbs(Verb* verbs);
     void parseFromText(char* text);
     void* verbParser(char* verb, Verb* verbs);
 #endif
