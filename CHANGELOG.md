@@ -389,5 +389,9 @@ Not much change, development update
 #### Changes
 - **InLine:** Changed `ProgramInfo`'s location to this file, also made some modifications and implemented variables.
 - **textParser:** It now supports adjectives, nouns and no longer supports different time forms for verbs.
+
+### [1.4.15a] - 2026-06-05
+#### Documentation
+- **InLine:** Partially documentated inscript
 ### Author
 - Developed by Nahum Naranjo as a C learning project

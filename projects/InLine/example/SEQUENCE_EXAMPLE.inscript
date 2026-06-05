@@ -24,7 +24,7 @@ SPECIAL: Special_Character_Name, Character_Color, Character_Description
 
 #SECTION script
 START_SEQUENCE : Character_1 “text” (OPTIONS) “Option 1” Sequence_1, “Option 2” Sequence _2, “Option 3” Sequence _3 (END_OPTIONS)
-Sequence_1: (0)Multiple_Characters_Name “(COLOR: hex_code) text (END_COLOR)” #GOTO Sequence_4
+Sequence_1: (0)Multiple_Characters_Name “(COLOR) hex_code text (END_COLOR)” #GOTO Sequence_4
 Sequence_2: Character_1 “text” Character_2 “text” #GOTO Sequence_4
 Sequence_3: (ATTRIBUTE) Main_Character_Name, Attribute_1, SET: 1 (END_ATTRIBUTE) “Your character’s attribute has been set to (EMBED) (ATTRIBUTE) Main_Character_Name, Attribute_1, GET (END_ATTRIBUTE) (END_EMBED)” #GOTO Sequence_4
 Sequence_4: (CALC) 1 + 1 * 1425/3 + (1+3*9), integer (END_CALC) "The result was (EMBED) #VALUE integer (END_EMBED) , now we're gonna ask for your name"
