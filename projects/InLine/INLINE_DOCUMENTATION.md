@@ -114,10 +114,13 @@ Example usage #2:
 ```
     #SECTION data
     INT variable: 1
-    
+
     #SECTION nouns
     MAIN_CHARACTER: Name, #ffffff, Attribute INT 1
     #SECTION script
-    START_SEQUENCE: 
+    START_SEQUENCE: Name "Look! my attirbute is at: (EMBED) (ATTRIBUTE) Name, Attribute, MODIFY (CALC) 
 ```
 ### # Directives
+
+### Autor
+- Developed by Nahum Naranjo as part of the C learning project

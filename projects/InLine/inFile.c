@@ -126,6 +126,8 @@ static char* parseValue(const char* raw){
 
     return info;
 }*/
+ProgramInfo info;
+
 
 int writeToFileFromArray(char** bit, FILE* file){
     if(!bit || !file || !bit[0]){
@@ -239,7 +241,6 @@ void build(char* script){
         return;
     }
 
-    ProgramInfo info;
     char* token;
     char* endptr;
     if(strstr(buffer, "WRITTEN")){

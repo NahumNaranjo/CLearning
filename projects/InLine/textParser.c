@@ -16,7 +16,7 @@ short isVerb(char* token, Verb* verbs){
         if(strcmp(token, verbs[i].full) == 0){
             return 1;
         }
-        if(verbs[i].shortened && strcmp(token, verbs[i].shortened) == 0){
+        if(verbs[i].shortVer && strcmp(token, verbs[i].shortVer) == 0){
             return 1;
         }
     }
@@ -33,10 +33,10 @@ void createDefaultVerbs(Verb* verbs){
     int maxVerbs = sizeof(verbsChars) / sizeof(verbsChars[0]);
     for (int i = 0; i < maxVerbs; i++){
         verbs[i].full = strdup(verbsChars[i]);
-        verbs[i].shortened = strdup(shorts[i]);
+        verbs[i].shortVer = strdup(shorts[i]);
     }
     verbs[maxVerbs].full = (char*)NULL;
-    verbs[maxVerbs].shortened = (char*)NULL;
+    verbs[maxVerbs].shortVer = (char*)NULL;
 }
 
 void parseFromText(char* text){

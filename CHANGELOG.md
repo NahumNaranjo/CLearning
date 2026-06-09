@@ -393,5 +393,10 @@ Not much change, development update
 ### [1.4.15a] - 2026-06-05
 #### Documentation
 - **InLine:** Partially documentated inscript
+
+### [1.4.16] - 2026-06-09
+#### Additions
+- **CMapRemake:** Remade cmap to make it more simple, ordered and useful. It now features a hash function with O(1) (i hope) time complexity. Aviable [here](https://github.com/NahumNaranjo/CmapRemake)
+
 ### Author
 - Developed by Nahum Naranjo as a C learning project
